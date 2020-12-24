@@ -14,18 +14,22 @@ public interface CanShootBullet<Bullet> {
 	
 	/**
 	 * 用于表示向上产生子弹
+	 * @since 1.0.0
 	 */
 	static final int UP = 1;
 	/**
 	 * 用于表示向下产生子弹
+	 * @since 1.0.0
 	 */
 	static final int DOWN = 2;
 	/**
 	 * 用于表示向左产生子弹
+	 * @since 1.0.0
 	 */
 	static final int LEFT = 3;
 	/**
 	 * 用于表示向右产生子弹
+	 * @since 1.0.0
 	 */
 	static final int RIGHT = 4;
 	
