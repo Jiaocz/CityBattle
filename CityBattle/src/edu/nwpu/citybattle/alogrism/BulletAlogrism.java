@@ -5,6 +5,9 @@ package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
 
+import edu.nwpu.citybattle.IngameElements.AiTank;
+import edu.nwpu.citybattle.IngameElements.MyTank;
+
 /**
  * 本类用于维护对子弹的算法<br />
  * 如子弹的撞击事件的维护等<br />
@@ -70,7 +73,7 @@ public class BulletAlogrism<Bullet> {
 		} else {
 			wall = initWall;
 			iron_wall = initIronWall;
-			tank = initAiTank;
+			ai_tank = initAiTank;
 			myTank = initMyTank;
 			hasData = true;
 		}
