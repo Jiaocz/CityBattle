@@ -16,11 +16,36 @@ public class MyTank extends Tank {
 		return null;
 	}
 
-	@Override
-	public void moveNext() {
-		// TODO Auto-generated method stub
+	
+	public void moveNext(int direction) {
+		switch(direction) {
+		case UP:
+			if(--tank_y==0)
+			tank_y--;
+			else
+				return;
+			break;
+		case LEFT:
+			if(--tank_x==0)
+			tank_x--;
+			else
+				return;
+			break;
+		case RIGHT:
+			if(++tank_x==0)
+			tank_x++;
+			else
+				return;
+			break;
+		case DOWN:
+			if(++tank_y==0)
+			tank_y++;
+			else
+				return;
+			break;
+		}
 		
-	}
+}
 
 	@Override
 	public void onHit() {

@@ -3,12 +3,14 @@
  */
 package edu.nwpu.citybattle.IngameElements;
 
+import edu.nwpu.citybattle.actions.Movable;
+
 /**
  * µ–∑ΩAIÃπøÀ¿‡
  * @version 1.0.0
  * @see Tank
  */
-public class AiTank extends Tank {
+public class AiTank extends Tank implements Movable {
 
 	@Override
 	public void moveNext() {
