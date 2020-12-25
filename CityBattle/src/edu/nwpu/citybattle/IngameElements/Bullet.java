@@ -16,13 +16,86 @@ public class Bullet implements Movable{
 	/**
 	 * 此{@code ArrayList}维护所有场上的子弹
 	 * @since 1.0.0
+	 * @see ArrayList
 	 */
 	public static ArrayList<Bullet> Bullets = new ArrayList<Bullet>();
+	
+	/**
+	 * 子弹的X坐标
+	 * @since 1.0.0
+	 */
+	public int pos_x;
+	/**
+	 * 子弹的X坐标
+	 * @since 1.0.0
+	 */
+	public int pos_y;
+	/**
+	 * 子弹的飞行方向，使用构造函数设定
+	 * @since 1.0.0
+	 */
+	public final int direction;
+	/**
+	 * 用于表示向上产生子弹
+	 * @since 1.0.0
+	 */
+	static final int UP = 1;
+	/**
+	 * 用于表示向下产生子弹
+	 * @since 1.0.0
+	 */
+	static final int DOWN = 2;
+	/**
+	 * 用于表示向左产生子弹
+	 * @since 1.0.0
+	 */
+	static final int LEFT = 3;
+	/**
+	 * 用于表示向右产生子弹
+	 * @since 1.0.0
+	 */
+	static final int RIGHT = 4;
+	
+	// 子弹速度
+	private static int speed = 1;
 
+	/**
+	 * 构造一个子弹，由其X、Y坐标及其方向
+	 * @param pos_x
+	 * @param pos_y
+	 * @param direction
+	 */
+	public Bullet(int pos_x, int pos_y, int direction) {
+		// Set Attributes
+		this.pos_x = pos_x;
+		this.pos_y = pos_y;
+		this.direction = direction;
+		// Add bullet to ArrayList 
+		Bullets.add(this);
+	}
+
+	/**
+	 * 每间隔时间后移动子弹
+	 */
 	@Override
 	public void moveNext() {
-		// TODO Auto-generated method stub
-		
+		// 该变X、Y坐标
+		switch(this.direction) {
+			case UP:
+				this.pos_y -= Bullet.speed;
+				break;
+			case DOWN:
+				this.pos_y += Bullet.speed;
+				break;
+			case LEFT:
+				this.pos_x -= Bullet.speed;
+				break;
+			case RIGHT:
+				this.pos_x += Bullet.speed;
+				break;
+		}
 	}
+	
+	
 	
 }
