@@ -5,6 +5,7 @@ package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
 import edu.nwpu.citybattle.IngameElements.AiTank;
+import edu.nwpu.citybattle.IngameElements.Bullet;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
 /**
@@ -15,7 +16,7 @@ import edu.nwpu.citybattle.IngameElements.MyTank;
  * @author Orangii
  * @version 1.0.0
  */
-public class BulletAlogrism<Bullet> {
+public class BulletAlogrism<BulletClass extends Bullet> {
 	/**
 	 * 单一实例的体现，只能通过{@code getSingletonInstance<Bullet>()}方法获取
 	 * 
@@ -55,6 +56,10 @@ public class BulletAlogrism<Bullet> {
 	 * @since 1.0.0
 	 */
 	private static boolean hasData = false;
+	
+	// 地图数组宽高
+	private static int WIDTH = 56;
+	private static int HEIGHT = 40;
 
 	/**
 	 * 当需要本类进行判断时，需要对地图数据的初始化。<br />
@@ -94,9 +99,9 @@ public class BulletAlogrism<Bullet> {
 	 * @return 单一实例
 	 */
 	@SuppressWarnings("unchecked")
-	public static <Bullet> BulletAlogrism<Bullet> getSingletonInstance() {
+	public static <BulletClass extends Bullet> BulletAlogrism<BulletClass> getSingletonInstance() {
 		if (singletonInstance == null)
-			singletonInstance = new BulletAlogrism<Bullet>();
+			singletonInstance = new BulletAlogrism<BulletClass>();
 		return singletonInstance;
 	}
 
@@ -111,19 +116,41 @@ public class BulletAlogrism<Bullet> {
 	 * @param BulletList
 	 * @throws NoGameDataException
 	 */
-	public void isHitting(ArrayList<Bullet> BulletList) throws NoGameDataException {
+	public void isHitting(ArrayList<BulletClass> BulletList) throws NoGameDataException {
 		//没有游戏数据时抛出异常
 		if(!hasData) throw new NoGameDataException("游戏数据未传入");
 		
-		//TODO 见下方
-		
-		//碰撞己方坦克
-		
-		//碰撞地方坦克
-		
-		//碰撞普通墙
-		
-		//碰撞铁墙
+		BulletList:
+		for(BulletClass b : BulletList) {
+			// TODO 见下方
+			
+			// 触碰边界
+			switch(b.direction) {
+				case Bullet.UP:
+					if(b.pos_y < 0) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.LEFT:
+					if(b.pos_x < 0) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.DOWN:
+				case Bullet.RIGHT:
+					
+					
+			}
+			// 碰撞己方坦克
+			
+			// 碰撞敌方坦克
+			
+			// 碰撞普通墙
+			
+			// 碰撞铁墙
+		}
 		
 	}
 }
