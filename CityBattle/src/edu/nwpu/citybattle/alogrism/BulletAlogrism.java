@@ -4,7 +4,6 @@
 package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
-
 import edu.nwpu.citybattle.IngameElements.AiTank;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
