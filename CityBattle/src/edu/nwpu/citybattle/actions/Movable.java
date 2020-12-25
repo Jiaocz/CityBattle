@@ -11,6 +11,26 @@ package edu.nwpu.citybattle.actions;
  * @version 1.0.0
  */
 public interface Movable {
+	/**
+	 * 用于表示向上产生子弹
+	 * @since 1.0.0
+	 */
+	static final int UP = 1;
+	/**
+	 * 用于表示向下产生子弹
+	 * @since 1.0.0
+	 */
+	static final int DOWN = 2;
+	/**
+	 * 用于表示向左产生子弹
+	 * @since 1.0.0
+	 */
+	static final int LEFT = 3;
+	/**
+	 * 用于表示向右产生子弹
+	 * @since 1.0.0
+	 */
+	static final int RIGHT = 4;
 	
 	/**
 	 * 本方法将在定时任务中调用，实现方法时应当完成对对象位置属性进行更新<br />
