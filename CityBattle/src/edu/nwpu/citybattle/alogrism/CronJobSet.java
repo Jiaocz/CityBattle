@@ -28,8 +28,8 @@ import java.util.Timer;
  * 		public void run() {
  * 			System.out.println("Now Time: " + System.currentTimeMillis());
  * 		}
- * 	}, 1000);
- * 	CronJobSet.startCronJob();
+ * }, 1000);
+ * CronJobSet.startCronJob();
  * </pre></code><br />
  * 以上示例展示了一个简单的添加匿名内部类的方法，并开始执行计时器。<br />
  * <b>注意：匿名内部类不被推荐，因为他们无法通过{@code removeJob()}方法删除</b>示例运行效果可以直接运行此类来观看。
