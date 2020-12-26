@@ -4,11 +4,14 @@
 package edu.nwpu.citybattle.actions;
 
 /**
- * 这个接口用于Timer刷新时对可移动目标进行位置属性更新<br />
- * 每次定时任务Timer执行时会调用目标对象的{@code moveNext()}方法<br />
- * 实现该接口的类应该完善此方法，使其能更新对象的位置属性，让其能在绘制时更改位置。
+ * 这个接口用于定时器刷新时对可移动目标进行位置属性更新<br />
+ * 每次定时任务定时器执行时会调用目标对象的{@code moveNext()}方法<br />
+ * 实现该接口的类应该完善此方法，使其能更新对象的位置属性，让其能在绘制时更改位置。<br />
+ * 具体原理可查看{@code CronJobSet}类
+ * 
  * @author Orangii
- * @version 1.0.0
+ * @version 1.0.1
+ * @see edu.nwpu.citybattle.alogrism.CronJobSet
  */
 public interface Movable {
 	/**
