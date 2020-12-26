@@ -11,7 +11,10 @@ import edu.nwpu.citybattle.IngameElements.MyTank;
 /**
  * 本类用于维护对子弹的算法<br />
  * 如子弹的撞击事件的维护等<br />
- * 子弹飞行暂不在此类中。
+ * 子弹飞行暂不在此类中。<br />
+ * 最初若要获得本类实例对象，请参考以下范例：<br />
+ * 	{@code BulletAlogrism<Bullet> bulletAlogrism = BulletAlogrism.<Bullet>getSingletonInstance();}<br />
+ * 其中泛型Bullet为需要维护的子弹的类型，之后调用时可以在函数前去掉泛型{@code <Bullet>}，如本类测试用Main函数中示例。
  * 
  * @author Orangii
  * @version 1.0.0
@@ -70,9 +73,10 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * 当地图切换或第一次使用本类进行计算的时候需要使用本方法进行传入游戏参数，否则将会产生错误。
 	 * 
 	 * @since 1.0.0
-	 * @param initTank
-	 * @param initWall
-	 * @param initIronWall
+	 * @param initWall 普通墙数组
+	 * @param initIronWall 铁墙数组
+	 * @param initAiTank AI敌方坦克列表
+	 * @param initMyTank 玩家控制坦克对象
 	 */
 	public static void initAlogrism(int[][] initWall, int[][] initIronWall, ArrayList<AiTank> initAiTank,
 			MyTank initMyTank) {
@@ -101,6 +105,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * @since 1.0.0
 	 * @param <Bullet> 第一次调用时确定子弹类型
 	 * @return 单一实例
+	 * @see BulletAlogrism
 	 */
 	@SuppressWarnings("unchecked")
 	public static <BulletClass extends Bullet> BulletAlogrism<BulletClass> getSingletonInstance() {
@@ -116,7 +121,8 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	
 	/**
 	 * 用于触发被子弹击中的物体的被击中事件。<br />
-	 * 使用前请先使用{@code initAlogrism}方法设定算法数据
+	 * 使用前请先使用{@code initAlogrism}方法设定算法数据 <br />
+	 * 使用前也应调用子弹的{@code moveNext()}方法对子弹坐标进行更新。
 	 * @param BulletList
 	 * @throws NoGameDataException
 	 */
@@ -184,12 +190,123 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					}
 					break;
 			}
+			
 			// 碰撞敌方坦克
+			for(AiTank t : ai_tank) {
+				switch(b.direction) {
+					case Bullet.UP:
+					case Bullet.LEFT:
+						if(b.pos_x >= t.tank_x && b.pos_x <= t.tank_x + TANK_WIDTH -1 
+							&& b.pos_y >= t.tank_y && b.pos_y <= t.tank_y + TANK_HEIGHT - 1) {
+							myTank.onHit();
+							BulletList.remove(b);
+							continue BulletList;
+						}
+						break;
+					case Bullet.RIGHT:
+						if(b.pos_x + 1 >= t.tank_x && b.pos_x + 1 <= t.tank_x + TANK_WIDTH -1 
+							&& b.pos_y >= t.tank_y && b.pos_y <= t.tank_y + TANK_HEIGHT - 1) {
+							myTank.onHit();
+							BulletList.remove(b);
+							continue BulletList;
+						}
+						break;
+					case Bullet.DOWN:
+						if(b.pos_x >= t.tank_x && b.pos_x <= t.tank_x + TANK_WIDTH -1 
+							&& b.pos_y + 1 >= t.tank_y && b.pos_y + 1 <= t.tank_y + TANK_HEIGHT - 1) {
+							myTank.onHit();
+							BulletList.remove(b);
+							continue BulletList;
+						}
+						break;
+				}
+			}
 			
 			// 碰撞普通墙
+			switch(b.direction) {
+				case Bullet.UP:
+					if(wall[b.pos_x][b.pos_y] == 1) {
+						for(int i = 0; i < wall.length; i += 2) {
+							if(i == b.pos_x || i == b.pos_x - 1) {
+								wall[i][b.pos_y] = wall[i][b.pos_y - 1] = wall[i + 1][b.pos_y] = wall[i + 1][b.pos_y - 1] = 0;
+							}
+						}
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.DOWN:
+					if(wall[b.pos_x][b.pos_y + 1] == 1) {
+						for(int i = 0; i < wall.length; i += 2) {
+							if(i == b.pos_x || i == b.pos_x - 1) {
+								wall[i][b.pos_y + 1] = wall[i][b.pos_y + 2] = wall[i + 1][b.pos_y + 1] = wall[i + 1][b.pos_y + 2] = 0;
+								break;
+							}
+						}
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.LEFT:
+					if(wall[b.pos_x][b.pos_y] == 1) {
+						for(int i = 0; i < wall[0].length; i += 2) {
+							if(i == b.pos_y || i == b.pos_y - 1) {
+								wall[b.pos_x][i] = wall[b.pos_x - 1][i] = wall[b.pos_x][i + 1] = wall[b.pos_x - 1][i + 1] = 0;
+								break;
+							}
+						}
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.RIGHT:
+					if(wall[b.pos_x + 1][b.pos_y] == 1) {
+						for(int i = 0; i < wall[0].length; i += 2) {
+							if(i == b.pos_y || i == b.pos_y - 1) {
+								wall[b.pos_x + 1][i] = wall[b.pos_x + 2][i] = wall[b.pos_x + 1][i + 1] = wall[b.pos_x + 2][i + 1] = 0;
+								break;
+							}
+						}
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+			}
 			
 			// 碰撞铁墙
+			switch(b.direction) {
+				case Bullet.UP:
+				case Bullet.LEFT:
+					if(iron_wall[b.pos_x][b.pos_y] == 1) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.RIGHT:
+					if(iron_wall[b.pos_x + 1][b.pos_y] == 1) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.DOWN:
+					if(iron_wall[b.pos_x][b.pos_y + 1] == 1) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+			}
 		}
-		
+	}
+	
+	/**
+	 * 测试用主函数，使用本类时请忽略。
+	 * @deprecated 1.0.0
+	 * @param args
+	 * @throws NoGameDataException
+	 */
+	public static void main(String[] args) throws NoGameDataException {
+		BulletAlogrism<Bullet> a = BulletAlogrism.<Bullet>getSingletonInstance();
+		BulletAlogrism<Bullet> b = BulletAlogrism.getSingletonInstance();
+		System.out.print(a.equals(b));
 	}
 }
