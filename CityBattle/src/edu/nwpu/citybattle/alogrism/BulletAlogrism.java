@@ -132,8 +132,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		
 		BulletList:
 		for(BulletClass b : BulletList) {
-			// TODO 见下方
-			
 			// 触碰边界
 			switch(b.direction) {
 				case Bullet.UP:
