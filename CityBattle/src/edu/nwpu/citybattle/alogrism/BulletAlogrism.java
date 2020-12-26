@@ -60,6 +60,10 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	// 地图数组宽高
 	private static int WIDTH = 56;
 	private static int HEIGHT = 40;
+	// 坦克宽高
+	private static int TANK_WIDTH = 5;
+	private static int TANK_HEIGHT = 5;
+	
 
 	/**
 	 * 当需要本类进行判断时，需要对地图数据的初始化。<br />
@@ -139,12 +143,47 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					}
 					break;
 				case Bullet.DOWN:
+					if(b.pos_y >= HEIGHT) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
 				case Bullet.RIGHT:
-					
-					
+					if(b.pos_x >= WIDTH) {
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;	
 			}
-			// 碰撞己方坦克
 			
+			// 碰撞己方坦克
+			switch(b.direction) {
+				case Bullet.UP:
+				case Bullet.LEFT:
+					if(b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH -1 
+						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
+						myTank.onHit();
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.RIGHT:
+					if(b.pos_x + 1 >= myTank.tank_x && b.pos_x + 1 <= myTank.tank_x + TANK_WIDTH -1 
+						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
+						myTank.onHit();
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+				case Bullet.DOWN:
+					if(b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH -1 
+						&& b.pos_y + 1 >= myTank.tank_y && b.pos_y + 1 <= myTank.tank_y + TANK_HEIGHT - 1) {
+						myTank.onHit();
+						BulletList.remove(b);
+						continue BulletList;
+					}
+					break;
+			}
 			// 碰撞敌方坦克
 			
 			// 碰撞普通墙
