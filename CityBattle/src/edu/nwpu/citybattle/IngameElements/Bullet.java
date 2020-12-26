@@ -18,7 +18,7 @@ public class Bullet implements Movable{
 	 * @since 1.0.0
 	 * @see ArrayList
 	 */
-	public static ArrayList<Bullet> Bullets = new ArrayList<Bullet>();
+	public static final ArrayList<Bullet> Bullets = new ArrayList<Bullet>();
 	
 	/**
 	 * ×Óµ¯µÄX×ø±ê
@@ -75,7 +75,5 @@ public class Bullet implements Movable{
 				break;
 		}
 	}
-	
-	
 	
 }

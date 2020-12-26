@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 public class AiTankArray {
-	public ArrayList<AiTank> aiTank;
+	public static final ArrayList<AiTank> aiTank = new ArrayList<AiTank>();
 	
 	/**
 	 * 
