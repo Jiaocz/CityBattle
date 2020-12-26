@@ -103,8 +103,9 @@ public final class CronJobSet extends TimerTask {
 			CronJobsInterval.add(CronJobs.indexOf(cronJobs), interval);
 			CronJobsLast.add(CronJobs.indexOf(cronJobs), System.currentTimeMillis());
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	/**
@@ -118,8 +119,9 @@ public final class CronJobSet extends TimerTask {
 		if (Moves.add(cronJobs)) {
 			MovesLast.add(Moves.indexOf(cronJobs), System.currentTimeMillis());
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	/**
