@@ -5,9 +5,11 @@ package edu.nwpu.citybattle.IngameElements;
 
 import java.util.ArrayList;
 import edu.nwpu.citybattle.actions.Movable;
+import edu.nwpu.citybattle.alogrism.CronJobSet;
 
 /**
- * 本类为坦克子弹类
+ * 本类为坦克子弹类，子弹对象实例化后会自动挂载到静态子弹列表中及计划任务中。
+ * 
  * @author Orangii
  * @version 1.0.0
  * @see edu.nwpu.citybattle.alogrism.BulletAlogrism
@@ -52,6 +54,7 @@ public class Bullet implements Movable{
 		this.direction = direction;
 		// Add bullet to ArrayList 
 		Bullets.add(this);
+		CronJobSet.addJob(this);
 	}
 
 	/**
@@ -76,4 +79,22 @@ public class Bullet implements Movable{
 		}
 	}
 	
+	/**
+	 * 静态方法，通过子弹对象在静态子弹列表中删除某子弹，同时删除其计划任务。
+	 * 
+	 * @param bullet 需要删除的子弹对象
+	 * @return 是否删除成功
+	 */
+	public static boolean remove(Bullet bullet) {
+		return Bullets.remove(bullet) && CronJobSet.removeJob(bullet);
+	}
+	
+	/**
+	 * 通过子弹本身删除子弹及其计划任务
+	 * 
+	 * @return 是否删除成功
+	 */
+	public boolean remove() {
+		return Bullet.Bullets.remove(this) && CronJobSet.removeJob(this);
+	}
 }

@@ -211,7 +211,7 @@ public final class CronJobSet extends TimerTask {
 	private CronJobSet() {}
 
 	/**
-	 * 测试用main方法，请问使用<br />
+	 * 测试用main方法，请勿使用<br />
 	 * 当然如果你想的话你可以照着学习一下
 	 * 
 	 * @deprecated

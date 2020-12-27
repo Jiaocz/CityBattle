@@ -136,25 +136,25 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 			switch(b.direction) {
 				case Bullet.UP:
 					if(b.pos_y < 0) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.LEFT:
 					if(b.pos_x < 0) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.DOWN:
 					if(b.pos_y >= HEIGHT) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.RIGHT:
 					if(b.pos_x >= WIDTH) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;	
@@ -167,7 +167,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					if(b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH -1 
 						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
 						myTank.onHit();
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -175,7 +175,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					if(b.pos_x + 1 >= myTank.tank_x && b.pos_x + 1 <= myTank.tank_x + TANK_WIDTH -1 
 						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
 						myTank.onHit();
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -183,7 +183,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					if(b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH -1 
 						&& b.pos_y + 1 >= myTank.tank_y && b.pos_y + 1 <= myTank.tank_y + TANK_HEIGHT - 1) {
 						myTank.onHit();
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -196,24 +196,24 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					case Bullet.LEFT:
 						if(b.pos_x >= t.tank_x && b.pos_x <= t.tank_x + TANK_WIDTH -1 
 							&& b.pos_y >= t.tank_y && b.pos_y <= t.tank_y + TANK_HEIGHT - 1) {
-							myTank.onHit();
-							BulletList.remove(b);
+							t.onHit();
+							b.remove();
 							continue BulletList;
 						}
 						break;
 					case Bullet.RIGHT:
 						if(b.pos_x + 1 >= t.tank_x && b.pos_x + 1 <= t.tank_x + TANK_WIDTH -1 
 							&& b.pos_y >= t.tank_y && b.pos_y <= t.tank_y + TANK_HEIGHT - 1) {
-							myTank.onHit();
-							BulletList.remove(b);
+							t.onHit();
+							b.remove();
 							continue BulletList;
 						}
 						break;
 					case Bullet.DOWN:
 						if(b.pos_x >= t.tank_x && b.pos_x <= t.tank_x + TANK_WIDTH -1 
 							&& b.pos_y + 1 >= t.tank_y && b.pos_y + 1 <= t.tank_y + TANK_HEIGHT - 1) {
-							myTank.onHit();
-							BulletList.remove(b);
+							t.onHit();
+							b.remove();
 							continue BulletList;
 						}
 						break;
@@ -229,7 +229,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 								wall[i][b.pos_y] = wall[i][b.pos_y - 1] = wall[i + 1][b.pos_y] = wall[i + 1][b.pos_y - 1] = 0;
 							}
 						}
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -241,7 +241,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 								break;
 							}
 						}
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -253,7 +253,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 								break;
 							}
 						}
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -265,7 +265,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 								break;
 							}
 						}
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
@@ -276,19 +276,19 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 				case Bullet.UP:
 				case Bullet.LEFT:
 					if(iron_wall[b.pos_x][b.pos_y] == 1) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.RIGHT:
 					if(iron_wall[b.pos_x + 1][b.pos_y] == 1) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.DOWN:
 					if(iron_wall[b.pos_x][b.pos_y + 1] == 1) {
-						BulletList.remove(b);
+						b.remove();
 						continue BulletList;
 					}
 					break;
