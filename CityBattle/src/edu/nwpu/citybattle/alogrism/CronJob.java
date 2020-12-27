@@ -14,7 +14,7 @@ package edu.nwpu.citybattle.alogrism;
  * @version 1.0.0
  * @see CronJobSet
  */
-public interface CronJob {
+public interface CronJob extends Runnable {
 	/**
 	 * 在本方法中覆写你要定时运行的内容<br />
 	 * 包括但不限于屏幕刷新、敌方坦克运动、子弹撞击判定等。<br />

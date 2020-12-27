@@ -20,7 +20,7 @@ import java.util.Timer;
  * 如果您有一个{@code List}容器存储这些{@code Movable}接口，您还可以通过{@code addJobs(List<Movable>)}方法批量添加这些任务。<br
  * />
  * <hr />
- * 如果您还有其他希望定时执行的任务，您可以在任务类中实现{@code CronJob}，并且通过{@code addJob(cronJob, Interval)}方法添加一个自定义时间间隔的定时任务。<br
+ * 如果您还有其他希望定时执行的任务，您可以在任务类中实现{@code CronJob}或者{@code Runnable接口}，并且通过{@code addJob(Runnable, Interval)}方法添加一个自定义时间间隔的定时任务。<br
  * />
  * 如果您仅仅是想要添加一个简单的计划执行任务，您可以使用匿名内部类来完成这个任务，如以下示例<br />
  * <code><pre>
@@ -37,6 +37,7 @@ import java.util.Timer;
  * 
  * @author Orangii
  * @version 1.0.0
+ * @see Runnable
  * @see CronJob
  * @see edu.nwpu.citybattle.actions.Movable
  * @see java.util.Timer
@@ -44,7 +45,7 @@ import java.util.Timer;
  */
 public final class CronJobSet extends TimerTask {
 	// 定时任务列表
-	private static ArrayList<CronJob> CronJobs = new ArrayList<CronJob>();
+	private static ArrayList<Runnable> CronJobs = new ArrayList<Runnable>();
 	private static ArrayList<Movable> Moves = new ArrayList<Movable>();
 
 	// 任务时间设定
@@ -91,14 +92,14 @@ public final class CronJobSet extends TimerTask {
 	}
 
 	/**
-	 * 增加一个CronJob接口类型的定时任务
+	 * 增加一个{@code CronJob}接口类型的定时任务，增加对{@code Runnable}接口的支持
 	 * 
 	 * @since 1.0.0
 	 * @param cronJobs 需要添加的任务
 	 * @param interval 任务执行间隔
 	 * @return 添加成功与否
 	 */
-	public static boolean addJob(CronJob cronJobs, long interval) {
+	public static boolean addJob(Runnable cronJobs, long interval) {
 		if (CronJobs.add(cronJobs)) {
 			CronJobsInterval.add(CronJobs.indexOf(cronJobs), interval);
 			CronJobsLast.add(CronJobs.indexOf(cronJobs), System.currentTimeMillis());
@@ -148,7 +149,7 @@ public final class CronJobSet extends TimerTask {
 	 * @param cronJob 需要删除的任务
 	 * @return 删除是否成功
 	 */
-	public static boolean removeJob(CronJob cronJob) {
+	public static boolean removeJob(Runnable cronJob) {
 		for (int i = 0; i < CronJobs.size(); i++) {
 			if (cronJob.equals(CronJobs.get(i))) {
 				CronJobs.remove(i);
