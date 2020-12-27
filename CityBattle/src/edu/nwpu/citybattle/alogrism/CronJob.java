@@ -11,7 +11,7 @@ package edu.nwpu.citybattle.alogrism;
  * 具体使用您可以看{@code CronJobSet}类给出的集中添加定时器的方法
  * 
  * @author Orangii
- * @version 1.0.0
+ * @version 1.1.0
  * @see CronJobSet
  */
 public interface CronJob extends Runnable {

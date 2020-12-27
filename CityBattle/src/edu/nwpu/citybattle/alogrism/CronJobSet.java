@@ -36,7 +36,7 @@ import java.util.Timer;
  * <hr />
  * 
  * @author Orangii
- * @version 1.0.0
+ * @version 1.1.0
  * @see Runnable
  * @see CronJob
  * @see edu.nwpu.citybattle.actions.Movable
