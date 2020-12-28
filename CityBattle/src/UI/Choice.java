@@ -27,7 +27,7 @@ import java.util.Currency;
  * version V1.0
  */
 public class Choice extends JFrame {
-	static int mapNumber;
+	public static int mapNumber;
 
 	private JPanel contentPane;
 
