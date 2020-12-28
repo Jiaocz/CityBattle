@@ -1,10 +1,8 @@
-/**
- * 
- */
 package edu.nwpu.citybattle.IngameElements;
+import edu.nwpu.citybattle.IngameElements.AiTank;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * 本类使用数组维护游戏内的AI坦克
  * @see AiTank
@@ -12,19 +10,37 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 public class AiTankArray {
-	public ArrayList<AiTank> aiTank;
+	public static final ArrayList<AiTank> aiTank = new ArrayList<AiTank>();
+	Iterator aiTanks = aiTank.iterator();
+	
 	
 	/**
-	 * 
+	 * 如果检测到有死亡的坦克，则在此基础上在该坦克的起始位置重新生成一个坦克
 	 */
-	public void addAiTank() {
-		//TODO 焦橙梓写的，你需要补齐
+	public void addAiTank() {	 
+		 while(aiTanks.hasNext()) {
+			 AiTank a = (AiTank)aiTanks.next();
+			 AiTank coppya = null;
+			 if(a.getHP() == 0) {	
+				coppya.setHP();				
+				coppya.setTank_x(a.getInitX());
+				coppya.setTank_y(a.getInitY());	
+				coppya.setInitX(a.getInitX());
+				coppya.setInitY(a.getInitY());
+				
+				aiTank.add(coppya);
+				deadAiTank();
+			}
+		 
+		 }	
+		
 	}
 	
+	
 	/**
-	 * 
+	 * 去除已经死亡的坦克
 	 */
 	public void deadAiTank() {
-		//TODO 焦橙梓按类图写的，你需要补齐
+		aiTanks.remove();
 	}
 }

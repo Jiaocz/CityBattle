@@ -8,6 +8,7 @@
 public class test {
 //Ωπ≥ø‘Û≈£±∆
 	//Ë¢œË≤≈ «
+	   //beizhneg
 }
 
 /*
