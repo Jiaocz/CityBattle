@@ -210,6 +210,7 @@ public class TankPainter {
 			}
 		}
 	}
+	
 	/**
 	 * 此方法用于绘制所有坦克
 	 * @param g2d
