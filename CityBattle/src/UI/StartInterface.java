@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class StartInterface extends JFrame {
 
@@ -49,7 +51,7 @@ public class StartInterface extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//获得屏幕尺寸
 		int width = 1000;
-		int height = 620;//设置窗口宽度和高度
+		int height = 600;//设置窗口宽度和高度
 		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//窗口的坐标和尺寸，以此种方式居中
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
@@ -66,6 +68,11 @@ public class StartInterface extends JFrame {
 		 * 开始游戏按键
 		 */
 		JButton btnNewButton_begin = new JButton("");
+		btnNewButton_begin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		ImageIcon icon_JButton_begin = new ImageIcon("img\\ButtonBegin.png");
 		int height2 = 48;
 		btnNewButton_begin.setBounds(453, 300, 94, height2);
