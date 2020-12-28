@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
  * @author 琚翔
  * version V1.0
  */
-public class 关卡 extends JFrame {
+public class CustomsPass extends JFrame {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class 关卡 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					关卡 frame = new 关卡();
+					CustomsPass frame = new CustomsPass();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class 关卡 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public 关卡() {
+	public CustomsPass() {
 		super("坦克大战");
 		
 		setBackground(new Color(0, 0, 0));
