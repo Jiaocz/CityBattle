@@ -25,7 +25,7 @@ public class AiTank extends Tank implements Movable {
 	
 	private int tank_x;
 	private int tank_y;
-	private int dir;
+	private int direction;
 	private int initX;
 	private int initY;
 	private int HP;
@@ -51,6 +51,13 @@ public class AiTank extends Tank implements Movable {
 	}
 
 
+<<<<<<< HEAD
+	public static final int UP = 1; // 向上
+	public static final int DOWN = 2; // 向下
+	public static final int LEFT = 3; // 向左
+	public static final int RIGHT = 4; // 向右
+	
+=======
 		
 
 	public int direction;
@@ -58,19 +65,23 @@ public class AiTank extends Tank implements Movable {
 	public static final int DOWN = 2; // 锟斤拷锟斤拷
 	public static final int LEFT = 3; // 锟斤拷锟斤拷
 	public static final int RIGHT = 4; // 锟斤拷锟斤拷
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		
 		
 		
-	    public  AiTank(int tank_x,int tank_y , int dir , int HP) {
+	    public  AiTank(int tank_x,int tank_y , int direction , int HP) {
+	    	
 		     this.tank_x = tank_x;
 		     this.tank_y = tank_y;
-		     this.dir = dir;
-		     this.HP = HP;
+		     this.direction = direction;
+		     
+		     initX = tank_x;
+		     initY = tank_y;
 		     
 	              }
 	    
 	    /**
-	     * 
+	     * 返回坦克x坐标
 	     * @return
 	     */
 	    public int getTank_x() {
@@ -78,20 +89,63 @@ public class AiTank extends Tank implements Movable {
 	    }
 
 	    /**
-	     * 
+	     * 返回坦克y坐标
 	     * @return
 	     */
 	    public int getTank_y() {
 	    	return tank_y;
 	    }
-		
+	    
+		/**
+		 * 返回hp值
+		 * @return
+		 */
 	    public int getHP() {
 	    	return HP;
 	    }
 	    
+	    /**
+	     * 返回该坦克初始x坐标
+	     */
+	    public int getInitX() {
+	    	return this.initX;
+	    }
+	    
+	    
+	    /**
+	     * 返回该坦克的初始y坐标
+	     */
+	    public int getInitY() {
+	    	return this.initY;
+	    }
+	   
+	    
+	    /**
+	     * 重新设置血量值
+	     */
+	    public void setHP() {
+	    	this.HP = 2;
+	    }
 	    
 	    
 	    
+	    public void setTank_x(int x) {
+	    	this.tank_x = x;
+	    }
+	    
+	    
+	    
+	    public void setTank_y(int y) {
+	    	this.tank_y = y;
+	    }
+	    
+	    public void setInitX(int x) {
+	    	this.initX = x;
+	    }
+	    
+	    public void setInitY(int y) {
+	    	this.initY = y;
+	    }
 	    
 
 		/**
@@ -148,25 +202,27 @@ public class AiTank extends Tank implements Movable {
 		 * 锟斤拷锟斤拷锟节碉拷
 		 */
 		public void shell(){
-					String dir = null;
+					String direction = null;
 					switch(curDir){
 						case AiTank.DOWN:
-							dir = "DOWN";
+							direction = "DOWN";
 							break;
 						case AiTank.LEFT:
-							dir = "LEFT";
+							direction = "LEFT";
 							break;
 						case AiTank.RIGHT:
-							dir = "RIGHT";
+							direction = "RIGHT";
 							break;
 						case AiTank.UP:
-							dir = "UP";
+							direction = "UP";
 							break;
 							}
 					}
 					
 					
-					
+		/**
+		 * 
+		 */
 		public void run(){
 			Random rd = new Random();
 			while(flag){
@@ -215,5 +271,8 @@ public class AiTank extends Tank implements Movable {
 					}
 				}
 			}
+
+
+
 	}
 
