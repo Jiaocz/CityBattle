@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 
 
 /**
- * µÐ·½AIÌ¹¿ËÀà
+ * ï¿½Ð·ï¿½AIÌ¹ï¿½ï¿½ï¿½ï¿½
  * @version 1.0.0
  * @see Tank
  */
@@ -54,10 +54,10 @@ public class AiTank extends Tank implements Movable {
 		
 
 	public int direction;
-	public static final int UP = 1; // ÏòÉÏ
-	public static final int DOWN = 2; // ÏòÏÂ
-	public static final int LEFT = 3; // Ïò×ó
-	public static final int RIGHT = 4; // ÏòÓÒ
+	public static final int UP = 1; // ï¿½ï¿½ï¿½ï¿½
+	public static final int DOWN = 2; // ï¿½ï¿½ï¿½ï¿½
+	public static final int LEFT = 3; // ï¿½ï¿½ï¿½ï¿½
+	public static final int RIGHT = 4; // ï¿½ï¿½ï¿½ï¿½
 		
 		
 		
@@ -95,7 +95,7 @@ public class AiTank extends Tank implements Movable {
 	    
 
 		/**
-		 * Ì¹¿ËµÄµ±Ç°·½Ïò
+		 * Ì¹ï¿½ËµÄµï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 		 */
 		private int curDir = 2;
 		
@@ -110,13 +110,13 @@ public class AiTank extends Tank implements Movable {
 		
 		
 		/**
-		 * Ì¹¿ËµÄËÙ¶Èe
+		 * Ì¹ï¿½Ëµï¿½ï¿½Ù¶ï¿½e
 		 */
 		private int speed = 10;
 		
 		
 		/**
-		 * Ì¹¿ËÒÆ¶¯µÄÆµÂÊ
+		 * Ì¹ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½Æµï¿½ï¿½
 		 */
 		private int f_sleep = 500;
 				
@@ -124,7 +124,7 @@ public class AiTank extends Tank implements Movable {
 			
 		
 		/**
-		 * ÒÆ¶¯
+		 * ï¿½Æ¶ï¿½
 		 * @param speed
 		 */
 		public void move(int speed){
@@ -145,7 +145,7 @@ public class AiTank extends Tank implements Movable {
 		}
 		
 		/**
-		 * ·¢ÉäÅÚµ¯
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
 		 */
 		public void shell(){
 					String dir = null;
@@ -177,10 +177,10 @@ public class AiTank extends Tank implements Movable {
 						case 2:
 							if(getCurDir()==AiTank.DOWN) move(speed);
 							break;
-						case 3://Ïòµ±Ç°·½ÏòÒÆ¶¯
+						case 3://ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
 							move(speed);
 							break;
-						case 4://×ªÏò
+						case 4://×ªï¿½ï¿½
 							int dir = Math.abs(rd.nextInt())%4 + 1;
 							if(dir == getCurDir()){
 								move(speed);
@@ -202,10 +202,10 @@ public class AiTank extends Tank implements Movable {
 									break;
 							}
 							break;
-						default://±£³Ö²»¶¯
+						default://ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½
 							key = Math.abs(rd.nextInt())%100;
 							if(key % 5 ==0)
-								shell();//·¢ÉäÅÚµ¯
+								shell();//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
 							break;
 					}
 					try {

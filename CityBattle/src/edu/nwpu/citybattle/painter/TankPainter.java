@@ -144,7 +144,7 @@ public class TankPainter {
 	 * @param myTank
 	 */
 	public void drawMyTank(Graphics2D g2d,MyTank myTank) {
-		switch(myTank.dir) {
+		switch(myTank.direction) {
 			case UP:
 				g2d.drawImage(img_my_tank_up, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, null);
 				break;
@@ -168,38 +168,38 @@ public class TankPainter {
 	 */
 	public void drawAITanks(Graphics2D g2d) {
 		for(AiTank ai:AiTankArray.aiTank) {
-			switch(ai.hp) {
+			switch(ai.direction) {
 				case 1://第一类坦克
-					if(ai.dir == UP) {
-						g2d.drawImage(img_first_tank_up, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == DOWN) {
-						g2d.drawImage(img_first_tank_down, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == LEFT) {
-						g2d.drawImage(img_first_tank_left, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == RIGHT) {
-						g2d.drawImage(img_first_tank_right, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
+					if(ai.direction == UP) {
+						g2d.drawImage(img_first_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == DOWN) {
+						g2d.drawImage(img_first_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == LEFT) {
+						g2d.drawImage(img_first_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == RIGHT) {
+						g2d.drawImage(img_first_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
 					}
 					break;
 				case 2:
-					if(ai.dir == UP) {
-						g2d.drawImage(img_second_tank_up, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == DOWN) {
-						g2d.drawImage(img_second_tank_down, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == LEFT) {
-						g2d.drawImage(img_second_tank_left, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == RIGHT) {
-						g2d.drawImage(img_second_tank_right, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
+					if(ai.direction == UP) {
+						g2d.drawImage(img_second_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == DOWN) {
+						g2d.drawImage(img_second_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == LEFT) {
+						g2d.drawImage(img_second_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == RIGHT) {
+						g2d.drawImage(img_second_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
 					}
 					break;
 				case 3:
-					if(ai.dir == UP) {
-						g2d.drawImage(img_third_tank_up, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == DOWN) {
-						g2d.drawImage(img_third_tank_down, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == LEFT) {
-						g2d.drawImage(img_third_tank_left, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
-					}else if(ai.dir == RIGHT) {
-						g2d.drawImage(img_third_tank_right, ai.tank_x*ELEMENT_SIZE, ai.tank_y*ELEMENT_SIZE, null);
+					if(ai.direction == UP) {
+						g2d.drawImage(img_third_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == DOWN) {
+						g2d.drawImage(img_third_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == LEFT) {
+						g2d.drawImage(img_third_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+					}else if(ai.direction == RIGHT) {
+						g2d.drawImage(img_third_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
 					}
 					break;
 			}
