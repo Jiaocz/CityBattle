@@ -17,7 +17,7 @@ import edu.nwpu.citybattle.IngameElements.MyTank;
  * 其中泛型Bullet为需要维护的子弹的类型，之后调用时可以在函数前去掉泛型{@code <Bullet>}，如本类测试用Main函数中示例。
  * 
  * @author Orangii
- * @version 1.0.0
+ * @version 1.0.5
  */
 public class BulletAlogrism<BulletClass extends Bullet> {
 	/**
@@ -190,29 +190,29 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 			}
 			
 			// 碰撞敌方坦克
-			for(AiTank t : ai_tank) {
+			for(AiTank aiTank : ai_tank) {
 				switch(b.direction) {
 					case Bullet.UP:
 					case Bullet.LEFT:
-						if(b.pos_x >= t.tank_x && b.pos_x <= t.tank_x + TANK_WIDTH -1 
-							&& b.pos_y >= t.tank_y && b.pos_y <= t.tank_y + TANK_HEIGHT - 1) {
-							t.onHit();
+						if(b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH -1 
+							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+							aiTank.onHit();
 							b.remove();
 							continue BulletList;
 						}
 						break;
 					case Bullet.RIGHT:
-						if(b.pos_x + 1 >= t.tank_x && b.pos_x + 1 <= t.tank_x + TANK_WIDTH -1 
-							&& b.pos_y >= t.tank_y && b.pos_y <= t.tank_y + TANK_HEIGHT - 1) {
-							t.onHit();
+						if(b.pos_x + 1 >= aiTank.getTank_x() && b.pos_x + 1 <= aiTank.getTank_x() + TANK_WIDTH -1 
+							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+							aiTank.onHit();
 							b.remove();
 							continue BulletList;
 						}
 						break;
 					case Bullet.DOWN:
-						if(b.pos_x >= t.tank_x && b.pos_x <= t.tank_x + TANK_WIDTH -1 
-							&& b.pos_y + 1 >= t.tank_y && b.pos_y + 1 <= t.tank_y + TANK_HEIGHT - 1) {
-							t.onHit();
+						if(b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH -1 
+							&& b.pos_y + 1 >= aiTank.getTank_y() && b.pos_y + 1 <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+							aiTank.onHit();
 							b.remove();
 							continue BulletList;
 						}
