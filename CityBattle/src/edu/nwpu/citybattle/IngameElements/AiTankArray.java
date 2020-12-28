@@ -1,4 +1,3 @@
-
 package edu.nwpu.citybattle.IngameElements;
 import edu.nwpu.citybattle.IngameElements.AiTank;
 
@@ -20,14 +19,23 @@ public class AiTankArray {
 	 */
 	public void addAiTank() {	 
 		 while(aiTanks.hasNext()) {
-			if(aiTanks.getHP() == 0) {
-				aiTank.add((AiTank) aiTanks.next());
+			 AiTank a = (AiTank)aiTanks.next();
+			 AiTank coppya = null;
+			 if(a.getHP() == 0) {	
+				coppya.setHP();				
+				coppya.setTank_x(a.getInitX());
+				coppya.setTank_y(a.getInitY());	
+				coppya.setInitX(a.getInitX());
+				coppya.setInitY(a.getInitY());
+				
+				aiTank.add(coppya);
 				deadAiTank();
 			}
 		 
 		 }	
 		
 	}
+	
 	
 	/**
 	 * 去除已经死亡的坦克
