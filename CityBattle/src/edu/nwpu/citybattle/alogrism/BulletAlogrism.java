@@ -221,51 +221,78 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 			}
 			
 			// Åö×²ÆÕÍ¨Ç½
+			// Observer how many "1" before the bullet
+			int observer = 0;
+			
 			switch(b.direction) {
 				case Bullet.UP:
 					if(wall[b.pos_x][b.pos_y] == 1) {
-						for(int i = 0; i < wall.length; i += 2) {
-							if(i == b.pos_x || i == b.pos_x - 1) {
-								wall[i][b.pos_y] = wall[i][b.pos_y - 1] = wall[i + 1][b.pos_y] = wall[i + 1][b.pos_y - 1] = 0;
+						for(int i = b.pos_x - 1; i >= 0; i--) {
+							if(wall[i][b.pos_y] == 1) {
+								observer++;
 							}
 						}
+						if(observer % 2 == 0) {
+							wall[b.pos_x][b.pos_y] = wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x][b.pos_y - 1] = wall[b.pos_x + 1][b.pos_y - 1] = 0;
+						} else {
+							wall[b.pos_x][b.pos_y] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x][b.pos_y - 1] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
+						}
 						b.remove();
+						observer = 0;
 						continue BulletList;
 					}
 					break;
+					
 				case Bullet.DOWN:
 					if(wall[b.pos_x][b.pos_y + 1] == 1) {
-						for(int i = 0; i < wall.length; i += 2) {
-							if(i == b.pos_x || i == b.pos_x - 1) {
-								wall[i][b.pos_y + 1] = wall[i][b.pos_y + 2] = wall[i + 1][b.pos_y + 1] = wall[i + 1][b.pos_y + 2] = 0;
-								break;
+						for(int i = b.pos_x - 1; i >= 0; i--) {
+							if(wall[i][b.pos_y + 1] == 1) {
+								observer++;
 							}
 						}
+						if(observer % 2 == 0) {
+							wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x + 1][b.pos_y + 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x + 1][b.pos_y + 2] = 0;
+						} else {
+							wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y + 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x - 1][b.pos_y + 2] = 0;
+						}
 						b.remove();
+						observer = 0;
 						continue BulletList;
 					}
 					break;
+					
 				case Bullet.LEFT:
 					if(wall[b.pos_x][b.pos_y] == 1) {
-						for(int i = 0; i < wall[0].length; i += 2) {
-							if(i == b.pos_y || i == b.pos_y - 1) {
-								wall[b.pos_x][i] = wall[b.pos_x - 1][i] = wall[b.pos_x][i + 1] = wall[b.pos_x - 1][i + 1] = 0;
-								break;
+						for(int i = b.pos_y - 1; i >= 0; i--) {
+							if(wall[b.pos_x][i] == 1) {
+								observer++;
 							}
 						}
+						if(observer % 2 == 0) {
+							wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y + 1] = 0;
+						} else {
+							wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y - 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
+						}
 						b.remove();
+						observer = 0;
 						continue BulletList;
 					}
 					break;
+					
 				case Bullet.RIGHT:
 					if(wall[b.pos_x + 1][b.pos_y] == 1) {
-						for(int i = 0; i < wall[0].length; i += 2) {
-							if(i == b.pos_y || i == b.pos_y - 1) {
-								wall[b.pos_x + 1][i] = wall[b.pos_x + 2][i] = wall[b.pos_x + 1][i + 1] = wall[b.pos_x + 2][i + 1] = 0;
-								break;
+						for(int i = b.pos_y - 1; i >= 0; i--) {
+							if(wall[b.pos_x + 1][i] == 1) {
+								observer++;
 							}
 						}
+						if(observer % 2 == 0) {
+							wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y + 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y + 1] = 0;
+						} else {
+							wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y - 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y - 1] = 0;
+						}
 						b.remove();
+						observer = 0;
 						continue BulletList;
 					}
 					break;
