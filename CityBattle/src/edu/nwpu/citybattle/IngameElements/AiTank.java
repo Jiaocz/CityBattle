@@ -52,21 +52,12 @@ public class AiTank extends Tank implements Movable {
 
 
 		
-		/**
-		 * 窗口大小
-		 * @WINDOW_WIDTH  横向
-		 * @WINDOW_HEIGHT  纵向
-		 */
-		public static final int WINDOW_WIDTH = 800;
-		public static final int WINDOW_HEIGHT = 600;
-		
-		/**
-		 * 格子数
-		 * @TABLE_WIDTH  横向
-		 * @TABLE_HEIGHT  纵向
-		 */
-		static final int TABLE_WIDTH = 56;
-		static final int TABLE_HEIGHT = 40;
+
+	public int direction;
+	public static final int UP = 1; // 向上
+	public static final int DOWN = 2; // 向下
+	public static final int LEFT = 3; // 向左
+	public static final int RIGHT = 4; // 向右
 		
 		
 		
@@ -138,37 +129,40 @@ public class AiTank extends Tank implements Movable {
 		 */
 		public void move(int speed){
 				switch(curDir) {
-					case AiTank.down:
+					case AiTank.DOWN:
 							setBounds(tank_x, tank_y+speed,getWidth(), getHeight());
 						break;
-					case AiTank.left:
+					case AiTank.LEFT:
 							setBounds(tank_x-speed, tank_y, getWidth(), getHeight());
 						break;
-					case AiTank.right:
+					case AiTank.RIGHT:
 							setBounds(tank_x+speed, tank_y, getWidth(), getHeight());
 						break;
-					case AiTank.up:
+					case AiTank.UP:
 							setBounds(tank_x, tank_y-speed, getWidth(), getHeight());
 						break;
 				}
 		}
 		
-		//发射炮弹
+		/**
+		 * 发射炮弹
+		 */
 		public void shell(){
 					String dir = null;
 					switch(curDir){
-						case AiTank.down:
-							dir = "down";
+						case AiTank.DOWN:
+							dir = "DOWN";
 							break;
-						case AiTank.left:
-							dir = "left";
+						case AiTank.LEFT:
+							dir = "LEFT";
 							break;
-						case AiTank.right:
-							dir = "right";
+						case AiTank.RIGHT:
+							dir = "RIGHT";
 							break;
-						case AiTank.up:
-							dir = "up";
+						case AiTank.UP:
+							dir = "UP";
 							break;
+							}
 					}
 					
 					
@@ -181,7 +175,7 @@ public class AiTank extends Tank implements Movable {
 						case 0:
 						case 1:
 						case 2:
-							if(getCurDir()==AiTank.down) move(speed);
+							if(getCurDir()==AiTank.DOWN) move(speed);
 							break;
 						case 3://向当前方向移动
 							move(speed);
@@ -195,16 +189,16 @@ public class AiTank extends Tank implements Movable {
 							String dirStr = null;
 							switch(dir){
 								case 1:
-									dirStr = "up";
+									dirStr = "UP";
 									break;
 								case 2:
-									dirStr = "down";
+									dirStr = "DOWN";
 									break;
 								case 3:
-									dirStr = "left";
+									dirStr = "LEFT";
 									break;
 								case 4:
-									dirStr = "right";
+									dirStr = "RIGHT";
 									break;
 							}
 							break;
