@@ -5,11 +5,13 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import UI.CustomsPass;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 
 /**
- * 用于绘制子弹
- * @author 微笑未失
+ * 鐢ㄤ簬缁樺埗瀛愬脊
+ * @author 寰瑧鏈け
  *
  */
 public class BulletsPainter {
@@ -22,24 +24,27 @@ public class BulletsPainter {
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
+	private CustomsPass custompass;
 
-	BufferedImage img_bullet_up;//子弹向上
-	BufferedImage img_bullet_down;//子弹向下
-	BufferedImage img_bullet_left;//子弹向左
-	BufferedImage img_bullet_right;//子弹向右
-	
+	BufferedImage img_bullet_up;//瀛愬脊鍚戜笂
+	BufferedImage img_bullet_down;//瀛愬脊鍚戜笅
+	BufferedImage img_bullet_left;//瀛愬脊鍚戝乏
+	BufferedImage img_bullet_right;//瀛愬脊鍚戝彸
+	public BulletsPainter(CustomsPass custompass) {
+		this.custompass = custompass;
+	}
 	/**
-	 * 用于确定图片尺寸
+	 * 鐢ㄤ簬纭畾鍥剧墖灏哄
 	 */
 	public void initialPainter()
 	{
-		//先确定界面需要的各种尺寸
+		//鍏堢‘瀹氱晫闈㈤渶瑕佺殑鍚勭灏哄
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 
-		//再加载位图文件
+		//鍐嶅姞杞戒綅鍥炬枃浠�
 		try {
 			loadBmp();
 		} catch (IOException e) {
@@ -48,66 +53,63 @@ public class BulletsPainter {
 		}
 	}
 	/**
-	 * 用于加载位图
+	 * 鐢ㄤ簬鍔犺浇浣嶅浘
 	 * @throws IOException
 	 */
 	public void loadBmp() throws IOException{
 		if(ELEMENT_SIZE <= 0)
 			return;
 		
-		//从/res/imgs目录，加载所有原始照片（未拉伸）
+		//浠�/res/imgs鐩綍锛屽姞杞芥墍鏈夊師濮嬬収鐗囷紙鏈媺浼革級
 		BufferedImage origin_bullet_up = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_up.png"));
 		BufferedImage origin_bullet_down = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_down.png"));
 		BufferedImage origin_bullet_left = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_left.png"));
 		BufferedImage origin_bullet_right = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_right.png"));		
-		//按窗口宽、高比例，计算出最终使用的宽高缩放比例
-		//计算窗口背景图宽高比例
+		//鎸夌獥鍙ｅ銆侀珮姣斾緥锛岃绠楀嚭鏈�缁堜娇鐢ㄧ殑瀹介珮缂╂斁姣斾緥
+		//璁＄畻绐楀彛鑳屾櫙鍥惧楂樻瘮渚�
 		
-		//计算每一小格图片的拉伸比例（要求每一个小格子原始图片尺寸完全一样！）
+		//璁＄畻姣忎竴灏忔牸鍥剧墖鐨勬媺浼告瘮渚嬶紙瑕佹眰姣忎竴涓皬鏍煎瓙鍘熷鍥剧墖灏哄瀹屽叏涓�鏍凤紒锛�
 		float scaleX = ELEMENT_SIZE / (float)origin_bullet_up.getWidth();
 		float scaleY = ELEMENT_SIZE / (float)origin_bullet_up.getHeight();
 		
-		//拉伸各个颜色的小格子图片
+		//鎷変几鍚勪釜棰滆壊鐨勫皬鏍煎瓙鍥剧墖
 		img_bullet_up = createScaledImg(origin_bullet_up, scaleX, scaleY*2);
 		img_bullet_down = createScaledImg(origin_bullet_down, scaleX, scaleY*2);
 		img_bullet_left = createScaledImg(origin_bullet_left, scaleX*2, scaleY);
 		img_bullet_right = createScaledImg(origin_bullet_right, scaleX*2, scaleY);
 	}
 	/**
-	 * 用于压缩图片
+	 * 鐢ㄤ簬鍘嬬缉鍥剧墖
 	 * @param originImg
 	 * @param scaleX
 	 * @param scaleY
-	 * @return 返回一个压缩后的图片
+	 * @return 杩斿洖涓�涓帇缂╁悗鐨勫浘鐗�
 	 */
 	private BufferedImage createScaledImg(BufferedImage originImg, float scaleX, float scaleY){
 		int scaledWidth = (int)(originImg.getWidth()*scaleX);
 		int scaledHeight = (int)(originImg.getHeight()*scaleY);
 		
 		BufferedImage newImage = new BufferedImage(scaledWidth, scaledHeight, originImg.getType());
-		Graphics g = newImage.getGraphics();
-		g.drawImage(originImg, 0, 0, scaledWidth, scaledHeight, null);
-		g.dispose();
 		return newImage;
 	}
 	/**
-	 * 用于绘制子弹
+	 * 鐢ㄤ簬缁樺埗瀛愬脊
 	 * @param g2d
 	 */
 	public void drawBullets(Graphics g2d) {
 		for(Bullet bullet:Bullet.Bullets) {
 			switch(bullet.direction) {
 				case UP:
-					g2d.drawImage(img_bullet_up, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, null);
+					g2d.drawImage(img_bullet_up, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, custompass);
 					break;
 				case DOWN:
-					g2d.drawImage(img_bullet_down, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, null);
+					g2d.drawImage(img_bullet_down, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, custompass);
 					break;
 				case LEFT:
-					g2d.drawImage(img_bullet_left, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, null);
+					g2d.drawImage(img_bullet_left, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, custompass);
 					break;
 				case RIGHT:
-					g2d.drawImage(img_bullet_right, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, null);
+					g2d.drawImage(img_bullet_right, bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, custompass);
 					break;
 			}
 		}
