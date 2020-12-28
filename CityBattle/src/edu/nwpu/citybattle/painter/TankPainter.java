@@ -28,6 +28,8 @@ public class TankPainter {
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
+	
+	MyTank myTank;
 
 	BufferedImage img_my_tank_up;//己方坦克向上
 	BufferedImage img_my_tank_down;//己方坦克向下
@@ -77,25 +79,25 @@ public class TankPainter {
 			return;
 		
 		//从/res/imgs目录，加载所有原始照片（未拉伸）
-		BufferedImage origin_my_tank_up = ImageIO.read(ShapPainter.class.getResource("/imgs/my_tank_up.png"));
-		BufferedImage origin_my_tank_down = ImageIO.read(ShapPainter.class.getResource("/imgs/my_tank_down.png"));
-		BufferedImage origin_my_tank_left = ImageIO.read(ShapPainter.class.getResource("/imgs/my_tank_left.png"));
-		BufferedImage origin_my_tank_right = ImageIO.read(ShapPainter.class.getResource("/imgs/my_tank_right.png"));
+		BufferedImage origin_my_tank_up = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_up.png"));
+		BufferedImage origin_my_tank_down = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_down.png"));
+		BufferedImage origin_my_tank_left = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_left.png"));
+		BufferedImage origin_my_tank_right = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_right.png"));
 		
-		BufferedImage origin_first_tank_up = ImageIO.read(ShapPainter.class.getResource("/imgs/first_tank_up.png"));
-		BufferedImage origin_first_tank_down = ImageIO.read(ShapPainter.class.getResource("/imgs/first_tank_down.png"));
-		BufferedImage origin_first_tank_left = ImageIO.read(ShapPainter.class.getResource("/imgs/first_tank_left.png"));
-		BufferedImage origin_first_tank_right = ImageIO.read(ShapPainter.class.getResource("/imgs/first_tank_right.png"));
+		BufferedImage origin_first_tank_up = ImageIO.read(ShapePainter.class.getResource("/imgs/first_tank_up.png"));
+		BufferedImage origin_first_tank_down = ImageIO.read(ShapePainter.class.getResource("/imgs/first_tank_down.png"));
+		BufferedImage origin_first_tank_left = ImageIO.read(ShapePainter.class.getResource("/imgs/first_tank_left.png"));
+		BufferedImage origin_first_tank_right = ImageIO.read(ShapePainter.class.getResource("/imgs/first_tank_right.png"));
 		
-		BufferedImage origin_second_tank_up = ImageIO.read(ShapPainter.class.getResource("/imgs/second_tank_up.png"));
-		BufferedImage origin_second_tank_down = ImageIO.read(ShapPainter.class.getResource("/imgs/second_tank_down.png"));
-		BufferedImage origin_second_tank_left = ImageIO.read(ShapPainter.class.getResource("/imgs/second_tank_left.png"));
-		BufferedImage origin_second_tank_right = ImageIO.read(ShapPainter.class.getResource("/imgs/second_tank_right.png"));
+		BufferedImage origin_second_tank_up = ImageIO.read(ShapePainter.class.getResource("/imgs/second_tank_up.png"));
+		BufferedImage origin_second_tank_down = ImageIO.read(ShapePainter.class.getResource("/imgs/second_tank_down.png"));
+		BufferedImage origin_second_tank_left = ImageIO.read(ShapePainter.class.getResource("/imgs/second_tank_left.png"));
+		BufferedImage origin_second_tank_right = ImageIO.read(ShapePainter.class.getResource("/imgs/second_tank_right.png"));
 		
-		BufferedImage origin_third_tank_up = ImageIO.read(ShapPainter.class.getResource("/imgs/third_tank_up.png"));
-		BufferedImage origin_third_tank_down = ImageIO.read(ShapPainter.class.getResource("/imgs/third_tank_down.png"));
-		BufferedImage origin_third_tank_left = ImageIO.read(ShapPainter.class.getResource("/imgs/third_tank_left.png"));
-		BufferedImage origin_third_tank_right = ImageIO.read(ShapPainter.class.getResource("/imgs/third_tank_right.png"));
+		BufferedImage origin_third_tank_up = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_up.png"));
+		BufferedImage origin_third_tank_down = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_down.png"));
+		BufferedImage origin_third_tank_left = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_left.png"));
+		BufferedImage origin_third_tank_right = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_right.png"));
 		//按窗口宽、高比例，计算出最终使用的宽高缩放比例
 		//计算窗口背景图宽高比例
 		float scaleX = ELEMENT_SIZE / (float)origin_my_tank_up.getWidth();
@@ -143,7 +145,7 @@ public class TankPainter {
 	 * @param g2d
 	 * @param myTank
 	 */
-	public void drawMyTank(Graphics2D g2d,MyTank myTank) {
+	public void drawMyTank(Graphics g2d,MyTank myTank) {
 		switch(myTank.direction) {
 			case UP:
 				g2d.drawImage(img_my_tank_up, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, null);
@@ -166,7 +168,7 @@ public class TankPainter {
 	 * 用于绘制AI坦克
 	 * @param g2d
 	 */
-	public void drawAITanks(Graphics2D g2d) {
+	public void drawAITanks(Graphics g2d) {
 		for(AiTank ai:AiTankArray.aiTank) {
 			switch(ai.direction) {
 				case 1://第一类坦克
@@ -205,6 +207,12 @@ public class TankPainter {
 			}
 		}
 	}
-	public void drawTanks(Graphics2D g2d) {
+	/**
+	 * 此方法用于绘制所有坦克
+	 * @param g2d
+	 */
+	public void drawTanks(Graphics g2d) {
+		drawAITanks(g2d);
+		drawMyTank(g2d,myTank);
 	}
 }

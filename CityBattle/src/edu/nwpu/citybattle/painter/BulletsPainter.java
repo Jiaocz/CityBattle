@@ -56,10 +56,10 @@ public class BulletsPainter {
 			return;
 		
 		//从/res/imgs目录，加载所有原始照片（未拉伸）
-		BufferedImage origin_bullet_up = ImageIO.read(ShapPainter.class.getResource("/imgs/bullet_up.png"));
-		BufferedImage origin_bullet_down = ImageIO.read(ShapPainter.class.getResource("/imgs/bullet_down.png"));
-		BufferedImage origin_bullet_left = ImageIO.read(ShapPainter.class.getResource("/imgs/bullet_left.png"));
-		BufferedImage origin_bullet_right = ImageIO.read(ShapPainter.class.getResource("/imgs/bullet_right.png"));		
+		BufferedImage origin_bullet_up = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_up.png"));
+		BufferedImage origin_bullet_down = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_down.png"));
+		BufferedImage origin_bullet_left = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_left.png"));
+		BufferedImage origin_bullet_right = ImageIO.read(ShapePainter.class.getResource("/imgs/bullet_right.png"));		
 		//按窗口宽、高比例，计算出最终使用的宽高缩放比例
 		//计算窗口背景图宽高比例
 		
@@ -94,7 +94,7 @@ public class BulletsPainter {
 	 * 用于绘制子弹
 	 * @param g2d
 	 */
-	public void drawBullets(Graphics2D g2d) {
+	public void drawBullets(Graphics g2d) {
 		for(Bullet bullet:Bullet.Bullets) {
 			switch(bullet.direction) {
 				case UP:
