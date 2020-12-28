@@ -1,11 +1,11 @@
 package edu.nwpu.citybattle.painter;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import UI.CustomsPass;
 import edu.nwpu.citybattle.TankMap.Map;
 
 /**
@@ -32,12 +32,16 @@ public class ShapePainter {
 	public static final int GRASS = 2;
 	public static final int WATER = 3;
 	
+	private CustomsPass custompass;
+	
 	BufferedImage img_background;//鑳屾櫙鍥�
 	BufferedImage img_wall;//鏅�氬
 	BufferedImage img_iron_wall;//閾佸
 	BufferedImage img_grass;//鑽夊潽
 	BufferedImage img_water;//姘�
-	
+	public ShapePainter(CustomsPass custompass) {
+		this.custompass = custompass;
+	}
 	/**
 	 * 杩欐槸鏋勯�狅紝鍒涘缓璇ョ被瀵硅薄鏃讹紝浣犻渶瑕佸mainPanel鍜宮ap杩涜鍒濆鍖�
 	 * @param mainPanel
@@ -106,9 +110,6 @@ public class ShapePainter {
 		int scaledHeight = (int)(originImg.getHeight()*scaleY);
 		
 		BufferedImage newImage = new BufferedImage(scaledWidth, scaledHeight, originImg.getType());
-		Graphics g = newImage.getGraphics();
-		g.drawImage(originImg, 0, 0, scaledWidth, scaledHeight, null);
-		g.dispose();
 		return newImage;
 	}
 	/**
@@ -116,7 +117,7 @@ public class ShapePainter {
 	 * @param g2d
 	 */
 	public void drawBackground(Graphics g2d){
-		g2d.drawImage(img_background, 0, 0, null);//璐磋儗鏅浘
+		g2d.drawImage(img_background, 0, 0, custompass);//璐磋儗鏅浘
 	}
 	public void drawWall(Graphics g2d) {//缁樺埗澧欏浘
 		for(int x = 0;x < Map.wall.length;x++) {
@@ -174,16 +175,16 @@ public class ShapePainter {
 		switch(blockType)
 		{
 		case WALL:
-			g2d.drawImage(img_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		case IRON_WALL:
-			g2d.drawImage(img_iron_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_iron_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		case GRASS:
-			g2d.drawImage(img_grass, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_grass, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		case WATER:
-			g2d.drawImage(img_water, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_water, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		default:
 			break;

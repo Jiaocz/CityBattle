@@ -106,7 +106,7 @@ public class Choice extends JFrame {
 		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int mapNumber = 1;
+				 mapNumber = 1;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -132,7 +132,7 @@ public class Choice extends JFrame {
 		lblNewLabel_2_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int mapNumber = 2;
+				 mapNumber = 2;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -158,7 +158,7 @@ public class Choice extends JFrame {
 		lblNewLabel_2_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int mapNumber = 3;
+				 mapNumber = 3;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -185,7 +185,7 @@ public class Choice extends JFrame {
 		lblNewLabel_2_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int mapNumber = 4;
+				 mapNumber = 4;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
