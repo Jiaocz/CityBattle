@@ -3,6 +3,7 @@ package edu.nwpu.citybattle.IngameElements;
 
 import edu.nwpu.citybattle.actions.Movable;
 
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -23,12 +24,8 @@ import javax.imageio.ImageIO;
  */
 public class AiTank extends Tank implements Movable {
 	
-	private int tank_x;
-	private int tank_y;
-	private int direction;
 	private int initX;
 	private int initY;
-	private int HP;
 
 	
 
@@ -51,22 +48,12 @@ public class AiTank extends Tank implements Movable {
 	}
 
 
-<<<<<<< HEAD
+
 	public static final int UP = 1; // ÏòÉÏ
 	public static final int DOWN = 2; // ÏòÏÂ
 	public static final int LEFT = 3; // Ïò×ó
 	public static final int RIGHT = 4; // ÏòÓÒ
-	
-=======
-		
 
-	public int direction;
-	public static final int UP = 1; // ï¿½ï¿½ï¿½ï¿½
-	public static final int DOWN = 2; // ï¿½ï¿½ï¿½ï¿½
-	public static final int LEFT = 3; // ï¿½ï¿½ï¿½ï¿½
-	public static final int RIGHT = 4; // ï¿½ï¿½ï¿½ï¿½
->>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
-		
 		
 		
 	    public  AiTank(int tank_x,int tank_y , int direction , int HP) {
@@ -149,7 +136,7 @@ public class AiTank extends Tank implements Movable {
 	    
 
 		/**
-		 * Ì¹ï¿½ËµÄµï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+		 * 
 		 */
 		private int curDir = 2;
 		
@@ -164,13 +151,13 @@ public class AiTank extends Tank implements Movable {
 		
 		
 		/**
-		 * Ì¹ï¿½Ëµï¿½ï¿½Ù¶ï¿½e
+		 * 
 		 */
 		private int speed = 10;
 		
 		
 		/**
-		 * Ì¹ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½Æµï¿½ï¿½
+		 * 
 		 */
 		private int f_sleep = 500;
 				
@@ -178,28 +165,7 @@ public class AiTank extends Tank implements Movable {
 			
 		
 		/**
-		 * ï¿½Æ¶ï¿½
-		 * @param speed
-		 */
-		public void move(int speed){
-				switch(curDir) {
-					case AiTank.DOWN:
-							setBounds(tank_x, tank_y+speed,getWidth(), getHeight());
-						break;
-					case AiTank.LEFT:
-							setBounds(tank_x-speed, tank_y, getWidth(), getHeight());
-						break;
-					case AiTank.RIGHT:
-							setBounds(tank_x+speed, tank_y, getWidth(), getHeight());
-						break;
-					case AiTank.UP:
-							setBounds(tank_x, tank_y-speed, getWidth(), getHeight());
-						break;
-				}
-		}
-		
-		/**
-		 * ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
+		 * 
 		 */
 		public void shell(){
 					String direction = null;
@@ -217,8 +183,7 @@ public class AiTank extends Tank implements Movable {
 							direction = "UP";
 							break;
 							}
-					}
-					
+					}				
 					
 		/**
 		 * 
@@ -233,10 +198,10 @@ public class AiTank extends Tank implements Movable {
 						case 2:
 							if(getCurDir()==AiTank.DOWN) move(speed);
 							break;
-						case 3://ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
+						case 3:
 							move(speed);
 							break;
-						case 4://×ªï¿½ï¿½
+						case 4:
 							int dir = Math.abs(rd.nextInt())%4 + 1;
 							if(dir == getCurDir()){
 								move(speed);
@@ -258,10 +223,10 @@ public class AiTank extends Tank implements Movable {
 									break;
 							}
 							break;
-						default://ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½
+						default:
 							key = Math.abs(rd.nextInt())%100;
 							if(key % 5 ==0)
-								shell();//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
+								shell();
 							break;
 					}
 					try {
