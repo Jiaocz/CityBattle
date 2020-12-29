@@ -48,5 +48,5 @@ public interface CanShootBullet<Bullet> {
 	 * @since 1.0.0
 	 * @version 1.0.0
 	 */
-	Bullet shootBullet(float x, float y, int direction);
+	Bullet shootBullet(int x, int y, int direction);
 }
