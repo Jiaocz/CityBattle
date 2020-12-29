@@ -12,27 +12,28 @@ import edu.nwpu.citybattle.actions.Movable;
  */
 public class AiTank extends Tank implements Movable {
 	/**
-	 * ³õÊ¼Éú³ÉÌ¹¿ËµÄ×ø±ê£¬ÓÃÀ´ÔÚÌ¹¿ËËÀÍöºóÉú³ÉµÄĞÂµÄAiTank
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½Ëµï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½Âµï¿½AiTank
 	 */
 	private int initX;
 	private int initY;
 
 	/**
-	 * Ì¹¿ËµÄËÙ¶È
+	 * Ì¹ï¿½Ëµï¿½ï¿½Ù¶ï¿½
 	 */
 	private int speed = 5;
 
 	/**
-	 * Ì¹¿ËµÄ¿í£¬¸ß
+	 * Ì¹ï¿½ËµÄ¿ï¿½ï¿½ï¿½
 	 */
 	private int width = 40;
 	private int height = 40;
 
 	/**
-	 * AiTanksÒÆ¶¯
+	 * AiTanksï¿½Æ¶ï¿½
 	 */
 	@Override
 	public void moveNext() {
+		// FIXME moveNext()æ–¹æ³•æ˜¯å®šæ—¶å™¨è°ƒç”¨ï¼Œè¿™é‡Œä¸è¦å†™whileï¼Œä¼šå†²çª
 		while (judgeLimit()) {
 
 			if (direction == 2) {
@@ -60,11 +61,13 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÄÜĞĞ×ß
+	 * ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
 	private boolean judgeLimit() {
+		
+		// FIXME ç®—æ³•æœ‰é—®é¢˜ï¼Œä¸‹è¯¾æ¥æˆ‘åŠå…¬å®¤
 		if (tank_x < 0) {
 			tank_x = 0;
 			return true;
@@ -118,8 +121,9 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	/**
-	 * Éä»÷
+	 * ï¿½ï¿½ï¿½
 	 */
+	@Override
 	public Bullet shootBullet() {
 		int x = this.tank_x + 2;
 		int y = this.tank_y + 2;
@@ -128,10 +132,11 @@ public class AiTank extends Tank implements Movable {
 		return new Bullet(x, y, direction);
 	}
 
+	// FIXME ä½ ä»‹ä¸ªåº”è¯¥æ”¾ä¸‹é¢æ–¹æ³•ä½“é‡Œé¢å§
 	private boolean f = false;
 
 	/**
-	 * ÎªµĞ·½Ì¹¿ËÉèÖÃÒÆ¶¯µÄ·½Ïò
+	 * Îªï¿½Ğ·ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
 	 */
 	private void setRandomDir() {
 		while (f = false) {
@@ -166,10 +171,10 @@ public class AiTank extends Tank implements Movable {
 		}
 	}
 
-	public static final int UP = 1; // ÏòÉÏ
-	public static final int DOWN = 2; // ÏòÏÂ
-	public static final int LEFT = 3; // Ïò×ó
-	public static final int RIGHT = 4; // ÏòÓÒ
+	public static final int UP = 1; // ï¿½ï¿½ï¿½ï¿½
+	public static final int DOWN = 2; // ï¿½ï¿½ï¿½ï¿½
+	public static final int LEFT = 3; // ï¿½ï¿½ï¿½ï¿½
+	public static final int RIGHT = 4; // ï¿½ï¿½ï¿½ï¿½
 
 	public AiTank(int tank_x, int tank_y, int direction, int HP) {
 
@@ -183,7 +188,7 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	/**
-	 * ·µ»ØÌ¹¿Ëx×ø±ê
+	 * ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -192,7 +197,7 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	/**
-	 * ·µ»ØÌ¹¿Ëy×ø±ê
+	 * ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -201,7 +206,7 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	/**
-	 * ·µ»ØhpÖµ
+	 * ï¿½ï¿½ï¿½ï¿½hpÖµ
 	 * 
 	 * @return
 	 */
@@ -210,21 +215,21 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	/**
-	 * ·µ»Ø¸ÃÌ¹¿Ë³õÊ¼x×ø±ê
+	 * ï¿½ï¿½ï¿½Ø¸ï¿½Ì¹ï¿½Ë³ï¿½Ê¼xï¿½ï¿½ï¿½ï¿½
 	 */
 	public int getInitX() {
 		return this.initX;
 	}
 
 	/**
-	 * ·µ»Ø¸ÃÌ¹¿ËµÄ³õÊ¼y×ø±ê
+	 * ï¿½ï¿½ï¿½Ø¸ï¿½Ì¹ï¿½ËµÄ³ï¿½Ê¼yï¿½ï¿½ï¿½ï¿½
 	 */
 	public int getInitY() {
 		return this.initY;
 	}
 
 	/**
-	 * ÖØĞÂÉèÖÃÑªÁ¿Öµ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½Öµ
 	 */
 	public void setHP() {
 		this.HP = 3;
