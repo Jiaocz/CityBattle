@@ -6,14 +6,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import UI.CustomsPass;
 import edu.nwpu.citybattle.IngameElements.AiTank;
 import edu.nwpu.citybattle.IngameElements.AiTankArray;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
 
 /**
- * è¿™ä¸ªç±»ç”¨äºç»˜åˆ¶å·±æ–¹å’Œæ•Œæ–¹å¦å…‹
- * @author å¾®ç¬‘æœªå¤±
+ * Õâ¸öÀàÓÃÓÚ»æÖÆ¼º·½ºÍµĞ·½Ì¹¿Ë
+ * @author Î¢Ğ¦Î´Ê§
  * @see initialPainter
  * @see loadBmp
  * @see createScaledImg
@@ -30,38 +31,43 @@ public class TankPainter {
 	public static final int RIGHT = 4;
 	
 	MyTank myTank;
+	private CustomsPass custompass;
 
-	BufferedImage img_my_tank_up;//å·±æ–¹å¦å…‹å‘ä¸Š
-	BufferedImage img_my_tank_down;//å·±æ–¹å¦å…‹å‘ä¸‹
-	BufferedImage img_my_tank_left;//å·±æ–¹å¦å…‹å‘å·¦
-	BufferedImage img_my_tank_right;//å·±æ–¹å¦å…‹å‘å³
+	BufferedImage img_my_tank_up;//¼º·½Ì¹¿ËÏòÉÏ
+	BufferedImage img_my_tank_down;//¼º·½Ì¹¿ËÏòÏÂ
+	BufferedImage img_my_tank_left;//¼º·½Ì¹¿ËÏò×ó
+	BufferedImage img_my_tank_right;//¼º·½Ì¹¿ËÏòÓÒ
 	
-	BufferedImage img_first_tank_up;//ç¬¬ä¸€ç±»å¦å…‹å‘ä¸Š
-	BufferedImage img_first_tank_down;//ç¬¬ä¸€ç±»å¦å…‹å‘ä¸‹
-	BufferedImage img_first_tank_left;//ç¬¬ä¸€ç±»å¦å…‹å‘å·¦
-	BufferedImage img_first_tank_right;//ç¬¬ä¸€ç±»å¦å…‹å‘å³
+	BufferedImage img_first_tank_up;//µÚÒ»ÀàÌ¹¿ËÏòÉÏ
+	BufferedImage img_first_tank_down;//µÚÒ»ÀàÌ¹¿ËÏòÏÂ
+	BufferedImage img_first_tank_left;//µÚÒ»ÀàÌ¹¿ËÏò×ó
+	BufferedImage img_first_tank_right;//µÚÒ»ÀàÌ¹¿ËÏòÓÒ
 	
-	BufferedImage img_second_tank_up;//ç¬¬äºŒç±»å¦å…‹å‘ä¸Š
-	BufferedImage img_second_tank_down;//ç¬¬äºŒç±»å¦å…‹å‘ä¸‹
-	BufferedImage img_second_tank_left;//ç¬¬äºŒç±»å¦å…‹å‘å·¦
-	BufferedImage img_second_tank_right;//ç¬¬äºŒç±»å¦å…‹å‘å³
+	BufferedImage img_second_tank_up;//µÚ¶şÀàÌ¹¿ËÏòÉÏ
+	BufferedImage img_second_tank_down;//µÚ¶şÀàÌ¹¿ËÏòÏÂ
+	BufferedImage img_second_tank_left;//µÚ¶şÀàÌ¹¿ËÏò×ó
+	BufferedImage img_second_tank_right;//µÚ¶şÀàÌ¹¿ËÏòÓÒ
 	
-	BufferedImage img_third_tank_up;//ç¬¬ä¸‰ç±»å¦å…‹å‘ä¸Š
-	BufferedImage img_third_tank_down;//ç¬¬ä¸‰ç±»å¦å…‹å‘ä¸‹
-	BufferedImage img_third_tank_left;//ç¬¬ä¸‰ç±»å¦å…‹å‘å·¦
-	BufferedImage img_third_tank_right;//ç¬¬ä¸‰ç±»å¦å…‹å‘å³
+	BufferedImage img_third_tank_up;//µÚÈıÀàÌ¹¿ËÏòÉÏ
+	BufferedImage img_third_tank_down;//µÚÈıÀàÌ¹¿ËÏòÏÂ
+	BufferedImage img_third_tank_left;//µÚÈıÀàÌ¹¿ËÏò×ó
+	BufferedImage img_third_tank_right;//µÚÈıÀàÌ¹¿ËÏòÓÒ
+	
+	public TankPainter(CustomsPass custompass) {
+		this.custompass = custompass;
+	}
 	/**
-	 * ç”¨äºç¡®å®šå›¾ç‰‡å°ºå¯¸ï¼ŒåŠ è½½ä½å›¾
+	 * ÓÃÓÚÈ·¶¨Í¼Æ¬³ß´ç£¬¼ÓÔØÎ»Í¼
 	 */
 	public void initialPainter()
 	{
-		//å…ˆç¡®å®šç•Œé¢éœ€è¦çš„å„ç§å°ºå¯¸
+		//ÏÈÈ·¶¨½çÃæĞèÒªµÄ¸÷ÖÖ³ß´ç
 		int size1 =	WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 
-		//å†åŠ è½½ä½å›¾æ–‡ä»¶
+		//ÔÙ¼ÓÔØÎ»Í¼ÎÄ¼ş
 		try {
 			loadBmp();
 		} catch (IOException e) {
@@ -70,7 +76,7 @@ public class TankPainter {
 		}
 	}
 	/**
-	 * ç”¨äºåŠ è½½ä½å›¾
+	 * ÓÃÓÚ¼ÓÔØÎ»Í¼
 	 * @throws IOException
 	 */
 	public void loadBmp() throws IOException
@@ -78,7 +84,7 @@ public class TankPainter {
 		if(ELEMENT_SIZE <= 0)
 			return;
 		
-		//ä»/res/imgsç›®å½•ï¼ŒåŠ è½½æ‰€æœ‰åŸå§‹ç…§ç‰‡ï¼ˆæœªæ‹‰ä¼¸ï¼‰
+		//´Ó/res/imgsÄ¿Â¼£¬¼ÓÔØËùÓĞÔ­Ê¼ÕÕÆ¬£¨Î´À­Éì£©
 		BufferedImage origin_my_tank_up = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_up.png"));
 		BufferedImage origin_my_tank_down = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_down.png"));
 		BufferedImage origin_my_tank_left = ImageIO.read(ShapePainter.class.getResource("/imgs/my_tank_left.png"));
@@ -98,11 +104,11 @@ public class TankPainter {
 		BufferedImage origin_third_tank_down = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_down.png"));
 		BufferedImage origin_third_tank_left = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_left.png"));
 		BufferedImage origin_third_tank_right = ImageIO.read(ShapePainter.class.getResource("/imgs/third_tank_right.png"));
-		//æŒ‰çª—å£å®½ã€é«˜æ¯”ä¾‹ï¼Œè®¡ç®—å‡ºæœ€ç»ˆä½¿ç”¨çš„å®½é«˜ç¼©æ”¾æ¯”ä¾‹
-		//è®¡ç®—çª—å£èƒŒæ™¯å›¾å®½é«˜æ¯”ä¾‹
+		//°´´°¿Ú¿í¡¢¸ß±ÈÀı£¬¼ÆËã³ö×îÖÕÊ¹ÓÃµÄ¿í¸ßËõ·Å±ÈÀı
+		//¼ÆËã´°¿Ú±³¾°Í¼¿í¸ß±ÈÀı
 		float scaleX = ELEMENT_SIZE / (float)origin_my_tank_up.getWidth();
 		float scaleY = ELEMENT_SIZE / (float)origin_my_tank_up.getHeight();
-		//åˆ›å»ºæ‹‰ä¼¸åçš„èƒŒæ™¯å›¾ç‰‡
+		//´´½¨À­ÉìºóµÄ±³¾°Í¼Æ¬
 		img_my_tank_up = createScaledImg(origin_my_tank_up,5 * scaleX,5 * scaleY);
 		img_my_tank_down = createScaledImg(origin_my_tank_down,5 * scaleX,5 * scaleY);
 		img_my_tank_left = createScaledImg(origin_my_tank_left,5 * scaleX,5 * scaleY);
@@ -124,40 +130,37 @@ public class TankPainter {
 		img_third_tank_right = createScaledImg(origin_third_tank_right,5 * scaleX,5 * scaleY);
 	}
 	/**
-	 * ç”¨äºæ”¾ç¼©å›¾ç‰‡
+	 * ÓÃÓÚ·ÅËõÍ¼Æ¬
 	 * @param originImg
 	 * @param scaleX
 	 * @param scaleY
-	 * @return è¿”å›æ”¾ç¼©åçš„å›¾ç‰‡
+	 * @return ·µ»Ø·ÅËõºóµÄÍ¼Æ¬
 	 */
 	private BufferedImage createScaledImg(BufferedImage originImg, float scaleX, float scaleY){
 		int scaledWidth = (int)(originImg.getWidth()*scaleX);
 		int scaledHeight = (int)(originImg.getHeight()*scaleY);
 		
 		BufferedImage newImage = new BufferedImage(scaledWidth, scaledHeight, originImg.getType());
-		Graphics g = newImage.getGraphics();
-		g.drawImage(originImg, 0, 0, scaledWidth, scaledHeight, null);
-		g.dispose();
 		return newImage;
 	}
 	/**
-	 * ç”¨äºç»˜åˆ¶å·±æ–¹å¦å…‹
+	 * ÓÃÓÚ»æÖÆ¼º·½Ì¹¿Ë
 	 * @param g2d
 	 * @param myTank
 	 */
 	public void drawMyTank(Graphics g2d,MyTank myTank) {
 		switch(myTank.direction) {
 			case UP:
-				g2d.drawImage(img_my_tank_up, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, null);
+				g2d.drawImage(img_my_tank_up, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, custompass);
 				break;
 			case DOWN:
-				g2d.drawImage(img_my_tank_down, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, null);
+				g2d.drawImage(img_my_tank_down, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, custompass);
 				break;
 			case LEFT:
-				g2d.drawImage(img_my_tank_left, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, null);
+				g2d.drawImage(img_my_tank_left, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, custompass);
 				break;
 			case RIGHT:
-				g2d.drawImage(img_my_tank_right, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, null);
+				g2d.drawImage(img_my_tank_right, myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, custompass);
 				break;
 			default :
 				return;
@@ -165,50 +168,51 @@ public class TankPainter {
 		
 	}
 	/**
-	 * ç”¨äºç»˜åˆ¶AIå¦å…‹
+	 * ÓÃÓÚ»æÖÆAIÌ¹¿Ë
 	 * @param g2d
 	 */
 	public void drawAITanks(Graphics g2d) {
 		for(AiTank ai:AiTankArray.aiTank) {
 			switch(ai.direction) {
-				case 1://ç¬¬ä¸€ç±»å¦å…‹
+				case 1://µÚÒ»ÀàÌ¹¿Ë
 					if(ai.direction == UP) {
-						g2d.drawImage(img_first_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_first_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == DOWN) {
-						g2d.drawImage(img_first_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_first_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == LEFT) {
-						g2d.drawImage(img_first_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_first_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == RIGHT) {
-						g2d.drawImage(img_first_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_first_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}
 					break;
 				case 2:
 					if(ai.direction == UP) {
-						g2d.drawImage(img_second_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_second_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == DOWN) {
-						g2d.drawImage(img_second_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_second_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == LEFT) {
-						g2d.drawImage(img_second_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_second_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == RIGHT) {
-						g2d.drawImage(img_second_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_second_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}
 					break;
 				case 3:
 					if(ai.direction == UP) {
-						g2d.drawImage(img_third_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_third_tank_up, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == DOWN) {
-						g2d.drawImage(img_third_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_third_tank_down, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == LEFT) {
-						g2d.drawImage(img_third_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_third_tank_left, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}else if(ai.direction == RIGHT) {
-						g2d.drawImage(img_third_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, null);
+						g2d.drawImage(img_third_tank_right, ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, custompass);
 					}
 					break;
 			}
 		}
 	}
+	
 	/**
-	 * æ­¤æ–¹æ³•ç”¨äºç»˜åˆ¶æ‰€æœ‰å¦å…‹
+	 * ´Ë·½·¨ÓÃÓÚ»æÖÆËùÓĞÌ¹¿Ë
 	 * @param g2d
 	 */
 	public void drawTanks(Graphics g2d) {

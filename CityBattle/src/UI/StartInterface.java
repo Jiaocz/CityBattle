@@ -1,6 +1,7 @@
 package UI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -12,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.DropMode;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -24,7 +27,7 @@ import java.awt.event.MouseEvent;
 public class StartInterface extends JFrame {
 
 	private JPanel contentPane;
-
+	CardLayout c = new CardLayout();
 	/**
 	 * Launch the application.
 	 */
@@ -32,8 +35,8 @@ public class StartInterface extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartInterface frame = new StartInterface();
-					frame.setVisible(true);
+					StartInterface startinterface = new StartInterface();
+					startinterface.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,6 +74,19 @@ public class StartInterface extends JFrame {
 		btnNewButton_begin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+//				dispose();
+				Choice choice = new Choice();			
+				choice.setVisible(true);
+				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getDefaultCursor());
 			}
 		});
 		ImageIcon icon_JButton_begin = new ImageIcon("img\\ButtonBegin.png");
@@ -101,7 +117,7 @@ public class StartInterface extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("\u521B\u4F5C\u56E2\u961F\u2014\u6210\u7FA4\u7ED3\u961F");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setEnabled(false);
-		lblNewLabel_1.setBounds(425, 560, 150, 15);
+		lblNewLabel_1.setBounds(425, 540, 150, 15);
 		contentPane.add(lblNewLabel_1);
 	}
 }

@@ -1,14 +1,16 @@
 package edu.nwpu.citybattle.painter;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import UI.CustomsPass;
+import edu.nwpu.citybattle.TankMap.Map;
+
 /**
- * 该类用于绘制墙类
- * @author 微笑未失
+ * 璇ョ被鐢ㄤ簬缁樺埗澧欑被
+ * @author 寰瑧鏈け
  * @see initialPainter
  * @see loadBmp
  * @see createScaledImg
@@ -30,29 +32,33 @@ public class ShapePainter {
 	public static final int GRASS = 2;
 	public static final int WATER = 3;
 	
-	BufferedImage img_background;//背景图
-	BufferedImage img_wall;//普通墙
-	BufferedImage img_iron_wall;//铁墙
-	BufferedImage img_grass;//草坪
-	BufferedImage img_water;//水
+	private CustomsPass custompass;
 	
+	BufferedImage img_background;//鑳屾櫙鍥�
+	BufferedImage img_wall;//鏅�氬
+	BufferedImage img_iron_wall;//閾佸
+	BufferedImage img_grass;//鑽夊潽
+	BufferedImage img_water;//姘�
+	public ShapePainter(CustomsPass custompass) {
+		this.custompass = custompass;
+	}
 	/**
-	 * 这是构造，创建该类对象时，你需要对mainPanel和map进行初始化
+	 * 杩欐槸鏋勯�狅紝鍒涘缓璇ョ被瀵硅薄鏃讹紝浣犻渶瑕佸mainPanel鍜宮ap杩涜鍒濆鍖�
 	 * @param mainPanel
 	 * @param map
 	 */
 	/**
-	 * 这个方法用于初始化各种大小
+	 * 杩欎釜鏂规硶鐢ㄤ簬鍒濆鍖栧悇绉嶅ぇ灏�
 	 */
 	public void initialPainter()
 	{
-		//先确定界面需要的各种尺寸
+		//鍏堢‘瀹氱晫闈㈤渶瑕佺殑鍚勭灏哄
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 
-		//再加载位图文件
+		//鍐嶅姞杞戒綅鍥炬枃浠�
 		try {
 			loadBmp();
 		} catch (IOException e) {
@@ -61,7 +67,7 @@ public class ShapePainter {
 		}
 	}
 	/**
-	 * 这个方法用于加载图片并进行放缩
+	 * 杩欎釜鏂规硶鐢ㄤ簬鍔犺浇鍥剧墖骞惰繘琛屾斁缂�
 	 * @throws IOException
 	 */
 	public void loadBmp() throws IOException
@@ -69,54 +75,51 @@ public class ShapePainter {
 		if(ELEMENT_SIZE <= 0)
 			return;
 		
-		//从/res/imgs目录，加载所有原始照片（未拉伸）
+		//浠�/res/imgs鐩綍锛屽姞杞芥墍鏈夊師濮嬬収鐗囷紙鏈媺浼革級
 		BufferedImage origin_background = ImageIO.read(ShapePainter.class.getResource("/imgs/background.png"));
 		BufferedImage origin_wall = ImageIO.read(ShapePainter.class.getResource("/imgs/wall.png"));
 		BufferedImage origin_iron_wall = ImageIO.read(ShapePainter.class.getResource("/imgs/iron.png"));
 		BufferedImage origin_grass = ImageIO.read(ShapePainter.class.getResource("/imgs/grass.png"));
 		BufferedImage origin_water = ImageIO.read(ShapePainter.class.getResource("/imgs/water.png"));		
-		//按窗口宽、高比例，计算出最终使用的宽高缩放比例
-		//计算窗口背景图宽高比例
+		//鎸夌獥鍙ｅ銆侀珮姣斾緥锛岃绠楀嚭鏈�缁堜娇鐢ㄧ殑瀹介珮缂╂斁姣斾緥
+		//璁＄畻绐楀彛鑳屾櫙鍥惧楂樻瘮渚�
 		float scaleX = WINDOW_WIDTH / (float)origin_background.getWidth();
 		float scaleY = WINDOW_HEIGHT / (float)origin_background.getHeight();
-		//创建拉伸后的背景图片
+		//鍒涘缓鎷変几鍚庣殑鑳屾櫙鍥剧墖
 		img_background = createScaledImg(origin_background, scaleX, scaleY);
 		
-		//计算每一小格图片的拉伸比例（要求每一个小格子原始图片尺寸完全一样！）
+		//璁＄畻姣忎竴灏忔牸鍥剧墖鐨勬媺浼告瘮渚嬶紙瑕佹眰姣忎竴涓皬鏍煎瓙鍘熷鍥剧墖灏哄瀹屽叏涓�鏍凤紒锛�
 		scaleX = ELEMENT_SIZE / (float)origin_wall.getWidth();
 		scaleY = ELEMENT_SIZE / (float)origin_wall.getHeight();
 		
-		//拉伸各个颜色的小格子图片
+		//鎷変几鍚勪釜棰滆壊鐨勫皬鏍煎瓙鍥剧墖
 		img_grass = createScaledImg(origin_grass, scaleX, scaleY);
         img_wall = createScaledImg(origin_wall, scaleX, scaleY);
         img_iron_wall = createScaledImg(origin_iron_wall, scaleX, scaleY);
         img_water = createScaledImg(origin_water, scaleX, scaleY);
 	}
 	/**
-	 * 内部方法，用于放缩图片
+	 * 鍐呴儴鏂规硶锛岀敤浜庢斁缂╁浘鐗�
 	 * @param originImg
 	 * @param scaleX
 	 * @param scaleY
-	 * @return 返回放缩后的图片
+	 * @return 杩斿洖鏀剧缉鍚庣殑鍥剧墖
 	 */
 	private BufferedImage createScaledImg(BufferedImage originImg, float scaleX, float scaleY){
 		int scaledWidth = (int)(originImg.getWidth()*scaleX);
 		int scaledHeight = (int)(originImg.getHeight()*scaleY);
 		
 		BufferedImage newImage = new BufferedImage(scaledWidth, scaledHeight, originImg.getType());
-		Graphics g = newImage.getGraphics();
-		g.drawImage(originImg, 0, 0, scaledWidth, scaledHeight, null);
-		g.dispose();
 		return newImage;
 	}
 	/**
-	 * 这个方法用于画背景图
+	 * 杩欎釜鏂规硶鐢ㄤ簬鐢昏儗鏅浘
 	 * @param g2d
 	 */
 	public void drawBackground(Graphics g2d){
-		g2d.drawImage(img_background, 0, 0, null);//贴背景图
+		g2d.drawImage(img_background, 0, 0, custompass);//璐磋儗鏅浘
 	}
-	public void drawWall(Graphics g2d) {//绘制墙图
+	public void drawWall(Graphics g2d) {//缁樺埗澧欏浘
 		for(int x = 0;x < Map.wall.length;x++) {
 			for(int y = 0;y < Map.wall[x].length;y++) {
 				if(Map.wall[x][y] == 1)
@@ -125,22 +128,22 @@ public class ShapePainter {
 		}
 	}
 	/**
-	 * 这个方法用于画铁墙
+	 * 杩欎釜鏂规硶鐢ㄤ簬鐢婚搧澧�
 	 * @param g2d
 	 */
-	public void drawIronWall(Graphics g2d) {//绘制铁墙
-		for(int x = 0;x < Map.ironWall.length;x++) {
-			for(int y = 0;y < Map.ironWall[x].length;y++) {
-				if(Map.ironWall[x][y] == 1)
+	public void drawIronWall(Graphics g2d) {//缁樺埗閾佸
+		for(int x = 0;x < Map.ironwall.length;x++) {
+			for(int y = 0;y < Map.ironwall[x].length;y++) {
+				if(Map.ironwall[x][y] == 1)
 				drawShape(g2d,x,y,IRON_WALL);
 			}
 		}
 	}
 	/**
-	 * 这个方法用于绘制草地
+	 * 杩欎釜鏂规硶鐢ㄤ簬缁樺埗鑽夊湴
 	 * @param g2d
 	 */
-	public void drawGrass(Graphics g2d) {//绘制草地
+	public void drawGrass(Graphics g2d) {//缁樺埗鑽夊湴
 		for(int x = 0;x < Map.grass.length;x++) {
 			for(int y = 0;y < Map.grass[x].length;y++) {
 				if(Map.grass[x][y] == 1)
@@ -149,10 +152,10 @@ public class ShapePainter {
 		}
 	}
 	/**
-	 * 这个方法用于绘制墙
+	 * 杩欎釜鏂规硶鐢ㄤ簬缁樺埗澧�
 	 * @param g2d
 	 */
-	public void drawWater(Graphics g2d) {//绘制墙图
+	public void drawWater(Graphics g2d) {//缁樺埗澧欏浘
 		for(int x = 0;x < Map.water.length;x++) {
 			for(int y = 0;y < Map.water[x].length;y++) {
 				if(Map.water[x][y] == 1)
@@ -161,7 +164,7 @@ public class ShapePainter {
 		}
 	}
 	/**
-	 * 这个方法用于判读需要绘制的图形类型，并将其绘制出来
+	 * 杩欎釜鏂规硶鐢ㄤ簬鍒よ闇�瑕佺粯鍒剁殑鍥惧舰绫诲瀷锛屽苟灏嗗叾缁樺埗鍑烘潵
 	 * @param g2d
 	 * @param x
 	 * @param y
@@ -172,23 +175,23 @@ public class ShapePainter {
 		switch(blockType)
 		{
 		case WALL:
-			g2d.drawImage(img_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		case IRON_WALL:
-			g2d.drawImage(img_iron_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_iron_wall, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		case GRASS:
-			g2d.drawImage(img_grass, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_grass, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		case WATER:
-			g2d.drawImage(img_water, x*ELEMENT_SIZE, y*ELEMENT_SIZE, null);
+			g2d.drawImage(img_water, x*ELEMENT_SIZE, y*ELEMENT_SIZE, custompass);
 			break;
 		default:
 			break;
 		}
 	}
 	/**
-	 * 此方法用于画出所有的形状
+	 * 姝ゆ柟娉曠敤浜庣敾鍑烘墍鏈夌殑褰㈢姸
 	 * @param g2d
 	 */
 	public void drawAllShap(Graphics g2d) {

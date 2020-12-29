@@ -3,45 +3,73 @@
  */
 package edu.nwpu.citybattle.IngameElements;
 
+import edu.nwpu.citybattle.TankMap.*;
 /**
  * 己方坦克类，由玩家控制
  * @see Tank
  * @version 1.0.0
  */
 public class MyTank extends Tank {
-
-	@Override
-	public Bullet shootBullet(float x, float y, int direction) {
+	private int tank_x;
+	private int tank_y;
+	private int direction;
+	
+	public Bullet shootBullet() {
 		// TODO Auto-generated method stub
+		if(direction == UP)
+			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
+		if(direction==DOWN)
+			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
+		if(direction==LEFT)
+			Bullet.Bullets.add(new Bullet(tank_x,tank_y+2,direction));
+		if(direction==RIGHT)
+			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y+2,direction));
+		
 		return null;
 	}
-
 	
-	public void moveNext(int direction) {
+	public  int cloudMove(int direction) {
 		switch(direction) {
 		case UP:
-			if(--tank_y==0)
+			if(Map.water[tank_x][--tank_y]==0||Map.wall[tank_x][--tank_y]==0||Map.ironwall[tank_x][--tank_y]==0)
+				return direction;
+			else 
+				return direction=0;
+		case LEFT:
+			if(Map.water[--tank_x][tank_y]==0||Map.wall[--tank_x][tank_y]==0||Map.ironwall[--tank_x][tank_y]==0)
+				return direction;
+			else 
+				return direction=0;
+		case RIGHT:
+			if(Map.water[++tank_x][tank_y]==0||Map.wall[++tank_x][tank_y]==0||Map.ironwall[++tank_x][tank_y]==0)
+				return direction;
+			else 
+				return direction=0;
+		case DOWN:
+			if(Map.water[tank_x][++tank_y]==0||Map.wall[tank_x][++tank_y]==0||Map.ironwall[tank_x][++tank_y]==0)
+				return direction;
+			else 
+				return direction=0;
+		}
+		return 0;
+	}
+
+	public void moveNext(int direction) {
+		int a=cloudMove(direction);
+		switch(a) {
+		case UP:
 			tank_y--;
-			else
-				return;
 			break;
 		case LEFT:
-			if(--tank_x==0)
 			tank_x--;
-			else
-				return;
 			break;
 		case RIGHT:
-			if(++tank_x==0)
 			tank_x++;
-			else
-				return;
 			break;
 		case DOWN:
-			if(++tank_y==0)
 			tank_y++;
-			else
-				return;
+			break;
+		case 0:
 			break;
 		}
 		
@@ -51,6 +79,12 @@ public class MyTank extends Tank {
 	public void onHit() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Bullet shootBullet(float x, float y, int direction) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

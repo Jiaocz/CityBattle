@@ -7,20 +7,24 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import edu.nwpu.citybattle.painter.DrawAll;
+
 /**
- * @author è¢Ïè
+ * @author ï¿½ï¿½ï¿½
  * version V1.0
  */
-public class ¹Ø¿¨ extends JFrame {
+public class CustomsPass extends JFrame {
 
 	private JPanel contentPane;
-
+	private static DrawAll draw;
+	Graphics g2d = this.getGraphics();
 	/**
 	 * Launch the application.
 	 */
@@ -28,7 +32,7 @@ public class ¹Ø¿¨ extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					¹Ø¿¨ frame = new ¹Ø¿¨();
+					CustomsPass frame = new CustomsPass();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,20 +44,21 @@ public class ¹Ø¿¨ extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ¹Ø¿¨() {
-		super("Ì¹¿Ë´óÕ½");
+	public CustomsPass() {
+		super("Ì¹ï¿½Ë´ï¿½Õ½");
 		
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//»ñµÃÆÁÄ»³ß´ç
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ß´ï¿½
 		int width = 1000;
-		int height = 620;//ÉèÖÃ´°¿Ú¿í¶ÈºÍ¸ß¶È
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//´°¿ÚµÄ×ø±êºÍ³ß´ç£¬ÒÔ´ËÖÖ·½Ê½¾ÓÖÐ
+		int height = 600;//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ú¿ï¿½ÈºÍ¸ß¶ï¿½
+		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½Í³ß´ç£¬ï¿½Ô´ï¿½ï¿½Ö·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		draw = new DrawAll(this,g2d);
 	}
 
 }

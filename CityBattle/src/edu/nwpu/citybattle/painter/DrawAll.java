@@ -2,27 +2,27 @@ package edu.nwpu.citybattle.painter;
 
 import java.awt.Graphics;
 
+import UI.CustomsPass;
+
 /**
- * è¯¥ç±»ç”¨äºå°†æ¸¸æˆç”»é¢ç»˜åˆ¶å‡ºæ¥
- * @author å¾®ç¬‘æœªå¤±
+ * ¸ÃÀàÓÃÓÚ½«ÓÎÏ·»­Ãæ»æÖÆ³öÀ´
+ * @author Î¢Ğ¦Î´Ê§
  * @see draw
  */
 public class DrawAll {
-	BulletsPainter bulletsPainter;
-	ShapePainter shapPainter;
-	TankPainter tankPainter;
-	public DrawAll() {
-		this.bulletsPainter = new BulletsPainter();
-		this.shapPainter = new ShapePainter();
-		this.tankPainter = new TankPainter();
-	}
-	/**
-	 * è¯¥æ–¹æ³•ç”¨äºç»˜åˆ¶æ‰€éœ€è¦ç”¨åˆ°çš„ç”»é¢
-	 * @param g2d
-	 */
-	public void draw(Graphics g2d) {
+	private BulletsPainter bulletsPainter;
+	private ShapePainter shapPainter;
+	private TankPainter tankPainter;
+	public DrawAll(CustomsPass custompass,Graphics g2d) {
+		this.bulletsPainter = new BulletsPainter(custompass);
+		this.shapPainter = new ShapePainter(custompass);
+		this.tankPainter = new TankPainter(custompass);
 		bulletsPainter.drawBullets(g2d);
 		tankPainter.drawTanks(g2d);
 		shapPainter.drawAllShap(g2d);
 	}
+	/**
+	 * ¸Ã·½·¨ÓÃÓÚ»æÖÆËùĞèÒªÓÃµ½µÄ»­Ãæ
+	 * @param g2d
+	 */
 }
