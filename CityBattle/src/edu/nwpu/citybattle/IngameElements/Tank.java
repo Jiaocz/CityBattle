@@ -30,10 +30,26 @@ public abstract class Tank implements Hitable, CanShootBullet<Bullet> {
 	 * @since 1.0.0
 	 */
 	public int direction;
-	public static final int UP = 1; // 向上
-	public static final int DOWN = 2; // 向下
-	public static final int LEFT = 3; // 向左
-	public static final int RIGHT = 4; // 向右
+	/**
+	 * 表示向上方向
+	 * @since 1.0.0
+	 */
+	public static final int UP = 1;
+	/**
+	 * 表示向下方向
+	 * @since 1.0.0
+	 */
+	public static final int DOWN = 2;
+	/**
+	 * 表示向左方向
+	 * @since 1.0.0
+	 */
+	public static final int LEFT = 3;
+	/**
+	 * 表示向右方向
+	 * @since 1.0.0
+	 */
+	public static final int RIGHT = 4;
 	
 	/**
 	 * 坦克血量

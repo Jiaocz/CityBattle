@@ -142,7 +142,7 @@ public final class CronJobSet extends TimerTask {
 		}
 		return status;
 	}
-	
+
 	/**
 	 * 通过{@code Set}表添加一系列{@code Movable}接口类型的定时事件
 	 * 
