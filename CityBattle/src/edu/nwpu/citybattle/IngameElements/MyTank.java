@@ -10,9 +10,21 @@ import edu.nwpu.citybattle.TankMap.*;
  * @version 1.0.0
  */
 public class MyTank extends Tank {
-	@Override
-	public Bullet shootBullet(float tank_x, float tank_y, int direction) {
+	private int tank_x;
+	private int tank_y;
+	private int direction;
+	
+	public Bullet shootBullet() {
 		// TODO Auto-generated method stub
+		if(direction == UP)
+			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
+		if(direction==DOWN)
+			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
+		if(direction==LEFT)
+			Bullet.Bullets.add(new Bullet(tank_x,tank_y+2,direction));
+		if(direction==RIGHT)
+			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y+2,direction));
+		
 		return null;
 	}
 	
@@ -67,6 +79,12 @@ public class MyTank extends Tank {
 	public void onHit() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Bullet shootBullet(float x, float y, int direction) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
