@@ -1,11 +1,11 @@
 package edu.nwpu.citybattle.IngameElements;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.actions.Movable;
+import edu.nwpu.citybattle.alogrism.CronJob;
+import edu.nwpu.citybattle.alogrism.CronJobSet;
 
 /**
  * 
@@ -52,12 +52,15 @@ public class AiTank extends Tank implements Movable {
 		HP--;
 
 		if (HP == 0) {
-			// 定时器2秒
-
-			tank_x = initX;
-			tank_y = initY;
-			HP = 3;
-
+			
+			CronJobSet.addDelayJob(new CronJob() {
+				@Override
+				public void run() {
+					tank_x = initX;
+					tank_y = initY;
+					HP = 3;
+				}
+			}, 2000L);
 		}
 
 	}
