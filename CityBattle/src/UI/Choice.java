@@ -24,7 +24,7 @@ import java.util.Currency;
 
 /**
  * @author è¢Ïè
- * version V1.0
+ * @version V1.0
  */
 public class Choice extends JFrame {
 	public static int mapNumber;

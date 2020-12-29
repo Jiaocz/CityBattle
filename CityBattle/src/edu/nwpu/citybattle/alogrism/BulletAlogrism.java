@@ -333,5 +333,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		BulletAlogrism<Bullet> a = BulletAlogrism.<Bullet>getSingletonInstance();
 		BulletAlogrism<Bullet> b = BulletAlogrism.getSingletonInstance();
 		System.out.print(a.equals(b));
+		System.out.print(a.equals(b));
 	}
 }
