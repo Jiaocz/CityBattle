@@ -10,12 +10,8 @@ import edu.nwpu.citybattle.TankMap.*;
  * @version 1.0.0
  */
 public class MyTank extends Tank {
-	private int tank_x;
-	private int tank_y;
-	private int direction;
 	
 	public Bullet shootBullet() {
-		// TODO Auto-generated method stub
 		if(direction == UP)
 			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
 		if(direction==DOWN)
@@ -27,6 +23,7 @@ public class MyTank extends Tank {
 		
 		return null;
 	}
+	
 	
 	public  int cloudMove(int direction) {
 		switch(direction) {
@@ -77,14 +74,7 @@ public class MyTank extends Tank {
 
 	@Override
 	public void onHit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Bullet shootBullet(float x, float y, int direction) {
-		// TODO Auto-generated method stub
-		return null;
+		HP--;
 	}
 
 }

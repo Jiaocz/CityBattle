@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -106,10 +107,10 @@ public class Choice extends JFrame {
 		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 mapNumber = 1;
+				mapNumber = 1;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();				
 			}
 			@Override
@@ -132,10 +133,10 @@ public class Choice extends JFrame {
 		lblNewLabel_2_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 mapNumber = 2;
+				mapNumber = 2;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
 			@Override
@@ -158,10 +159,10 @@ public class Choice extends JFrame {
 		lblNewLabel_2_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 mapNumber = 3;
+				mapNumber = 3;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
 			@Override
@@ -185,10 +186,10 @@ public class Choice extends JFrame {
 		lblNewLabel_2_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 mapNumber = 4;
+				mapNumber = 4;
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
-				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
 			@Override
@@ -204,6 +205,36 @@ public class Choice extends JFrame {
 		lblNewLabel_2_4.setBounds(630, 355, 240, 180);
 		lblNewLabel_2_4.setBorder(BorderFactory.createLineBorder(Color.white));
 		contentPane.add(lblNewLabel_2_4);
+		
+		
+		/*
+		 * ·µ»Ø°´¼ü
+		 */
+		JButton btnNewButton_begin = new JButton("");
+		btnNewButton_begin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				dispose();
+				StartInterface startinterface = new StartInterface();			
+				startinterface.setVisible(true);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getDefaultCursor());
+			}
+		});
+		ImageIcon icon_JButton_begin = new ImageIcon("img\\Return.png");
+		int height2 = 48;
+		btnNewButton_begin.setBounds(20, 10, 94, height2);
+		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(94, height2, 0));
+		btnNewButton_begin.setIcon(icon_JButton_begin);
+		contentPane.add(btnNewButton_begin);
 
 	}
 }

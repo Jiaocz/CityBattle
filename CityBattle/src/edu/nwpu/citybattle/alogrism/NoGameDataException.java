@@ -5,6 +5,7 @@ package edu.nwpu.citybattle.alogrism;
 
 /**
  * 当没有游戏数据供子弹算法类{@code BulletAlogrism}进行计算时，其将抛出本异常
+ * 
  * @author Orangii
  * @version 1.0.0
  */
@@ -17,6 +18,7 @@ public class NoGameDataException extends Exception {
 
 	/**
 	 * Construct a Exception instance
+	 * 
 	 * @param Message
 	 */
 	public NoGameDataException(String Message) {

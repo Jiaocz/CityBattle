@@ -5,6 +5,7 @@ package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TimerTask;
 import edu.nwpu.citybattle.actions.Movable;
 import java.util.Timer;
@@ -36,7 +37,7 @@ import java.util.Timer;
  * <hr />
  * 
  * @author Orangii
- * @version 1.1.0
+ * @version 1.1.2
  * @see Runnable
  * @see CronJob
  * @see edu.nwpu.citybattle.actions.Movable
@@ -133,6 +134,23 @@ public final class CronJobSet extends TimerTask {
 	 * @return 是否添加成功
 	 */
 	public static boolean addJobs(List<Movable> CronJobList) {
+		boolean status = true;
+		for (Movable cronJob : CronJobList) {
+			if (!addJob(cronJob)) {
+				status = false;
+			}
+		}
+		return status;
+	}
+
+	/**
+	 * 通过{@code Set}表添加一系列{@code Movable}接口类型的定时事件
+	 * 
+	 * @since 1.1.2
+	 * @param CronJobList {@code Movable}接口Set集
+	 * @return 是否添加成功
+	 */
+	public static boolean addJobs(Set<Movable> CronJobList) {
 		boolean status = true;
 		for (Movable cronJob : CronJobList) {
 			if (!addJob(cronJob)) {

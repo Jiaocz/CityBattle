@@ -3,7 +3,7 @@
  */
 package edu.nwpu.citybattle.IngameElements;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
 
@@ -16,12 +16,12 @@ import edu.nwpu.citybattle.alogrism.CronJobSet;
  */
 public class Bullet implements Movable {
 	/**
-	 * 此{@code ArrayList}维护所有场上的子弹
+	 * 此{@code LinkedHashSet}维护所有场上的子弹
 	 * 
 	 * @since 1.0.0
-	 * @see ArrayList
+	 * @see LinkedHashSet
 	 */
-	public static final ArrayList<Bullet> Bullets = new ArrayList<Bullet>();
+	public static final LinkedHashSet<Bullet> Bullets = new LinkedHashSet<Bullet>();
 
 	/**
 	 * 子弹的X坐标
@@ -57,7 +57,7 @@ public class Bullet implements Movable {
 		this.pos_x = pos_x;
 		this.pos_y = pos_y;
 		this.direction = direction;
-		// Add bullet to ArrayList
+		// Add bullet to LinkedHashSet
 		Bullets.add(this);
 		CronJobSet.addJob(this);
 	}

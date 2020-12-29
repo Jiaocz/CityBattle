@@ -4,6 +4,7 @@
 package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import edu.nwpu.citybattle.IngameElements.AiTank;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 import edu.nwpu.citybattle.IngameElements.MyTank;
@@ -13,7 +14,7 @@ import edu.nwpu.citybattle.IngameElements.MyTank;
  * 如子弹的撞击事件的维护等<br />
  * 子弹飞行暂不在此类中。<br />
  * 最初若要获得本类实例对象，请参考以下范例：<br />
- * 	{@code BulletAlogrism<Bullet> bulletAlogrism = BulletAlogrism.<Bullet>getSingletonInstance();}<br />
+ * {@code BulletAlogrism<Bullet> bulletAlogrism = BulletAlogrism.<Bullet>getSingletonInstance();}<br />
  * 其中泛型Bullet为需要维护的子弹的类型，之后调用时可以在函数前去掉泛型{@code <Bullet>}，如本类测试用Main函数中示例。
  * 
  * @author Orangii
@@ -59,24 +60,23 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * @since 1.0.0
 	 */
 	private static boolean hasData = false;
-	
+
 	// 地图数组宽高
 	private static int WIDTH = 56;
 	private static int HEIGHT = 40;
 	// 坦克宽高
 	private static int TANK_WIDTH = 5;
 	private static int TANK_HEIGHT = 5;
-	
 
 	/**
 	 * 当需要本类进行判断时，需要对地图数据的初始化。<br />
 	 * 当地图切换或第一次使用本类进行计算的时候需要使用本方法进行传入游戏参数，否则将会产生错误。
 	 * 
 	 * @since 1.0.0
-	 * @param initWall 普通墙数组
+	 * @param initWall     普通墙数组
 	 * @param initIronWall 铁墙数组
-	 * @param initAiTank AI敌方坦克列表
-	 * @param initMyTank 玩家控制坦克对象
+	 * @param initAiTank   AI敌方坦克列表
+	 * @param initMyTank   玩家控制坦克对象
 	 */
 	public static void initAlogrism(int[][] initWall, int[][] initIronWall, ArrayList<AiTank> initAiTank,
 			MyTank initMyTank) {
@@ -90,10 +90,12 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 			hasData = true;
 		}
 	}
-	
+
 	/**
 	 * 用于判断是否为本类传入了游戏参数
-	 * @return {@code true}表示本类已接收并保存游戏数据； {@code false}表示类中仍缺少某游戏数据，使用{@code initAlogrism}方法进行设定。
+	 * 
+	 * @return {@code true}表示本类已接收并保存游戏数据；
+	 *         {@code false}表示类中仍缺少某游戏数据，使用{@code initAlogrism}方法进行设定。
 	 */
 	public static boolean hasData() {
 		return hasData;
@@ -117,214 +119,226 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	/**
 	 * 禁止其他类创建对象
 	 */
-	private BulletAlogrism() {}
-	
+	private BulletAlogrism() {
+	}
+
 	/**
 	 * 用于触发被子弹击中的物体的被击中事件。<br />
 	 * 使用前请先使用{@code initAlogrism}方法设定算法数据 <br />
 	 * 使用前也应调用子弹的{@code moveNext()}方法对子弹坐标进行更新。
+	 * 
 	 * @param BulletList
 	 * @throws NoGameDataException
 	 */
-	public void isHitting(ArrayList<BulletClass> BulletList) throws NoGameDataException {
-		//没有游戏数据时抛出异常
-		if(!hasData) throw new NoGameDataException("游戏数据未传入");
-		
-		BulletList:
-		for(BulletClass b : BulletList) {
+	public void isHitting(LinkedHashSet<BulletClass> BulletList) throws NoGameDataException {
+		// 没有游戏数据时抛出异常
+		if (!hasData)
+			throw new NoGameDataException("游戏数据未传入");
+
+		BulletList: for (BulletClass b : BulletList) {
 			// 触碰边界
-			switch(b.direction) {
-				case Bullet.UP:
-					if(b.pos_y < 0) {
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.LEFT:
-					if(b.pos_x < 0) {
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.DOWN:
-					if(b.pos_y >= HEIGHT) {
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.RIGHT:
-					if(b.pos_x >= WIDTH) {
-						b.remove();
-						continue BulletList;
-					}
-					break;	
+			switch (b.direction) {
+			case Bullet.UP:
+				if (b.pos_y < 0) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.LEFT:
+				if (b.pos_x < 0) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.DOWN:
+				if (b.pos_y >= HEIGHT) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.RIGHT:
+				if (b.pos_x >= WIDTH) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
 			}
-			
+
 			// 碰撞己方坦克
-			switch(b.direction) {
+			switch (b.direction) {
+			case Bullet.UP:
+			case Bullet.LEFT:
+				if (b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH - 1 && b.pos_y >= myTank.tank_y
+						&& b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
+					myTank.onHit();
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.RIGHT:
+				if (b.pos_x + 1 >= myTank.tank_x && b.pos_x + 1 <= myTank.tank_x + TANK_WIDTH - 1
+						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
+					myTank.onHit();
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.DOWN:
+				if (b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH - 1
+						&& b.pos_y + 1 >= myTank.tank_y && b.pos_y + 1 <= myTank.tank_y + TANK_HEIGHT - 1) {
+					myTank.onHit();
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			}
+
+			// 碰撞敌方坦克
+			for (AiTank aiTank : ai_tank) {
+				switch (b.direction) {
 				case Bullet.UP:
 				case Bullet.LEFT:
-					if(b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH -1 
-						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
-						myTank.onHit();
+					if (b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH - 1
+							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+						aiTank.onHit();
 						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.RIGHT:
-					if(b.pos_x + 1 >= myTank.tank_x && b.pos_x + 1 <= myTank.tank_x + TANK_WIDTH -1 
-						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
-						myTank.onHit();
+					if (b.pos_x + 1 >= aiTank.getTank_x() && b.pos_x + 1 <= aiTank.getTank_x() + TANK_WIDTH - 1
+							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+						aiTank.onHit();
 						b.remove();
 						continue BulletList;
 					}
 					break;
 				case Bullet.DOWN:
-					if(b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH -1 
-						&& b.pos_y + 1 >= myTank.tank_y && b.pos_y + 1 <= myTank.tank_y + TANK_HEIGHT - 1) {
-						myTank.onHit();
+					if (b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH - 1
+							&& b.pos_y + 1 >= aiTank.getTank_y()
+							&& b.pos_y + 1 <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+						aiTank.onHit();
 						b.remove();
 						continue BulletList;
 					}
 					break;
-			}
-			
-			// 碰撞敌方坦克
-			for(AiTank aiTank : ai_tank) {
-				switch(b.direction) {
-					case Bullet.UP:
-					case Bullet.LEFT:
-						if(b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH -1 
-							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
-							aiTank.onHit();
-							b.remove();
-							continue BulletList;
-						}
-						break;
-					case Bullet.RIGHT:
-						if(b.pos_x + 1 >= aiTank.getTank_x() && b.pos_x + 1 <= aiTank.getTank_x() + TANK_WIDTH -1 
-							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
-							aiTank.onHit();
-							b.remove();
-							continue BulletList;
-						}
-						break;
-					case Bullet.DOWN:
-						if(b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH -1 
-							&& b.pos_y + 1 >= aiTank.getTank_y() && b.pos_y + 1 <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
-							aiTank.onHit();
-							b.remove();
-							continue BulletList;
-						}
-						break;
 				}
 			}
-			
+
 			// 碰撞普通墙
 			// Observer how many "1" before the bullet
 			int observer = 0;
-			
-			switch(b.direction) {
-				case Bullet.UP:
-					if(wall[b.pos_x][b.pos_y] == 1) {
-						for(int i = b.pos_x - 1; i >= 0; i--) {
-							if(wall[i][b.pos_y] == 1) {
-								observer++;
-							}
+
+			switch (b.direction) {
+			case Bullet.UP:
+				if (wall[b.pos_x][b.pos_y] == 1) {
+					for (int i = b.pos_x - 1; i >= 0; i--) {
+						if (wall[i][b.pos_y] == 1) {
+							observer++;
 						}
-						if(observer % 2 == 0) {
-							wall[b.pos_x][b.pos_y] = wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x][b.pos_y - 1] = wall[b.pos_x + 1][b.pos_y - 1] = 0;
-						} else {
-							wall[b.pos_x][b.pos_y] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x][b.pos_y - 1] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
-						}
-						b.remove();
-						observer = 0;
-						continue BulletList;
 					}
-					break;
-					
-				case Bullet.DOWN:
-					if(wall[b.pos_x][b.pos_y + 1] == 1) {
-						for(int i = b.pos_x - 1; i >= 0; i--) {
-							if(wall[i][b.pos_y + 1] == 1) {
-								observer++;
-							}
-						}
-						if(observer % 2 == 0) {
-							wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x + 1][b.pos_y + 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x + 1][b.pos_y + 2] = 0;
-						} else {
-							wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y + 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x - 1][b.pos_y + 2] = 0;
-						}
-						b.remove();
-						observer = 0;
-						continue BulletList;
+					if (observer % 2 == 0) {
+						wall[b.pos_x][b.pos_y] = wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x][b.pos_y
+								- 1] = wall[b.pos_x + 1][b.pos_y - 1] = 0;
+					} else {
+						wall[b.pos_x][b.pos_y] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x][b.pos_y
+								- 1] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
 					}
-					break;
-					
-				case Bullet.LEFT:
-					if(wall[b.pos_x][b.pos_y] == 1) {
-						for(int i = b.pos_y - 1; i >= 0; i--) {
-							if(wall[b.pos_x][i] == 1) {
-								observer++;
-							}
+					b.remove();
+					observer = 0;
+					continue BulletList;
+				}
+				break;
+
+			case Bullet.DOWN:
+				if (wall[b.pos_x][b.pos_y + 1] == 1) {
+					for (int i = b.pos_x - 1; i >= 0; i--) {
+						if (wall[i][b.pos_y + 1] == 1) {
+							observer++;
 						}
-						if(observer % 2 == 0) {
-							wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y + 1] = 0;
-						} else {
-							wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y - 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
-						}
-						b.remove();
-						observer = 0;
-						continue BulletList;
 					}
-					break;
-					
-				case Bullet.RIGHT:
-					if(wall[b.pos_x + 1][b.pos_y] == 1) {
-						for(int i = b.pos_y - 1; i >= 0; i--) {
-							if(wall[b.pos_x + 1][i] == 1) {
-								observer++;
-							}
-						}
-						if(observer % 2 == 0) {
-							wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y + 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y + 1] = 0;
-						} else {
-							wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y - 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y - 1] = 0;
-						}
-						b.remove();
-						observer = 0;
-						continue BulletList;
+					if (observer % 2 == 0) {
+						wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x + 1][b.pos_y
+								+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x + 1][b.pos_y + 2] = 0;
+					} else {
+						wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y
+								+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x - 1][b.pos_y + 2] = 0;
 					}
-					break;
+					b.remove();
+					observer = 0;
+					continue BulletList;
+				}
+				break;
+
+			case Bullet.LEFT:
+				if (wall[b.pos_x][b.pos_y] == 1) {
+					for (int i = b.pos_y - 1; i >= 0; i--) {
+						if (wall[b.pos_x][i] == 1) {
+							observer++;
+						}
+					}
+					if (observer % 2 == 0) {
+						wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
+								+ 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y + 1] = 0;
+					} else {
+						wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
+								- 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
+					}
+					b.remove();
+					observer = 0;
+					continue BulletList;
+				}
+				break;
+
+			case Bullet.RIGHT:
+				if (wall[b.pos_x + 1][b.pos_y] == 1) {
+					for (int i = b.pos_y - 1; i >= 0; i--) {
+						if (wall[b.pos_x + 1][i] == 1) {
+							observer++;
+						}
+					}
+					if (observer % 2 == 0) {
+						wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
+								+ 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y + 1] = 0;
+					} else {
+						wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
+								- 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y - 1] = 0;
+					}
+					b.remove();
+					observer = 0;
+					continue BulletList;
+				}
+				break;
 			}
-			
+
 			// 碰撞铁墙
-			switch(b.direction) {
-				case Bullet.UP:
-				case Bullet.LEFT:
-					if(iron_wall[b.pos_x][b.pos_y] == 1) {
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.RIGHT:
-					if(iron_wall[b.pos_x + 1][b.pos_y] == 1) {
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.DOWN:
-					if(iron_wall[b.pos_x][b.pos_y + 1] == 1) {
-						b.remove();
-						continue BulletList;
-					}
-					break;
+			switch (b.direction) {
+			case Bullet.UP:
+			case Bullet.LEFT:
+				if (iron_wall[b.pos_x][b.pos_y] == 1) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.RIGHT:
+				if (iron_wall[b.pos_x + 1][b.pos_y] == 1) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
+			case Bullet.DOWN:
+				if (iron_wall[b.pos_x][b.pos_y + 1] == 1) {
+					b.remove();
+					continue BulletList;
+				}
+				break;
 			}
 		}
 	}
-	
+
 	/**
 	 * 测试用主函数，使用本类时请忽略。
+	 * 
 	 * @deprecated 1.0.0
 	 * @param args
 	 * @throws NoGameDataException
