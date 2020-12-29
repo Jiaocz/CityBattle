@@ -14,20 +14,28 @@ import edu.nwpu.citybattle.actions.Movable;
  * @see Tank
  */
 public class AiTank extends Tank implements Movable {
-	
+	/**
+	 * 初始生成坦克的坐标，用来在坦克死亡后生成的新的AiTank
+	 */
 	private int initX;
 	private int initY;
 	
-	
+	/**
+	 * 坦克的速度
+	 */
 	private int speed = 5;
 	
-	// 坦克的宽
+	/**
+	 *  坦克的宽，高
+	 */
 	private int width = 40;
-	// 坦克的高
 	private int height = 40;
 
 	
-
+	
+    /**
+     * AiTanks移动
+     */
 	@Override
 	public void moveNext() {
 		while(judgeLimit()) {
@@ -57,7 +65,10 @@ public class AiTank extends Tank implements Movable {
 		HP--;
 	}
 	
-	//判断是否能行走
+	/**
+	 * 判断是否能行走
+	 * @return
+	 */
 	private boolean judgeLimit(){
 		if(tank_x<0){
 			tank_x=0;
@@ -99,6 +110,9 @@ public class AiTank extends Tank implements Movable {
 	
 	
 
+	/**
+	 * 射击
+	 */
 	public Bullet shootBullet() {
 		int x = this.tank_x+2;
 		int y = this.tank_y+2;
@@ -110,7 +124,9 @@ public class AiTank extends Tank implements Movable {
 	boolean f = false;
 
 	
-	//为敌方坦克设置移动的方向
+	/**
+	 * 为敌方坦克设置移动的方向
+	 */
 	private void setRandomDir() {
 		while(f = false) {
 		int r = new Random().nextInt(5);
