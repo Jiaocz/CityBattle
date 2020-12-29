@@ -11,9 +11,6 @@ import javax.swing.JComponent;
 
 import edu.nwpu.citybattle.TankMap.map1;
 import edu.nwpu.citybattle.TankMap.map2;
-import tankWar.Tank;
-import tankWar.TankClient;
-
 import javax.imageio.ImageIO;
 
 
