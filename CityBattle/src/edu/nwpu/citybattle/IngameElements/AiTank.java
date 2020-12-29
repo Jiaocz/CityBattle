@@ -22,19 +22,19 @@ public class AiTank extends Tank implements Movable {
 
 		if (judgeLimit()) {
 
-			if (direction == DOWN) {
+			if (direction == Tank.DOWN) {
 				tank_y += speed;
 				setRandomDir();
 			}
-			if (direction == UP) {
+			if (direction == Tank.UP) {
 				tank_y -= speed;
 				setRandomDir();
 			}
-			if (direction == LEFT) {
+			if (direction == Tank.LEFT) {
 				tank_x -= speed;
 				setRandomDir();
 			}
-			if (direction == RIGHT) {
+			if (direction == Tank.RIGHT) {
 				tank_x += speed;
 				setRandomDir();
 			}
@@ -57,7 +57,7 @@ public class AiTank extends Tank implements Movable {
 			return false;
 		}
 		switch (direction) {
-		case UP:
+		case Tank.UP:
 			for (int i = 0; i < 5; i++) {
 				a = tank_y - 1;
 				if (Map.ironwall[tank_x + i][a] != 0 && Map.wall[tank_x + i][a] != 0 && Map.water[tank_x + i][a] != 0)
@@ -66,7 +66,7 @@ public class AiTank extends Tank implements Movable {
 
 			return true;
 
-		case DOWN:
+		case Tank.DOWN:
 			for (int i = 0; i < 5; i++) {
 				a = tank_y + 1;
 				if (Map.ironwall[tank_x + i][a] != 0 && Map.wall[tank_x + i][a] != 0 && Map.water[tank_x + i][a] != 0)
@@ -75,7 +75,7 @@ public class AiTank extends Tank implements Movable {
 
 			return true;
 
-		case LEFT:
+		case Tank.LEFT:
 			for (int i = 0; i < 5; i++) {
 				a = tank_x - 1;
 				if (Map.ironwall[a][tank_y + i] != 0 && Map.wall[a][tank_y + i] != 0 && Map.water[a][tank_y + i] != 0)
@@ -84,7 +84,7 @@ public class AiTank extends Tank implements Movable {
 
 			return true;
 
-		case RIGHT:
+		case Tank.RIGHT:
 			for (int i = 0; i < 5; i++) {
 				a = tank_x + 1;
 				if (Map.ironwall[a][tank_y + i] != 0 && Map.wall[a][tank_y + i] != 0 && Map.water[a][tank_y + i] != 0)
@@ -117,27 +117,27 @@ public class AiTank extends Tank implements Movable {
 			int r = new Random().nextInt(5);
 			switch (r) {
 			case 1: {
-				direction = UP;
+				direction = Tank.UP;
 				f = true;
 				break;
 			}
 			case 2: {
-				direction = DOWN;
+				direction = Tank.DOWN;
 				f = true;
 				break;
 			}
 			case 3: {
-				direction = LEFT;
+				direction = Tank.LEFT;
 				f = true;
 				break;
 			}
 			case 4: {
-				direction = RIGHT;
+				direction = Tank.RIGHT;
 				f = true;
 				break;
 			}
 			default:
-				direction = STOP;
+				direction = Tank.STOP;
 				f = true;
 				break;
 
