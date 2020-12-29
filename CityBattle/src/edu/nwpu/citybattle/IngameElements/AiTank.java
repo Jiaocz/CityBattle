@@ -1,17 +1,10 @@
-
 package edu.nwpu.citybattle.IngameElements;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
-import java.util.Set;
-import java.awt.Component;
-import javax.swing.JComponent;
 
-import edu.nwpu.citybattle.TankMap.map1;
-import edu.nwpu.citybattle.TankMap.map2;
-import javax.imageio.ImageIO;
+
+import edu.nwpu.citybattle.TankMap.Map;
+import edu.nwpu.citybattle.actions.Movable;
 
 
 
@@ -24,8 +17,7 @@ public class AiTank extends Tank implements Movable {
 	
 	private int initX;
 	private int initY;
-	//移动的步数
-	private int step;
+	
 	
 	private int speed = 5;
 	
@@ -38,21 +30,25 @@ public class AiTank extends Tank implements Movable {
 
 	@Override
 	public void moveNext() {
-		// TODO Auto-generated method stub
-		
-			if (curDir == Direction.DOWN) {
-				tank_y += speed;
-			}
-			if (curDir == Direction.UP) {
-				tank_y -= speed;
-			}
-			if (curDir == Direction.LEFT) {
-				tank_x -= speed;
-			}
-			if (curDir == Direction.RIGHT) {
-				tank_x += speed;
-			}
+		while(judgeLimit()) {
 
+			if (direction == 2) {
+				tank_y += speed;
+				setRandomDir();
+			}
+			if (direction == 1) {
+				tank_y -= speed;
+				setRandomDir();
+			}
+			if (direction == 3) {
+				tank_x -= speed;
+				setRandomDir();
+			}
+			if (direction == 4) {
+				tank_x += speed;
+				setRandomDir();
+			}
+		}
 	}
 	
 
@@ -61,7 +57,7 @@ public class AiTank extends Tank implements Movable {
 		HP--;
 	}
 	
-	//判断边界
+	//判断是否能行走
 	private boolean judgeLimit(){
 		if(tank_x<0){
 			tank_x=0;
@@ -73,18 +69,28 @@ public class AiTank extends Tank implements Movable {
 		}
 		switch(direction) {
 		case UP:
-			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0)) {
 				tank_y++;
+				return true;
+			}
+			
 		case DOWN:
-			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0)) {
 				tank_y--;
+			    return true;
+		    }
 		case LEFT:
-			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0)) {
 				tank_x++;
+				return true;
+			}
 		case RIGHT:
-			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0)) {
 				tank_x--;
-		
+				return true;
+			}
+		default:
+			return false;
 		
 		}
 
@@ -93,33 +99,44 @@ public class AiTank extends Tank implements Movable {
 	
 	
 
-	@Override
-	public Bullet shootBullet(float x, float y, int direction) {
-		// TODO Auto-generated method stub
-		x = this.tank_x+2;
-		y = this.tank_y+2;
-		direction = this.direction;
+	public Bullet shootBullet() {
+		int x = this.tank_x+2;
+		int y = this.tank_y+2;
+		int direction = this.direction;
 		
-		Bullet.Bullets.add(shootBullet(x,y,direction) );
-		
-		return null;
+		return new Bullet(x,y,direction);
 	}
 
-	private Direction curDir = Direction.DOWN;
-	
-	
-	Random r = new Random();
+	boolean f = false;
+
 	
 	//为敌方坦克设置移动的方向
 	private void setRandomDir() {
-		Direction[] ranDir = { Direction.UP, Direction.DOWN, Direction.LEFT,
-				Direction.RIGHT };
-		curDir = ranDir[r.nextInt(ranDir.length)];
-	}
-
-	
-	public enum Direction {
-		UP, DOWN, LEFT, RIGHT, STOP
+		while(f = false) {
+		int r = new Random().nextInt(5);
+		switch(r) {
+		case 1:{
+			direction = 1;
+			f = true;
+			}
+		case 2:{
+			direction = 2;			
+			f = true;
+		    }
+		case 3:{
+			direction = 3;
+			f = true;
+			}
+		case 4:{
+			direction = 4;
+			f = true;
+		}
+		default:
+			f = false; 
+		
+		}
+		
+		}
 	}
 
 	public static final int UP = 1; // 向上
@@ -220,13 +237,6 @@ public class AiTank extends Tank implements Movable {
 			this.height = height;
 		}
 
-
-		@Override
-		public Bullet shootBullet() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	    
 
 	}
 
