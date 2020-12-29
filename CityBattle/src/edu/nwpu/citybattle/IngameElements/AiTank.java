@@ -50,11 +50,11 @@ public class AiTank extends Tank implements Movable {
 	private boolean judgeLimit() {
 		int a;
 
-		if (tank_x <= 0 && tank_x >= 52) {
-			return true;
+		if (tank_x <= 0 || tank_x >= 52) {
+			return false;
 		}
-		if (tank_y <= 0 && tank_y >=36) {
-			return true;
+		if (tank_y <= 0 || tank_y >=36) {
+			return false;
 		}
 		switch (direction) {
 		case UP:
@@ -110,9 +110,10 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	private void setRandomDir() {
+		
 		boolean f = false;
-
-		while (f = false) {
+		
+		while (f == false) {
 			int r = new Random().nextInt(5);
 			switch (r) {
 			case 1: {
@@ -136,7 +137,8 @@ public class AiTank extends Tank implements Movable {
 				break;
 			}
 			default:
-				f = false;
+				direction = STOP;
+				f = true;
 				break;
 
 			}
@@ -144,10 +146,6 @@ public class AiTank extends Tank implements Movable {
 		}
 	}
 
-	public static final int UP = 1;
-	public static final int DOWN = 2;
-	public static final int LEFT = 3;
-	public static final int RIGHT = 4;
 
 	public AiTank(int tank_x, int tank_y, int direction, int HP) {
 
