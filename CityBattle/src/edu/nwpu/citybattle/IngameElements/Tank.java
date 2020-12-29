@@ -5,7 +5,6 @@ package edu.nwpu.citybattle.IngameElements;
 
 import edu.nwpu.citybattle.actions.CanShootBullet;
 import edu.nwpu.citybattle.actions.Hitable;
-import edu.nwpu.citybattle.actions.Movable;
 
 /**
  * ×ÜÌ¹¿Ë¸¸Àà
