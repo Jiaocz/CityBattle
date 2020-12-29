@@ -53,19 +53,6 @@ public class AiTank extends Tank implements Movable {
 				tank_x += speed;
 			}
 
-				//移动的步数为0时  重新赋值
-				if(step==0||judgeLimit()){
-					step=r.nextInt(20);
-					setRandomDir();
-				}
-				//步数减一
-				else{
-					step--;
-				}
-				if(r.nextInt(100)>97){
-					shootBullet(tank_x,tank_y,direction);
-				}
-
 	}
 	
 
@@ -84,17 +71,25 @@ public class AiTank extends Tank implements Movable {
 			tank_y=0;
 			return true;
 		}
-
-		if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0)) {
-			tank_x = tank_x -1;
-			return true;
+		switch(direction) {
+		case UP:
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+				tank_y++;
+		case DOWN:
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+				tank_y--;
+		case LEFT:
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+				tank_x++;
+		case RIGHT:
+			if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0))
+				tank_x--;
+		
+		
 		}
 
 
 	}
-	
-	
-	
 	
 	
 
@@ -223,6 +218,13 @@ public class AiTank extends Tank implements Movable {
 
 		public void setHeight(int height) {
 			this.height = height;
+		}
+
+
+		@Override
+		public Bullet shootBullet() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	    
 
