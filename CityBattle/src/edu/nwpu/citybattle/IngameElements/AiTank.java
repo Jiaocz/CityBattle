@@ -134,21 +134,26 @@ public class AiTank extends Tank implements Movable {
 		case 1:{
 			direction = 1;
 			f = true;
+			break;
 			}
 		case 2:{
 			direction = 2;			
 			f = true;
+			break;
 		    }
 		case 3:{
 			direction = 3;
 			f = true;
+			break;
 			}
 		case 4:{
 			direction = 4;
 			f = true;
+			break;
 		}
 		default:
 			f = false; 
+			break;
 		
 		}
 		

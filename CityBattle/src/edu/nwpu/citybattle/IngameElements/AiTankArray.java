@@ -12,8 +12,6 @@ import java.util.Iterator;
 public class AiTankArray {
 	public static final ArrayList<AiTank> aiTank = new ArrayList<AiTank>();
 	
-	
-	
 	/**
 	 * 如果检测到有死亡的坦克，则在此基础上在该坦克的起始位置重新生成一个坦克
 	 */
@@ -32,6 +30,7 @@ public class AiTankArray {
 				
 				aiTank.add(coppya);
 				aiTank.remove(a);
+				
 			}
 		 }	
 		
