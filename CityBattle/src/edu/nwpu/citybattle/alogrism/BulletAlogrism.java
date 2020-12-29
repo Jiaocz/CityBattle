@@ -4,6 +4,7 @@
 package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import edu.nwpu.citybattle.IngameElements.AiTank;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 import edu.nwpu.citybattle.IngameElements.MyTank;
@@ -126,7 +127,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * @param BulletList
 	 * @throws NoGameDataException
 	 */
-	public void isHitting(ArrayList<BulletClass> BulletList) throws NoGameDataException {
+	public void isHitting(LinkedHashSet<BulletClass> BulletList) throws NoGameDataException {
 		//没有游戏数据时抛出异常
 		if(!hasData) throw new NoGameDataException("游戏数据未传入");
 		
