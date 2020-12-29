@@ -9,7 +9,9 @@ import edu.nwpu.citybattle.actions.Movable;
 
 /**
  * 总坦克父类
- * @version 1.0.0
+ * 
+ * @author Orangii
+ * @version 1.0.1
  * @see AiTank
  * @see MyTank
  */
@@ -30,6 +32,11 @@ public abstract class Tank implements Hitable, CanShootBullet<Bullet> {
 	 * @since 1.0.0
 	 */
 	public int direction;
+	/**
+	 * 表示坦克不动
+	 * @since 1.0.1
+	 */
+	public static final int STOP = 0;
 	/**
 	 * 表示向上方向
 	 * @since 1.0.0
