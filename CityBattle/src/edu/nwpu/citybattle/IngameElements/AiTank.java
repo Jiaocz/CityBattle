@@ -1,5 +1,7 @@
 package edu.nwpu.citybattle.IngameElements;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import edu.nwpu.citybattle.TankMap.Map;
@@ -12,6 +14,9 @@ import edu.nwpu.citybattle.actions.Movable;
  */
 public class AiTank extends Tank implements Movable {
 
+	/**
+	 * 记录AiTank的初始位置
+	 */
 	private int initX;
 	private int initY;
 
@@ -45,6 +50,16 @@ public class AiTank extends Tank implements Movable {
 	@Override
 	public void onHit() {
 		HP--;
+
+		if (HP == 0) {
+			// 定时器2秒
+
+			tank_x = initX;
+			tank_y = initY;
+			HP = 3;
+
+		}
+
 	}
 
 	private boolean judgeLimit() {
@@ -53,7 +68,7 @@ public class AiTank extends Tank implements Movable {
 		if (tank_x <= 0 || tank_x >= 52) {
 			return false;
 		}
-		if (tank_y <= 0 || tank_y >=36) {
+		if (tank_y <= 0 || tank_y >= 36) {
 			return false;
 		}
 		switch (direction) {
@@ -110,9 +125,9 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	private void setRandomDir() {
-		
+
 		boolean f = false;
-		
+
 		while (f == false) {
 			int r = new Random().nextInt(5);
 			switch (r) {
@@ -146,7 +161,6 @@ public class AiTank extends Tank implements Movable {
 		}
 	}
 
-
 	public AiTank(int tank_x, int tank_y, int direction, int HP) {
 
 		this.tank_x = tank_x;
@@ -155,6 +169,8 @@ public class AiTank extends Tank implements Movable {
 
 		initX = tank_x;
 		initY = tank_y;
+
+		AiTankArray.aiTank.add(this);
 
 	}
 
