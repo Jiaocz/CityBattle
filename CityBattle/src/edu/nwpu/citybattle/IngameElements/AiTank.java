@@ -1,9 +1,6 @@
 
 package edu.nwpu.citybattle.IngameElements;
 
-import edu.nwpu.citybattle.actions.Movable;
-
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -12,13 +9,17 @@ import java.util.Set;
 import java.awt.Component;
 import javax.swing.JComponent;
 
+import edu.nwpu.citybattle.TankMap.map1;
+import edu.nwpu.citybattle.TankMap.map2;
+import tankWar.Tank;
+import tankWar.TankClient;
 
 import javax.imageio.ImageIO;
 
 
 
 /**
- * 锟叫凤拷AI坦锟斤拷锟斤拷
+ * 
  * @version 1.0.0
  * @see Tank
  */
@@ -26,28 +27,108 @@ public class AiTank extends Tank implements Movable {
 	
 	private int initX;
 	private int initY;
+	//移动的步数
+	private int step;
+	
+	private int speed = 5;
+	
+	// 坦克的宽
+	private int width = 40;
+	// 坦克的高
+	private int height = 40;
 
 	
 
 	@Override
 	public void moveNext() {
 		// TODO Auto-generated method stub
+		
+			if (curDir == Direction.DOWN) {
+				tank_y += speed;
+			}
+			if (curDir == Direction.UP) {
+				tank_y -= speed;
+			}
+			if (curDir == Direction.LEFT) {
+				tank_x -= speed;
+			}
+			if (curDir == Direction.RIGHT) {
+				tank_x += speed;
+			}
+
+				//移动的步数为0时  重新赋值
+				if(step==0||judgeLimit()){
+					step=r.nextInt(20);
+					setRandomDir();
+				}
+				//步数减一
+				else{
+					step--;
+				}
+				if(r.nextInt(100)>97){
+					shootBullet(tank_x,tank_y,direction);
+				}
 
 	}
+	
 
 	@Override
 	public void onHit() {
-		// TODO Auto-generated method stub
+		HP--;
+	}
+	
+	//判断边界
+	private boolean judgeLimit(){
+		if(tank_x<0){
+			tank_x=0;
+			return true;
+		}
+		if(tank_y<0){
+			tank_y=0;
+			return true;
+		}
+
+		if((Map.grass[tank_x][tank_y]!=0) && (Map.ironwall[tank_x][tank_y]!=0)&&(Map.wall[tank_x][tank_y]!=0)&&(Map.water[tank_x][tank_y]!=0)) {
+			tank_x = tank_x -1;
+			return true;
+		}
+
 
 	}
+	
+	
+	
+	
+	
 
 	@Override
 	public Bullet shootBullet(float x, float y, int direction) {
 		// TODO Auto-generated method stub
+		x = this.tank_x+2;
+		y = this.tank_y+2;
+		direction = this.direction;
+		
+		Bullet.Bullets.add(shootBullet(x,y,direction) );
+		
 		return null;
 	}
 
+	private Direction curDir = Direction.DOWN;
+	
+	
+	Random r = new Random();
+	
+	//为敌方坦克设置移动的方向
+	private void setRandomDir() {
+		Direction[] ranDir = { Direction.UP, Direction.DOWN, Direction.LEFT,
+				Direction.RIGHT };
+		curDir = ranDir[r.nextInt(ranDir.length)];
+	}
 
+	
+	public enum Direction {
+		UP, DOWN, LEFT, RIGHT, STOP
+	}
 
 	public static final int UP = 1; // 向上
 	public static final int DOWN = 2; // 向下
@@ -111,15 +192,12 @@ public class AiTank extends Tank implements Movable {
 	     * 重新设置血量值
 	     */
 	    public void setHP() {
-	    	this.HP = 2;
-	    }
-	    
-	    
+	    	this.HP = 3;
+	    }  
 	    
 	    public void setTank_x(int x) {
 	    	this.tank_x = x;
 	    }
-	    
 	    
 	    
 	    public void setTank_y(int y) {
@@ -134,110 +212,22 @@ public class AiTank extends Tank implements Movable {
 	    	this.initY = y;
 	    }
 	    
-
-		/**
-		 * 
-		 */
-		private int curDir = 2;
-		
-		
-		public void setCurDir(int dir){
-			this.curDir = dir;
+		public int getWidth() {
+			return width;
 		}
-		
-		public int getCurDir() {
-			return curDir;
+
+		public void setWidth(int width) {
+			this.width = width;
 		}
-		
-		
-		/**
-		 * 
-		 */
-		private int speed = 10;
-		
-		
-		/**
-		 * 
-		 */
-		private int f_sleep = 500;
-				
-		boolean flag = true;
-			
-		
-		/**
-		 * 
-		 */
-		public void shell(){
-					String direction = null;
-					switch(curDir){
-						case AiTank.DOWN:
-							direction = "DOWN";
-							break;
-						case AiTank.LEFT:
-							direction = "LEFT";
-							break;
-						case AiTank.RIGHT:
-							direction = "RIGHT";
-							break;
-						case AiTank.UP:
-							direction = "UP";
-							break;
-							}
-					}				
-					
-		/**
-		 * 
-		 */
-		public void run(){
-			Random rd = new Random();
-			while(flag){
-				int key = Math.abs(rd.nextInt())%6;
-					switch(key){
-						case 0:
-						case 1:
-						case 2:
-							if(getCurDir()==AiTank.DOWN) move(speed);
-							break;
-						case 3:
-							move(speed);
-							break;
-						case 4:
-							int dir = Math.abs(rd.nextInt())%4 + 1;
-							if(dir == getCurDir()){
-								move(speed);
-								break;
-							}
-							String dirStr = null;
-							switch(dir){
-								case 1:
-									dirStr = "UP";
-									break;
-								case 2:
-									dirStr = "DOWN";
-									break;
-								case 3:
-									dirStr = "LEFT";
-									break;
-								case 4:
-									dirStr = "RIGHT";
-									break;
-							}
-							break;
-						default:
-							key = Math.abs(rd.nextInt())%100;
-							if(key % 5 ==0)
-								shell();
-							break;
-					}
-					try {
-						Thread.sleep(f_sleep);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
 
+		public int getHeight() {
+			return height;
+		}
 
+		public void setHeight(int height) {
+			this.height = height;
+		}
+	    
 
 	}
 
