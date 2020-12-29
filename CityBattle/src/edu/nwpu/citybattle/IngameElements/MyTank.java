@@ -10,7 +10,9 @@ import edu.nwpu.citybattle.TankMap.*;
  * @version 1.0.0
  */
 public class MyTank extends Tank {
-	
+	/**
+	 * 调用函数，在坦克朝向的正中间生成子弹
+	 */
 	public Bullet shootBullet() {
 		if(direction == UP)
 			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
@@ -24,35 +26,65 @@ public class MyTank extends Tank {
 		return null;
 	}
 	
+	/**
+	 * 遍历朝向的数组,判断是否可以移动
+	 * @param direction
+	 * @return
+	 */
 	
-	public  int cloudMove(int direction) {
+	public int readLine(int direction) {
+		int i;
 		switch(direction) {
+	//上的情况
 		case UP:
-			if(Map.water[tank_x][--tank_y]==0||Map.wall[tank_x][--tank_y]==0||Map.ironwall[tank_x][--tank_y]==0)
-				return direction;
-			else 
-				return direction=0;
+			for(i=0;i<5;i++) {
+				tank_x=tank_x+i;
+				if(Map.wall[tank_x][tank_y-1]!=0)
+					break;
+				}
+			if(i!=5)
+				direction =0;
+			break;
+	//左的情况			
 		case LEFT:
-			if(Map.water[--tank_x][tank_y]==0||Map.wall[--tank_x][tank_y]==0||Map.ironwall[--tank_x][tank_y]==0)
-				return direction;
-			else 
-				return direction=0;
+			for(i=0;i<5;i++) {
+				tank_y=tank_y+i;
+				if(Map.wall[tank_x-1][tank_y]!=0)
+					break;
+				}
+			if(i!=5)
+				direction =0;
+			break;
+	//右的情况		
 		case RIGHT:
-			if(Map.water[++tank_x][tank_y]==0||Map.wall[++tank_x][tank_y]==0||Map.ironwall[++tank_x][tank_y]==0)
-				return direction;
-			else 
-				return direction=0;
+			for(i=0;i<5;i++) {
+				tank_y=tank_y+i;
+				if(Map.wall[tank_x+5][tank_y]!=0)
+					break;
+				}
+			if(i!=5)
+				direction =0;
+			break;
+	//下的情况		
 		case DOWN:
-			if(Map.water[tank_x][++tank_y]==0||Map.wall[tank_x][++tank_y]==0||Map.ironwall[tank_x][++tank_y]==0)
-				return direction;
-			else 
-				return direction=0;
+			for(i=0;i<5;i++) {
+				tank_x=tank_x+i;
+				if(Map.wall[tank_x][tank_y+5]!=0)
+					break;
+				}
+			if(i!=5)
+				direction =0;
+			break;
 		}
-		return 0;
+			return direction;
 	}
+	/**
+	 * 坦克判断是否可以移动后，做出相应的指令
+	 * @param direction
+	 */
 
 	public void moveNext(int direction) {
-		int a=cloudMove(direction);
+		int a=readLine(direction);
 		switch(a) {
 		case UP:
 			tank_y--;
@@ -70,8 +102,11 @@ public class MyTank extends Tank {
 			break;
 		}
 		
-}
+	}
 
+	/**
+	 * 被击中后，坦克的血量减少
+	 */
 	@Override
 	public void onHit() {
 		HP--;
