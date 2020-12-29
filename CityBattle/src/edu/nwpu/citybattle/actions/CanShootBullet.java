@@ -41,12 +41,10 @@ public interface CanShootBullet<Bullet> {
 	/**
 	 * 产生子弹的函数，完善此方法后，应实现传入坐标x，y和方向后生成一个子弹对象
 	 * 
-	 * @param x         子弹初始x坐标
-	 * @param y         子弹初始y坐标
 	 * @param direction 子弹发射方向，建议使用常量{@code UP DOWN LEFT RIGHT}
 	 * @return 子弹对象
 	 * @since 1.0.0
 	 * @version 1.0.0
 	 */
-	Bullet shootBullet(int x, int y, int direction);
+	Bullet shootBullet(int direction);
 }
