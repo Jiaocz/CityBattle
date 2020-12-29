@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 import edu.nwpu.citybattle.painter.DrawAll;
 
 /**
- * @author ï¿½ï¿½ï¿½
+ * @author è¢Ïè
  * version V1.0
  */
 public class CustomsPass extends JFrame {
@@ -45,14 +45,14 @@ public class CustomsPass extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomsPass() {
-		super("Ì¹ï¿½Ë´ï¿½Õ½");
-		
+		super("Ì¹¿Ë´óÕ½");
 		setBackground(new Color(0, 0, 0));
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ß´ï¿½
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//»ñµÃÆÁÄ»³ß´ç
 		int width = 1000;
-		int height = 600;//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ú¿ï¿½ÈºÍ¸ß¶ï¿½
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½Í³ß´ç£¬ï¿½Ô´ï¿½ï¿½Ö·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+		int height = 600;//ÉèÖÃ´°¿Ú¿í¶ÈºÍ¸ß¶È
+		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//´°¿ÚµÄ×ø±êºÍ³ß´ç£¬ÒÔ´ËÖÖ·½Ê½¾ÓÖÐ
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

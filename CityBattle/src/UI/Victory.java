@@ -1,33 +1,35 @@
+/**
+ * 
+ */
 package UI;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Image;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Cursor;
-
-import javax.swing.DropMode;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class StartInterface extends JFrame {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+/**
+ * @author 琚翔
+ * version V1.0
+ */
+public class Victory extends JFrame {
 
 	private JPanel contentPane;
-	CardLayout c = new CardLayout();
+	public static int mapNumber;
+
 	/**
 	 * Launch the application.
 	 */
@@ -35,8 +37,8 @@ public class StartInterface extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartInterface startinterface = new StartInterface();
-					startinterface.setVisible(true);
+					Victory frame = new Victory();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,10 +49,10 @@ public class StartInterface extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StartInterface() {
+	public Victory() {
 		super("坦克大战");
-		setBackground(new Color(0, 0, 0));
 		
+		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//获得屏幕尺寸
 		int width = 1000;
@@ -62,21 +64,30 @@ public class StartInterface extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//JLabel lblNewLabel = new JLabel("");
-		ImageIcon icon_JLabel = new ImageIcon("img\\tankebegin.png");
-		JLabel lblNewLabel  = new JLabel(icon_JLabel);
-		lblNewLabel.setBounds(71, 40, 858, 214);
+		JLabel lblNewLabel = new JLabel("\u522B\u7070\u5FC3");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("方正显仁简体", Font.PLAIN, 80));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(367, 41, 262, 128);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u518D\u6765\u4E00\u6B21\uFF01");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("方正显仁简体", Font.PLAIN, 60));
+		lblNewLabel_1.setBounds(370, 140, 305, 112);
+		contentPane.add(lblNewLabel_1);
+		
 		/*
-		 * 开始游戏按键
+		 * 再玩一次按键
 		 */
 		JButton btnNewButton_begin = new JButton("");
 		btnNewButton_begin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 //				dispose();
-				Choice choice = new Choice();			
-				choice.setVisible(true);
+				CustomsPass customspass = new CustomsPass();			
+				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
@@ -89,43 +100,22 @@ public class StartInterface extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_begin = new ImageIcon("img\\ButtonBegin.png");
+		ImageIcon icon_JButton_begin = new ImageIcon("img\\TryAgain.png");
 		int height2 = 48;
-		btnNewButton_begin.setBounds(453, 300, 94, height2);
-		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(94, height2, 0));
+		btnNewButton_begin.setBounds(405, 300, 190, height2);
+		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(190, height2, 0));
 		btnNewButton_begin.setIcon(icon_JButton_begin);
 		contentPane.add(btnNewButton_begin);
 		/*
-		 * 自定义地图按键
+		 * 下一关按键
 		 */
 		JButton btnNewButton_diy = new JButton("");
 		btnNewButton_diy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setCursor(Cursor.getDefaultCursor());
-			}
-		});
-		ImageIcon icon_JButton_diy = new ImageIcon("img\\ButtonDiy.png");
-		btnNewButton_diy.setBounds(432, 370, 136, height2);
-		icon_JButton_diy.setImage(icon_JButton_diy.getImage().getScaledInstance(136, height2, 0));
-		btnNewButton_diy.setIcon(icon_JButton_diy);
-		contentPane.add(btnNewButton_diy);
-		/*
-		 * 帮助文档按键
-		 */
-		JButton btnNewButton_help = new JButton("");
-		btnNewButton_help.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Help help = new Help();			
-				help.setVisible(true);
+				mapNumber = mapNumber+1;
+				CustomsPass customspass = new CustomsPass();			
+				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
@@ -138,23 +128,47 @@ public class StartInterface extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_help = new ImageIcon("img\\ButtonHelp.png");
-		btnNewButton_help.setBounds(405, 440, 190, height2);
-		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(190, height2, 0));
+		ImageIcon icon_JButton_diy = new ImageIcon("img\\Next.png");
+		btnNewButton_diy.setBounds(432, 370, 136, height2);
+		icon_JButton_diy.setImage(icon_JButton_diy.getImage().getScaledInstance(136, height2, 0));
+		btnNewButton_diy.setIcon(icon_JButton_diy);
+		contentPane.add(btnNewButton_diy);
+		/*
+		 * 返回主菜单按键
+		 */
+		JButton btnNewButton_help = new JButton("");
+		btnNewButton_help.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StartInterface startinterface = new StartInterface();			
+				startinterface.setVisible(true);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getDefaultCursor());
+			}
+		});
+		ImageIcon icon_JButton_help = new ImageIcon("img\\ReturnMain.png");
+		btnNewButton_help.setBounds(385, 440, 230, height2);
+		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(230, height2, 0));
 		contentPane.add(btnNewButton_help);
 		btnNewButton_help.setIcon(icon_JButton_help);
+		
 		/**
 		 * 创作团队：成群结队
 		 */
-		JLabel lblNewLabel_1 = new JLabel("\u521B\u4F5C\u56E2\u961F\u2014\u6210\u7FA4\u7ED3\u961F");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setEnabled(false);
-		lblNewLabel_1.setBounds(425, 540, 150, 15);
-		contentPane.add(lblNewLabel_1);
-		
-		ImageIcon shanshuo1 = new ImageIcon("img\\坦克出现.gif");
-		JLabel shanshuo_1  = new JLabel(shanshuo1);
-		shanshuo_1.setBounds(71, 40, 858, 214);
-		contentPane.add(shanshuo_1);
+		JLabel lblNewLabel_11 = new JLabel("\u521B\u4F5C\u56E2\u961F\u2014\u6210\u7FA4\u7ED3\u961F");
+		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_11.setEnabled(false);
+		lblNewLabel_11.setBounds(425, 540, 150, 15);
+		contentPane.add(lblNewLabel_11);
+
 	}
+
 }
