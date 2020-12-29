@@ -74,7 +74,7 @@ public class MyTank extends Tank {
 
 	@Override
 	public void onHit() {
-		
+		HP--;
 	}
 
 }
