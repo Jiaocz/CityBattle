@@ -26,21 +26,21 @@ public class MyTank extends Tank {
 	/**
 	 * 坦克的宽，高
 	 */
-	private int width = 5;
-	private int height = 5;
+	private int width = 3;
+	private int height = 3;
 
 	/**
 	 * 调用函数，在坦克朝向的正中间生成子弹
 	 */
 	public Bullet shootBullet() {
 		if(direction == UP)
-			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
+			Bullet.Bullets.add(new Bullet(tank_x+1,tank_y,direction));
 		if(direction==DOWN)
-			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y,direction));
+			Bullet.Bullets.add(new Bullet(tank_x+1,tank_y,direction));
 		if(direction==LEFT)
-			Bullet.Bullets.add(new Bullet(tank_x,tank_y+2,direction));
+			Bullet.Bullets.add(new Bullet(tank_x,tank_y+1,direction));
 		if(direction==RIGHT)
-			Bullet.Bullets.add(new Bullet(tank_x+2,tank_y+2,direction));
+			Bullet.Bullets.add(new Bullet(tank_x+1,tank_y+1,direction));
 		
 		return null;
 	}
@@ -62,7 +62,7 @@ public class MyTank extends Tank {
 				direction=0;
 				break;
 				}
-			for(i=0;i<5;i++) {
+			for(i=0;i<3;i++) {
 				x=x+i;
 				if(Map.wall[x][y-1]!=0)
 					break;
@@ -71,7 +71,7 @@ public class MyTank extends Tank {
 				if(Map.water[x][y-1]!=0)
 					break;
 				}
-			if(i!=5)
+			if(i!=3)
 				direction =0;
 			break;
 	//左的情况			
@@ -80,7 +80,7 @@ public class MyTank extends Tank {
 				direction =0;
 				break;
 			}
-			for(i=0;i<5;i++) {
+			for(i=0;i<3;i++) {
 				y=y+i;
 				if(Map.wall[x-1][y]!=0)
 					break;
@@ -88,30 +88,26 @@ public class MyTank extends Tank {
 					break;
 				if(Map.water[x-1][y]!=0)
 					break;
-				if(x==0)
-					break;
 				}
-			if(i!=5)
+			if(i!=3)
 				direction =0;
 			break;
 	//右的情况		
 		case RIGHT:
-			if(x==51) {
+			if(x==53) {
 				direction=0;
 				break;
 			}
-			for(i=0;i<5;i++) {
+			for(i=0;i<3;i++) {
 				y=y+i;
-				if(Map.wall[x+5][y]!=0)
+				if(Map.wall[x+2][y]!=0)
 					break;
-				if(Map.ironwall[x+5][y]!=0)
+				if(Map.ironwall[x+2][y]!=0)
 					break;
-				if(Map.water[x+5][y]!=0)
-					break;
-				if(x==55)
+				if(Map.water[x+2][y]!=0)
 					break;
 				}
-			if(i!=5)
+			if(i!=3)
 				direction =0;
 			break;
 	//下的情况		
@@ -120,18 +116,16 @@ public class MyTank extends Tank {
 				direction=0;
 				break;
 			}
-			for(i=0;i<5;i++) {
+			for(i=0;i<3;i++) {
 				x=x+i;
-				if(Map.wall[x][y+5]!=0)
+				if(Map.wall[x][y+2]!=0)
 					break;
-				if(Map.ironwall[x][y+5]!=0)
+				if(Map.ironwall[x][y+2]!=0)
 					break;
-				if(Map.water[x][y+5]!=0)
-					break;
-				if(y==39)
+				if(Map.water[x][y+2]!=0)
 					break;
 				}
-			if(i!=5)
+			if(i!=3)
 				direction =0;
 			break;
 		}
