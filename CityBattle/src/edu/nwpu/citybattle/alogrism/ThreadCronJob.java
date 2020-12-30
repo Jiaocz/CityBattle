@@ -4,6 +4,8 @@
 package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.nwpu.citybattle.IngameElements.Bullet;
 import edu.nwpu.citybattle.IngameElements.Tank;
@@ -20,54 +22,70 @@ import edu.nwpu.citybattle.actions.Movable;
  */
 public final class ThreadCronJob extends CronJobSet {
 	// 子弹线程存储类
-	private static class BulletThread implements Runnable {
+	private static class BulletThread extends Thread {
+		// 用于持续执行对的定时类
+		private class Running extends TimerTask {
+			@Override
+			public void run() {
+				for(int i = 0; i < bullets.size(); i++) {
+					bullets.get(i).moveNext();
+				}
+			}
+			
+		}
+		// 需要执行的对象
 		public static ArrayList<Movable> bullets = new ArrayList<Movable>();
+		public static Timer timer = new Timer();
+		
 		@Override
 		public void run() {
-			for(int i = 0; i < bullets.size(); i++) {
-				bullets.get(i).moveNext();
-			}
-			try {
-				Thread.sleep(FreshRate);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			timer.schedule(new Running(), 0, FreshRate);
 		}
 	}
 	// 坦克线程存储类
-	private static class TankThread implements Runnable {
+	private static class TankThread extends Thread {
+		// 需要执行的对象
 		public static ArrayList<Movable> tanks = new ArrayList<Movable>();
 		public static ArrayList<Long> tanks_last = new ArrayList<Long>();
-		@Override
-		public void run() {
-			for(int i = 0; i < tanks.size(); i++) {
-				if(System.currentTimeMillis() - tanks_last.get(i) >= 2 * FreshRate) {
-					tanks_last.set(i, System.currentTimeMillis());
-					tanks.get(i).moveNext();
+		public static Timer timer = new Timer();
+		// 定时用的类
+		private class Running extends TimerTask {
+			@Override
+			public void run() {
+				for(int i = 0; i < tanks.size(); i++) {
+					if(System.currentTimeMillis() - tanks_last.get(i) >= 2 * FreshRate) {
+						tanks_last.set(i, System.currentTimeMillis());
+						tanks.get(i).moveNext();
+					}
 				}
 			}
-			try {
-				Thread.sleep(FreshRate);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		}
+		// 定时执行
+		@Override
+		public void run() {
+			timer.schedule(new Running(), 0, FreshRate);
 		}
 	}
 	// 地图刷新线程
-	private static class MapThread implements Runnable {
+	private static class MapThread extends Thread {
+		
 		public static Runnable map;
 		public static Long lastTime;
+		public static Timer timer = new Timer();
+		
+		private class Running extends TimerTask {
+			@Override
+			public void run() {
+				if(map != null && System.currentTimeMillis() - lastTime >= FreshRate) {
+					lastTime = System.currentTimeMillis();
+					map.run();
+				}
+			}
+		}
+		
 		@Override
 		public void run() {
-			if(System.currentTimeMillis() - lastTime >= FreshRate) {
-				lastTime = System.currentTimeMillis();
-				map.run();
-			}
-			try {
-				Thread.sleep(FreshRate);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			timer.schedule(new Running(), 0, FreshRate);
 		}
 	}
 	
@@ -128,13 +146,9 @@ public final class ThreadCronJob extends CronJobSet {
 	}
 	
 	// 三个线程
-	private static Thread bullet = new Thread(new BulletThread(),"Bullet");
-	private static Thread tank = new Thread(new TankThread(),"Bullet");
-	private static Thread map = new Thread(new MapThread(),"Map");
-	// 线程是否已经启动
-	private static boolean bullet_started = false;
-	private static boolean tank_started = false;
-	private static boolean map_started = false;
+	private static Thread bullet = new BulletThread();
+	private static Thread tank = new TankThread();
+	private static Thread map = new MapThread();
 	
 	/**
 	 * 启动三个线程，已经启动的并不会启动。
@@ -142,21 +156,9 @@ public final class ThreadCronJob extends CronJobSet {
 	 * @since 1.0.0
 	 */
 	public static void start() {
-		if(!bullet_started) {
-			bullet.start();
-			bullet_started = true;
-		}
-		
-		if(!tank_started) {
-			tank.start();
-			tank_started = true;
-		}
-		
-		if(!map_started) {
-			map.start();
-			map_started = true;
-		}
-		
+		if(bullet.getState() == Thread.State.NEW) bullet.start();
+		if(tank.getState() == Thread.State.NEW) tank.start();
+		if(map.getState() == Thread.State.NEW) map.start();
 	}
 	
 	/**
@@ -166,18 +168,21 @@ public final class ThreadCronJob extends CronJobSet {
 	 * @deprecated
 	 */
 	public static void stop() {
-		if(bullet_started) {
-			bullet.stop();
-			bullet_started = false;
-		}
-		if(tank_started) {
-			tank.stop();
-			tank_started = false;
-		}
-		if(map_started) {
-			map.stop();
-			map_started = false;
-		}
+		BulletThread.timer.cancel();
+		BulletThread.timer.purge();
+		bullet.stop();
+		
+		TankThread.timer.cancel();
+		TankThread.timer.purge();
+		tank.stop();
+		
+		MapThread.timer.cancel();
+		MapThread.timer.purge();
+		map.stop();
+	}
+	
+	public static void main(String[] args) {
+		ThreadCronJob.start();
 	}
 	
 }
