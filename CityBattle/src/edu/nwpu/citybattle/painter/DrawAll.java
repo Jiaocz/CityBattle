@@ -13,23 +13,22 @@ import edu.nwpu.citybattle.IngameElements.MyTank;
  * @see draw
  */
 public class DrawAll {
-	public Painter bulletsPainter;
+	//public Painter bulletsPainter;
 	public ShapePainter shapePainter;
 	public TankPainter tankPainter;
 	
 	public DrawAll(MyTank myTank,JPanel contentPane) {
 		this.shapePainter = new ShapePainter(contentPane);
 		//this.tankPainter = new TankPainter(contentPane,myTank);
-		this.bulletsPainter = new Painter(contentPane);
+		//this.bulletsPainter = new Painter(contentPane);
 		this.tankPainter = new TankPainter(contentPane,myTank);
 		
 	}
 	public void drawShape() {	
 		shapePainter.drawWall();	
-		bulletsPainter.drawBullets();
-		tankPainter.drawAITanks();
+		//bulletsPainter.drawBullets();
+		//tankPainter.drawAITanks();
 		tankPainter.drawMyTank();
-		
 	}
 	/**
 	 * 鐠囥儲鏌熷▔鏇犳暏娴滃海绮崚鑸靛闂囷拷鐟曚胶鏁ら崚鎵畱閻㈠娼�

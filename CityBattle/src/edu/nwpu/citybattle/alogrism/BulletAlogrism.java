@@ -4,6 +4,7 @@
 package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 import UI.CustomsPass;
@@ -145,7 +146,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * @param BulletList
 	 * @throws NoGameDataException
 	 */
-	public void isHitting(LinkedHashSet<BulletClass> BulletList) throws NoGameDataException {
+	public void isHitting(HashSet<BulletClass> BulletList) throws NoGameDataException {
 		// 没有游戏数据时抛出异常
 		if (!hasData)
 			throw new NoGameDataException("游戏数据未传入");
@@ -180,13 +181,13 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 			}
 			break;
 		case Bullet.DOWN:
-			if (b.pos_y >= HEIGHT) {
+			if (b.pos_y + 1 >= HEIGHT) {
 				b.remove();
 				return;
 			}
 			break;
 		case Bullet.RIGHT:
-			if (b.pos_x >= WIDTH) {
+			if (b.pos_x + 1 >= WIDTH) {
 				b.remove();
 				return;
 			}
@@ -261,6 +262,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		switch (b.direction) {
 		case Bullet.UP:
 			if (wall[b.pos_x][b.pos_y] == 1) {
+				b.remove();
 				for (int i = b.pos_x - 1; i >= 0; i--) {
 					if (wall[i][b.pos_y] == 1) {
 						observer++;
@@ -273,7 +275,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					wall[b.pos_x][b.pos_y] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x][b.pos_y
 							- 1] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
 				}
-				b.remove();
 				observer = 0;
 				return;
 			}
@@ -281,6 +282,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 
 		case Bullet.DOWN:
 			if (wall[b.pos_x][b.pos_y + 1] == 1) {
+				b.remove();
 				for (int i = b.pos_x - 1; i >= 0; i--) {
 					if (wall[i][b.pos_y + 1] == 1) {
 						observer++;
@@ -293,7 +295,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y
 							+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x - 1][b.pos_y + 2] = 0;
 				}
-				b.remove();
 				observer = 0;
 				return;
 			}
@@ -301,6 +302,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 
 		case Bullet.LEFT:
 			if (wall[b.pos_x][b.pos_y] == 1) {
+				b.remove();
 				for (int i = b.pos_y - 1; i >= 0; i--) {
 					if (wall[b.pos_x][i] == 1) {
 						observer++;
@@ -313,7 +315,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
 							- 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
 				}
-				b.remove();
 				observer = 0;
 				return;
 			}
@@ -321,6 +322,7 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 
 		case Bullet.RIGHT:
 			if (wall[b.pos_x + 1][b.pos_y] == 1) {
+				b.remove();
 				for (int i = b.pos_y - 1; i >= 0; i--) {
 					if (wall[b.pos_x + 1][i] == 1) {
 						observer++;
@@ -333,7 +335,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 					wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
 							- 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y - 1] = 0;
 				}
-				b.remove();
 				observer = 0;
 				return;
 			}

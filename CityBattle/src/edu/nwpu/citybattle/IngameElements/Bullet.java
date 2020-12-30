@@ -78,7 +78,6 @@ public class Bullet implements Movable {
 		this.direction = direction;
 		// Add bullet to LinkedHashSet
 		Bullets.add(this);
-		ThreadCronJob.addJob(this);
 		
 		this.initialPainter();
 		this.loadImg();
@@ -97,12 +96,15 @@ public class Bullet implements Movable {
 				break;
 			case LEFT:
 				j = new JLabel(origin_bullet_left);
+				
 				j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
+				System.out.println(j == null);
 				break;
 			default:
 				break;	
 		}
 		CustomsPass.contentPane.add(j);
+		ThreadCronJob.addJob(this);
 		
 	}
 	
@@ -112,20 +114,24 @@ public class Bullet implements Movable {
 	 */
 	@Override
 	public void moveNext() {
-		System.out.println(1234);
 		// ¸Ã±äX¡¢Y×ø±ê
 		switch (this.direction) {
 		case UP:
 			this.pos_y -= Bullet.speed;
+			j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
 			break;
 		case DOWN:
 			this.pos_y += Bullet.speed;
+			j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
 			break;
 		case LEFT:
 			this.pos_x -= Bullet.speed;
+			
+			j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
 			break;
 		case RIGHT:
 			this.pos_x += Bullet.speed;
+			j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
 			break;
 		}
 		
@@ -140,7 +146,7 @@ public class Bullet implements Movable {
 	 */
 	public static boolean remove(Bullet bullet) {
 		CustomsPass.contentPane.remove(bullet.j);
-		return Bullets.remove(bullet) && CronJobSet.removeJob(bullet);
+		return Bullets.remove(bullet) && ThreadCronJob.removeJob(bullet);
 	}
 
 	/**
@@ -150,7 +156,7 @@ public class Bullet implements Movable {
 	 */
 	public boolean remove() {
 		CustomsPass.contentPane.remove(this.j);
-		return Bullet.Bullets.remove(this) && CronJobSet.removeJob(this);
+		return Bullet.Bullets.remove(this) && ThreadCronJob.removeJob(this);
 	}
 
 	public void initialPainter()

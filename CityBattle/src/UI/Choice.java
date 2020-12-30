@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import edu.nwpu.citybattle.TankMap.Map;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -31,10 +34,13 @@ public class Choice extends JFrame {
 	public static int mapNumber;
 
 	private JPanel contentPane;
-
+	public CustomsPass customspass;
 	/**
 	 * Launch the application.
 	 */
+	public CustomsPass getCustomsPass() {
+		return this.customspass;
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -53,6 +59,7 @@ public class Choice extends JFrame {
 	 */
 	public Choice() {
 		super("Ì¹¿Ë´óÕ½choice");
+		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +115,10 @@ public class Choice extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mapNumber = 1;
-				CustomsPass customspass = new CustomsPass();			
+				Map.selectMap();
+				if(customspass == null)
+				customspass = new CustomsPass();
+				//CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();				
@@ -134,7 +144,9 @@ public class Choice extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mapNumber = 2;
-				CustomsPass customspass = new CustomsPass();			
+				Map.selectMap();
+				if(customspass == null)
+				customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
@@ -160,7 +172,9 @@ public class Choice extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mapNumber = 3;
-				CustomsPass customspass = new CustomsPass();			
+				Map.selectMap();
+				if(customspass == null)
+				customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
@@ -187,7 +201,9 @@ public class Choice extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mapNumber = 4;
-				CustomsPass customspass = new CustomsPass();			
+				Map.selectMap();
+				if(customspass == null)
+				customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();

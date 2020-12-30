@@ -29,18 +29,6 @@ public class TankPainter {
 //	static JLabel my_tank_down;
 //	static JLabel my_tank_left;
 //	static JLabel my_tank_right;
-	static JLabel first_tank_up;
-	static JLabel first_tank_down;
-	static JLabel first_tank_left;
-	static JLabel first_tank_right;
-	JLabel second_tank_up;
-	JLabel second_tank_down;
-	JLabel second_tank_left;
-	JLabel second_tank_right;
-	JLabel third_tank_up;
-	JLabel third_tank_down;
-	JLabel third_tank_left;
-	JLabel third_tank_right;
 	
 	ImageIcon origin_my_tank_up;
 	ImageIcon origin_my_tank_down;
@@ -84,55 +72,59 @@ public class TankPainter {
 		origin_my_tank_right.setImage(origin_my_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		
 		origin_first_tank_up = new ImageIcon("img\\enemy1_up.png");
-		origin_first_tank_up.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_first_tank_up.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_first_tank_down = new ImageIcon("img\\enemy1_down.png");
-		origin_first_tank_down.setImage(origin_first_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_first_tank_down.setImage(origin_first_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_first_tank_left = new ImageIcon("img\\enemy1_left.png");
-		origin_first_tank_left.setImage(origin_first_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_first_tank_left.setImage(origin_first_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_first_tank_right = new ImageIcon("img\\enemy1_right.png");
-		origin_first_tank_right.setImage(origin_first_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_first_tank_right.setImage(origin_first_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		
 		origin_second_tank_up = new ImageIcon("img\\enemy2_up.png");
-		origin_second_tank_up.setImage(origin_second_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_second_tank_up.setImage(origin_second_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_second_tank_down = new ImageIcon("img\\enemy2_down.png");
-		origin_second_tank_down.setImage(origin_second_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_second_tank_down.setImage(origin_second_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_second_tank_left = new ImageIcon("img\\enemy2_left.png");
-		origin_second_tank_left.setImage(origin_second_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_second_tank_left.setImage(origin_second_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_second_tank_right = new ImageIcon("img\\enemy2_right.png");
-		origin_second_tank_right.setImage(origin_second_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_second_tank_right.setImage(origin_second_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		
 		origin_third_tank_up = new ImageIcon("img\\enemy3_up.png");
-		origin_third_tank_up.setImage(origin_third_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_third_tank_up.setImage(origin_third_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_third_tank_down = new ImageIcon("img\\enemy3_down.png");
-		origin_third_tank_down.setImage(origin_third_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_third_tank_down.setImage(origin_third_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_third_tank_left = new ImageIcon("img\\enemy3_left.png");
-		origin_third_tank_left.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_third_tank_left.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_third_tank_right = new ImageIcon("img\\enemy3_right.png");
-		origin_third_tank_right.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_third_tank_right.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		
 		my_tank = new JLabel(origin_my_tank_up);
 		my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
 		contentPane.add(my_tank);
+		contentPane.updateUI();
 	}
 	public void drawMyTank() {
 		switch(myTank.direction) {
 			case UP:
 				my_tank.setIcon(origin_my_tank_up);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				contentPane.updateUI();
 				break;
 			case DOWN:
 				my_tank.setIcon(origin_my_tank_down);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				contentPane.updateUI();
 				
 				break;
 			case LEFT:
 				my_tank.setIcon(origin_my_tank_left);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				contentPane.updateUI();
 				break;
 			case RIGHT:
 				my_tank.setIcon(origin_my_tank_right);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-				
+				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				contentPane.updateUI();
 				//my_tank_right.setVisible(false);
 				break;
 			default :
@@ -141,62 +133,62 @@ public class TankPainter {
 	}
 	public void drawAITanks() {
 		for(AiTank ai:AiTankArray.aiTank) {
-			switch(ai.direction) {
+			switch(ai.HP) {
 				case 1://��һ��̹��
 					if(ai.direction == UP) {
-						first_tank_up = new JLabel(origin_first_tank_up);
-						first_tank_up.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_up);
+						ai.j.setIcon(origin_first_tank_up);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == DOWN) {
-						first_tank_down = new JLabel(origin_first_tank_down);
-						first_tank_down.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_down);
+						ai.j.setIcon(origin_first_tank_down);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == LEFT) {
-						first_tank_left = new JLabel(origin_first_tank_left);
-						first_tank_left.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_left);
+						ai.j.setIcon(origin_first_tank_left);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE,ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == RIGHT) {
-						first_tank_right = new JLabel(origin_first_tank_right);
-						first_tank_right.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_right);
+						ai.j.setIcon(origin_first_tank_right);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}
 					break;
 				case 2:
 					if(ai.direction == UP) {
-						second_tank_up = new JLabel(origin_second_tank_up);
-						second_tank_up.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_up);
+						ai.j.setIcon(origin_second_tank_up);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == DOWN) {
-						second_tank_down = new JLabel(origin_second_tank_down);
-						second_tank_down.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_down);
+						ai.j.setIcon(origin_second_tank_down);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE,ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == LEFT) {
-						second_tank_left = new JLabel(origin_second_tank_left);
-						second_tank_left.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_left);
+						ai.j.setIcon(origin_second_tank_left);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == RIGHT) {
-						second_tank_right = new JLabel(origin_second_tank_right);
-						second_tank_right.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_right);
+						ai.j.setIcon(origin_second_tank_right);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}
 					break;
 				case 3:
 					if(ai.direction == UP) {
-						third_tank_up = new JLabel(origin_third_tank_up);
-						third_tank_up.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_up);
+						ai.j.setIcon(origin_third_tank_up);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == DOWN) {
-						third_tank_down = new JLabel(origin_third_tank_down);
-						third_tank_down.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_down);
+						ai.j.setIcon(origin_third_tank_down);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == LEFT) {
-						third_tank_left = new JLabel(origin_third_tank_left);
-						third_tank_left.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_left);
+						ai.j.setIcon(origin_third_tank_left);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}else if(ai.direction == RIGHT) {
-						third_tank_right = new JLabel(origin_third_tank_right);
-						third_tank_right.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_right);
+						ai.j.setIcon(origin_third_tank_right);
+						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+						contentPane.updateUI();
 					}
 					break;
 			}

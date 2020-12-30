@@ -15,11 +15,13 @@ import javax.swing.JRootPane;
 import javax.swing.border.EmptyBorder;
 
 import edu.nwpu.citybattle.IngameElements.AiTank;
+import edu.nwpu.citybattle.IngameElements.AiTankArray;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 import edu.nwpu.citybattle.IngameElements.Tank;
 import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.TankMap.Map1;
+import edu.nwpu.citybattle.alogrism.BulletAlogrism;
 import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
 import edu.nwpu.citybattle.alogrism.ThreadCronJob;
@@ -34,6 +36,11 @@ public class CustomsPass extends JFrame {
 	public static JPanel contentPane;
 	private static DrawAll draw;
 	Graphics g2d = this.getGraphics();
+	private static CustomsPass customspass;
+	public static int winFlag;
+	{
+		winFlag = 0;
+	}
 	public static MyTank myTank;
 	//Bullet bullet;
 	JLabel background;
@@ -63,8 +70,7 @@ public class CustomsPass extends JFrame {
 	public CustomsPass() {
 		super("坦克大战");
 		setResizable(false);
-		this.setUndecorated(true);
-		this.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+		
 		setBackground(new Color(0, 0, 0));
 		//bullet = new Bullet(0,20,2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,6 +85,7 @@ public class CustomsPass extends JFrame {
 		contentPane.setLayout(null);
 		Map.selectMap();
 		this.choice();
+		customspass = this;
 		myTank = new MyTank();
 		draw = new DrawAll(myTank,contentPane);
 		CronJobSet.addJob(new CronJob() {
@@ -90,6 +97,7 @@ public class CustomsPass extends JFrame {
 	 			}
 		}, 1);
 		//contentPane.repaint();
+		BulletAlogrism.initAlogrism(Map.wall, Map.ironwall, AiTankArray.aiTank, myTank);
 		CronJobSet.startCronJob();
 		ThreadCronJob.start();
 	 	bindKey();
@@ -150,8 +158,17 @@ public class CustomsPass extends JFrame {
 	}
 	public void choice() {
 		if(Choice.mapNumber == 1) {
-			new AiTank(1,30,Tank.RIGHT,3);
+			new AiTank(2,30,Tank.RIGHT,3);
 		}
+	}
+	public static boolean next() {
+		if(winFlag == 1) {
+		Victory victory = new Victory();			
+		victory.setVisible(true);
+		customspass.dispose();
+		return true;
+		}
+		return false;
 	}
 	/*public void loadImg() {
 		ImageIcon origin_background = new ImageIcon("img\\tankebegin.png");

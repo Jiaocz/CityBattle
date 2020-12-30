@@ -49,6 +49,7 @@ public class StartInterface extends JFrame {
 	 */
 	public StartInterface() {
 		super("Ì¹¿Ë´óÕ½");
+		setResizable(false);
 		setBackground(new Color(0, 0, 0));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

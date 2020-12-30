@@ -37,13 +37,13 @@ public class MyTank extends Tank {
 	 */
 	public Bullet shootBullet() {
 		if(direction == UP)
-			Bullet.Bullets.add(new Bullet(tank_x+1,tank_y,direction));
+			return new Bullet(tank_x+1,tank_y,Bullet.UP);
 		if(direction==DOWN)
-			Bullet.Bullets.add(new Bullet(tank_x+1,tank_y,direction));
+			return new Bullet(tank_x+1,tank_y+2,Bullet.DOWN);
 		if(direction==LEFT)
-			Bullet.Bullets.add(new Bullet(tank_x,tank_y+1,direction));
+			return new Bullet(tank_x,tank_y+1,Bullet.LEFT);
 		if(direction==RIGHT)
-			Bullet.Bullets.add(new Bullet(tank_x+1,tank_y+1,direction));
+			return new Bullet(tank_x+1,tank_y+1,Bullet.RIGHT);
 		
 		return null;
 	}

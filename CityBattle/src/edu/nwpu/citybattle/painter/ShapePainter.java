@@ -3,6 +3,7 @@ package edu.nwpu.citybattle.painter;
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -99,12 +100,21 @@ public class ShapePainter {
 		}
 	}
 	public void drawWall() {
-		for(JLabel j:wall) {
+		Iterator<JLabel> iterator = wall.iterator();
+		while(iterator.hasNext()) {
+			JLabel j = iterator.next();
 			if(Map.wall[j.getX()/ELEMENT_SIZE][j.getY()/ELEMENT_SIZE] == 0) {
 				contentPane.remove(j);
-				wall.remove(j);
+				contentPane.updateUI();
+				iterator.remove();
 			}
 		}
+//		for(JLabel j:wall) {
+//			if(Map.wall[j.getX()/ELEMENT_SIZE][j.getY()/ELEMENT_SIZE] == 0) {
+//				contentPane.remove(j);
+//				wall.remove(j);
+//			}
+//		}
 	}
 	public void drawBackground() {
 		background = new JLabel(origin_background);

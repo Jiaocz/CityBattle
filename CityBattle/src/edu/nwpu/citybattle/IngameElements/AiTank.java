@@ -11,6 +11,7 @@ import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
+import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 
 /**
  * 
@@ -52,9 +53,7 @@ public class AiTank extends Tank implements Movable {
 	
 	@Override
 	public void moveNext() {
-
 		if (judgeLimit()) {
-
 			if (direction == Tank.DOWN) {
 				tank_y += speed;
 				setRandomDir();
@@ -73,14 +72,76 @@ public class AiTank extends Tank implements Movable {
 			}
 		} else
 			setRandomDir();
+		
+	switch(this.HP) {
+		case 1://锟斤拷一锟斤拷坦锟斤拷
+			if(this.direction == Tank.UP) {
+				this.j.setIcon(origin_first_tank_up);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.DOWN) {
+				this.j.setIcon(origin_first_tank_down);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.LEFT) {
+				this.j.setIcon(origin_first_tank_left);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE,ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.RIGHT) {
+				this.j.setIcon(origin_first_tank_right);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}
+			break;
+		case 2:
+			if(this.direction == Tank.UP) {
+				this.j.setIcon(origin_second_tank_up);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.DOWN) {
+				this.j.setIcon(origin_second_tank_down);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE,ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.LEFT) {
+				this.j.setIcon(origin_second_tank_left);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.RIGHT) {
+				this.j.setIcon(origin_second_tank_right);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}
+			break;
+		case 3:
+			if(this.direction == Tank.UP) {
+				this.j.setIcon(origin_third_tank_up);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.DOWN) {
+				this.j.setIcon(origin_third_tank_down);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.LEFT) {
+				this.j.setIcon(origin_third_tank_left);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}else if(this.direction == Tank.RIGHT) {
+				this.j.setIcon(origin_third_tank_right);
+				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				CustomsPass.contentPane.updateUI();
+			}
+			break;
 	}
+}
 
 	@Override
 	public void onHit() {
 		HP--;
 		if(HP == 0) {
 			CustomsPass.contentPane.remove(j);
+			CustomsPass.winFlag++;
 		}
+		CustomsPass.next();
 		if (HP == 0) {
 			
 			CronJobSet.addDelayJob(new CronJob() {
@@ -154,7 +215,6 @@ public class AiTank extends Tank implements Movable {
 		int x = this.tank_x + 2;
 		int y = this.tank_y + 2;
 		int direction = this.direction;
-
 		return new Bullet(x, y, direction);
 	}
 
@@ -200,6 +260,7 @@ public class AiTank extends Tank implements Movable {
 		this.tank_x = tank_x;
 		this.tank_y = tank_y;
 		this.direction = direction;
+		this.HP = HP;
 
 		initX = tank_x;
 		initY = tank_y;
@@ -207,9 +268,19 @@ public class AiTank extends Tank implements Movable {
 		AiTankArray.aiTank.add(this);
 		this.initialPainter();
 		this.loadImg();
-		j = new JLabel(origin_first_tank_up);
+		j = new JLabel(origin_third_tank_up);
 		j.setBounds(getTank_x()*ELEMENT_SIZE, getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
 		CustomsPass.contentPane.add(j);
+		
+		//ThreadCronJob.addJob(this);
+		CronJobSet.addJob(new CronJob() {
+
+			@Override
+			public void run() {
+				moveNext();
+			}
+			
+		}, 1000L);
 	}
 	public int getTank_x() {
 		return tank_x;

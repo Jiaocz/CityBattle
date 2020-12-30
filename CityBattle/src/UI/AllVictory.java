@@ -49,7 +49,8 @@ public class AllVictory extends JFrame {
 	 * Create the frame.
 	 */
 	public AllVictory() {
-super("坦克大战");
+		super("坦克大战");
+		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
