@@ -9,7 +9,26 @@ import edu.nwpu.citybattle.TankMap.*;
  * @see Tank
  * @version 1.0.0
  */
+
+
 public class MyTank extends Tank {
+	/**
+	 * 初始生成坦克的坐标，用来在坦克死亡后生成的新的AiTank
+	 */
+	private int initX;
+	private int initY;
+	
+	/**
+	 * 坦克的速度
+	 */
+	private int speed = 1;
+
+	/**
+	 * 坦克的宽，高
+	 */
+	private int width = 5;
+	private int height = 5;
+
 	/**
 	 * 调用函数，在坦克朝向的正中间生成子弹
 	 */
@@ -32,14 +51,24 @@ public class MyTank extends Tank {
 	 * @return
 	 */
 	
-	public int readLine(int direction) {
+	public int ReadLine(int direction) {
 		int i;
+		int x=tank_x;
+		int y=tank_y;
 		switch(direction) {
 	//上的情况
 		case UP:
+			if(y==0) {
+				direction=0;
+				break;
+				}
 			for(i=0;i<5;i++) {
-				tank_x=tank_x+i;
-				if(Map.wall[tank_x][tank_y-1]!=0)
+				x=x+i;
+				if(Map.wall[x][y-1]!=0)
+					break;
+				if(Map.ironwall[x][y-1]!=0)
+					break;
+				if(Map.water[x][y-1]!=0)
 					break;
 				}
 			if(i!=5)
@@ -47,9 +76,19 @@ public class MyTank extends Tank {
 			break;
 	//左的情况			
 		case LEFT:
+			if(x==0) {
+				direction =0;
+				break;
+			}
 			for(i=0;i<5;i++) {
-				tank_y=tank_y+i;
-				if(Map.wall[tank_x-1][tank_y]!=0)
+				y=y+i;
+				if(Map.wall[x-1][y]!=0)
+					break;
+				if(Map.ironwall[x-1][y]!=0)
+					break;
+				if(Map.water[x-1][y]!=0)
+					break;
+				if(x==0)
 					break;
 				}
 			if(i!=5)
@@ -57,9 +96,19 @@ public class MyTank extends Tank {
 			break;
 	//右的情况		
 		case RIGHT:
+			if(x==51) {
+				direction=0;
+				break;
+			}
 			for(i=0;i<5;i++) {
-				tank_y=tank_y+i;
-				if(Map.wall[tank_x+5][tank_y]!=0)
+				y=y+i;
+				if(Map.wall[x+5][y]!=0)
+					break;
+				if(Map.ironwall[x+5][y]!=0)
+					break;
+				if(Map.water[x+5][y]!=0)
+					break;
+				if(x==55)
 					break;
 				}
 			if(i!=5)
@@ -67,9 +116,19 @@ public class MyTank extends Tank {
 			break;
 	//下的情况		
 		case DOWN:
+			if(y==35) {
+				direction=0;
+				break;
+			}
 			for(i=0;i<5;i++) {
-				tank_x=tank_x+i;
-				if(Map.wall[tank_x][tank_y+5]!=0)
+				x=x+i;
+				if(Map.wall[x][y+5]!=0)
+					break;
+				if(Map.ironwall[x][y+5]!=0)
+					break;
+				if(Map.water[x][y+5]!=0)
+					break;
+				if(y==39)
 					break;
 				}
 			if(i!=5)
@@ -84,32 +143,91 @@ public class MyTank extends Tank {
 	 */
 
 	public void moveNext(int direction) {
-		int a=readLine(direction);
+		int a=ReadLine(direction);
 		switch(a) {
 		case UP:
 			tank_y--;
+			this.direction=UP;
 			break;
 		case LEFT:
 			tank_x--;
+			this.direction=LEFT;
 			break;
 		case RIGHT:
 			tank_x++;
+			this.direction=RIGHT;
 			break;
 		case DOWN:
 			tank_y++;
+			this.direction=DOWN;
 			break;
 		case 0:
 			break;
-		}
-		
+		}	
 	}
 
 	/**
 	 * 被击中后，坦克的血量减少
 	 */
-	@Override
 	public void onHit() {
 		HP--;
+	}
+	
+	/**
+	 * 获取当前血量
+	 */
+	public int getHP() {
+		return HP;
+	}
+	
+	/**
+	 * 获取坦克的位置
+	 * @return
+	 */
+	public int getTank_X() {
+		return tank_x;
+	}
+	public int getTank_Y() {
+		return tank_y;
+	}
+	
+	/**
+	 * 设置初始血量
+	 */
+	public void setHP() {
+		this.HP = 3;
+	}
+	
+	/**
+	 * 返回当前X坐标
+	 * @param x
+	 */
+	public void setTank_x(int x) {
+		this.tank_x = x;
+	}
+
+	/**
+	 * 返回当前的Y坐标
+	 * @param y
+	 */
+	public void setTank_y(int y) {
+		this.tank_y = y;
+	}
+	
+	/**
+	 * 初始化原X坐标
+	 * @param x
+	 */
+	public void setInitX(int x) {
+		this.initX = x;
+	}
+
+	/**
+	 * 初始化原Y坐标
+	 * @param y
+	 */
+	public void setInitY(int y) {
+		this.initY = y;
 	}
 
 }
