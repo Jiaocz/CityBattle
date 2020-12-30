@@ -20,7 +20,7 @@ import edu.nwpu.citybattle.TankMap.Map1;
 import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
 import edu.nwpu.citybattle.painter.DrawAll;
-import edu.nwpu.citybattle.painter.ShapePainter;
+import edu.nwpu.citybattle.painter.ShapePainterbeiyong;
 /**
  * @author 鐞氱繑
  * version V1.0
@@ -75,11 +75,13 @@ public class CustomsPass extends JFrame {
 		draw = new DrawAll(myTank,contentPane);
 		CronJobSet.addJob(new CronJob() {
 	 			public void run() {
+	 				//contentPane.removeAll();
+	 				//contentPane.invalidate();
 	 				draw.drawShape();
-	 				//System.out.println(bullet.pos_x +" " + bullet.pos_y +  " num:" + Bullet.Bullets.size() );
-
+	 				//System.out.println(myTank.direction +" " + myTank.tank_x +  " num:" + myTank.tank_y );
 	 			}
 		}, 1);
+		//contentPane.repaint();
 		CronJobSet.startCronJob();
 	 	bindKey();
 	}
@@ -98,22 +100,27 @@ public class CustomsPass extends JFrame {
 						case 'W'://娑撳﹪鏁幐澶夌瑓閿涘牊妫嗘潪顒婄礆
 						case 'w':
 							myTank.moveNext(MyTank.UP);
+							draw.drawShape();
 							break;
 						case 'D'://閸欐娊鏁幐澶夌瑓
 						case 'd':
 							myTank.moveNext(MyTank.RIGHT);
+							draw.drawShape();
 							break;
 						case 'S'://娑撳鏁幐澶夌瑓
 						case 's':
 							myTank.moveNext(MyTank.DOWN);
+							draw.drawShape();
 							break;
 						case 'A'://瀹革箓鏁幐澶夌瑓
 						case 'a':
 							myTank.moveNext(MyTank.LEFT);
+							draw.drawShape();
 							break;
 						case 'p'://缁岀儤鐗搁柨顔藉瘻娑撳绱欓拃钘夌俺閿涳拷
 						case 'P':
 							myTank.shootBullet();
+							draw.drawShape();
 							break;
 						}
 						

@@ -10,7 +10,7 @@ import edu.nwpu.citybattle.IngameElements.AiTank;
 import edu.nwpu.citybattle.IngameElements.AiTankArray;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
-public class TankPainter {
+public class TankPainterbeiyong {
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TABLE_WIDTH = 40;
@@ -24,11 +24,10 @@ public class TankPainter {
 	MyTank myTank;
 	JPanel contentPane;
 	
-	JLabel my_tank;
-//	static JLabel my_tank_up;
-//	static JLabel my_tank_down;
-//	static JLabel my_tank_left;
-//	static JLabel my_tank_right;
+	static JLabel my_tank_up;
+	static JLabel my_tank_down;
+	static JLabel my_tank_left;
+	static JLabel my_tank_right;
 	static JLabel first_tank_up;
 	static JLabel first_tank_down;
 	static JLabel first_tank_left;
@@ -59,7 +58,7 @@ public class TankPainter {
 	ImageIcon origin_third_tank_left;
 	ImageIcon origin_third_tank_right;
 	
-	public TankPainter(JPanel contentPane,MyTank mytank) {
+	public TankPainterbeiyong(JPanel contentPane,MyTank mytank) {
 		this.myTank = mytank;
 		this.contentPane = contentPane;
 		this.initialPainter();
@@ -75,13 +74,13 @@ public class TankPainter {
 	}
 	public void loadImg() {
 		origin_my_tank_up = new ImageIcon("img\\mytank_up.gif");
-		origin_my_tank_up.setImage(origin_my_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_my_tank_up.setImage(origin_my_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
 		origin_my_tank_down = new ImageIcon("img\\mytank_down.gif");
-		origin_my_tank_down.setImage(origin_my_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_my_tank_down.setImage(origin_my_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
 		origin_my_tank_left = new ImageIcon("img\\mytank_left.gif");
-		origin_my_tank_left.setImage(origin_my_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_my_tank_left.setImage(origin_my_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
 		origin_my_tank_right = new ImageIcon("img\\mytank_right.gif");
-		origin_my_tank_right.setImage(origin_my_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_my_tank_right.setImage(origin_my_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
 		
 		origin_first_tank_up = new ImageIcon("img\\enemy1_up.png");
 		origin_first_tank_up.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
@@ -109,29 +108,29 @@ public class TankPainter {
 		origin_third_tank_left.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
 		origin_third_tank_right = new ImageIcon("img\\enemy3_right.png");
 		origin_third_tank_right.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
-		
-		my_tank = new JLabel(origin_my_tank_up);
-		my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
-		contentPane.add(my_tank);
 	}
 	public void drawMyTank() {
 		switch(myTank.direction) {
 			case UP:
-				my_tank.setIcon(origin_my_tank_up);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank_up = new JLabel(origin_my_tank_up);
+				my_tank_up.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				contentPane.add(my_tank_up);
 				break;
 			case DOWN:
-				my_tank.setIcon(origin_my_tank_down);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank_down = new JLabel(origin_my_tank_down);
+				my_tank_down.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				contentPane.add(my_tank_down);
 				
 				break;
 			case LEFT:
-				my_tank.setIcon(origin_my_tank_left);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank_left = new JLabel(origin_my_tank_left);
+				my_tank_left.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				contentPane.add(my_tank_left);
 				break;
 			case RIGHT:
-				my_tank.setIcon(origin_my_tank_right);
-				my_tank.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				my_tank_right = new JLabel(origin_my_tank_right);
+				my_tank_right.setBounds(myTank.tank_x*ELEMENT_SIZE, myTank.tank_y*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
+				contentPane.add(my_tank_right);
 				
 				//my_tank_right.setVisible(false);
 				break;
@@ -146,57 +145,57 @@ public class TankPainter {
 					if(ai.direction == UP) {
 						first_tank_up = new JLabel(origin_first_tank_up);
 						first_tank_up.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_up);
+						contentPane.add(my_tank_up);
 					}else if(ai.direction == DOWN) {
 						first_tank_down = new JLabel(origin_first_tank_down);
 						first_tank_down.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_down);
+						contentPane.add(my_tank_down);
 					}else if(ai.direction == LEFT) {
 						first_tank_left = new JLabel(origin_first_tank_left);
 						first_tank_left.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_left);
+						contentPane.add(my_tank_left);
 					}else if(ai.direction == RIGHT) {
 						first_tank_right = new JLabel(origin_first_tank_right);
 						first_tank_right.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(first_tank_right);
+						contentPane.add(my_tank_right);
 					}
 					break;
 				case 2:
 					if(ai.direction == UP) {
 						second_tank_up = new JLabel(origin_second_tank_up);
 						second_tank_up.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_up);
+						contentPane.add(my_tank_up);
 					}else if(ai.direction == DOWN) {
 						second_tank_down = new JLabel(origin_second_tank_down);
 						second_tank_down.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_down);
+						contentPane.add(my_tank_down);
 					}else if(ai.direction == LEFT) {
 						second_tank_left = new JLabel(origin_second_tank_left);
 						second_tank_left.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_left);
+						contentPane.add(my_tank_left);
 					}else if(ai.direction == RIGHT) {
 						second_tank_right = new JLabel(origin_second_tank_right);
 						second_tank_right.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(second_tank_right);
+						contentPane.add(my_tank_right);
 					}
 					break;
 				case 3:
 					if(ai.direction == UP) {
 						third_tank_up = new JLabel(origin_third_tank_up);
 						third_tank_up.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_up);
+						contentPane.add(my_tank_up);
 					}else if(ai.direction == DOWN) {
 						third_tank_down = new JLabel(origin_third_tank_down);
 						third_tank_down.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_down);
+						contentPane.add(my_tank_down);
 					}else if(ai.direction == LEFT) {
 						third_tank_left = new JLabel(origin_third_tank_left);
 						third_tank_left.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_left);
+						contentPane.add(my_tank_left);
 					}else if(ai.direction == RIGHT) {
 						third_tank_right = new JLabel(origin_third_tank_right);
 						third_tank_right.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 5, ELEMENT_SIZE * 5);
-						contentPane.add(third_tank_right);
+						contentPane.add(my_tank_right);
 					}
 					break;
 			}
@@ -207,4 +206,3 @@ public class TankPainter {
 		drawMyTank();
 	}
 }
-

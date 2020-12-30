@@ -8,28 +8,31 @@ import UI.CustomsPass;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
 /**
- * 璇ョ被鐢ㄤ簬灏嗘父鎴忕敾闈㈢粯鍒跺嚭鏉�
- * @author 寰瑧鏈け
+ * 鐠囥儳琚悽銊ょ艾鐏忓棙鐖堕幋蹇曟暰闂堛垻绮崚璺哄毉閺夛拷
+ * @author 瀵邦喚鐟ч張顏勩亼
  * @see draw
  */
 public class DrawAll {
-	private BulletsPainter bulletsPainter;
-	private ShapePainter shapePainter;
-	private TankPainter tankPainter;
+	public BulletsPainter bulletsPainter;
+	public ShapePainter shapePainter;
+	public TankPainterbeiyong tankPainter;
+	public TankPainter painter;
 	public DrawAll(MyTank myTank,JPanel contentPane) {
 		this.shapePainter = new ShapePainter(contentPane);
-		this.tankPainter = new TankPainter(contentPane,myTank);
+		//this.tankPainter = new TankPainter(contentPane,myTank);
 		this.bulletsPainter = new BulletsPainter(contentPane);
+		this.painter = new TankPainter(contentPane,myTank);
+		
 	}
 	public void drawShape() {	
-		shapePainter.drawAllShape();	
+		shapePainter.drawWall();	
 		bulletsPainter.drawBullets();
-		tankPainter.drawAITanks();
-		tankPainter.drawMyTank();
+		painter.drawAITanks();
+		painter.drawMyTank();
 		
 	}
 	/**
-	 * 璇ユ柟娉曠敤浜庣粯鍒舵墍闇�瑕佺敤鍒扮殑鐢婚潰
+	 * 鐠囥儲鏌熷▔鏇犳暏娴滃海绮崚鑸靛闂囷拷鐟曚胶鏁ら崚鎵畱閻㈠娼�
 	 * @param g2d
 	 */
 }

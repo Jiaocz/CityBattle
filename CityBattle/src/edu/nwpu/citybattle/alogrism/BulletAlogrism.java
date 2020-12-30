@@ -5,9 +5,13 @@ package edu.nwpu.citybattle.alogrism;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+
+import UI.CustomsPass;
 import edu.nwpu.citybattle.IngameElements.AiTank;
+import edu.nwpu.citybattle.IngameElements.AiTankArray;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 import edu.nwpu.citybattle.IngameElements.MyTank;
+import edu.nwpu.citybattle.TankMap.Map;
 
 /**
  * 本类用于维护对子弹的算法<br />
@@ -83,10 +87,10 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		if (initWall == null || initIronWall == null || initAiTank == null || initMyTank == null) {
 			throw new NullPointerException("One of the arguments is NULL");
 		} else {
-			wall = initWall;
-			iron_wall = initIronWall;
-			ai_tank = initAiTank;
-			myTank = initMyTank;
+			wall = Map.wall;
+			iron_wall = Map.ironwall;
+			ai_tank = AiTankArray.aiTank;
+			myTank = CustomsPass.myTank;
 			hasData = true;
 		}
 	}

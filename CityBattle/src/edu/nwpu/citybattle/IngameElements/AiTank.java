@@ -2,6 +2,7 @@ package edu.nwpu.citybattle.IngameElements;
 
 import java.util.Random;
 
+import UI.Choice;
 import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.CronJob;
@@ -15,13 +16,18 @@ import edu.nwpu.citybattle.alogrism.CronJobSet;
 public class AiTank extends Tank implements Movable {
 
 	/**
-	 * 记录AiTank的初始位置
+	 * 璁板綍AiTank鐨勫垵濮嬩綅缃�
 	 */
 	private int initX;
 	private int initY;
 
 	private int speed = 1;
 
+	public void add() {
+		if(Choice.mapNumber == 3) {
+			AiTankArray.aiTank.add(new AiTank(0,0,Tank.DOWN,3));
+		}
+	}
 	@Override
 	public void moveNext() {
 
