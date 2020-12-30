@@ -65,8 +65,8 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	private static int WIDTH = 56;
 	private static int HEIGHT = 40;
 	// 坦克宽高
-	private static int TANK_WIDTH = 5;
-	private static int TANK_HEIGHT = 5;
+	private static int TANK_WIDTH = 3;
+	private static int TANK_HEIGHT = 3;
 
 	/**
 	 * 当需要本类进行判断时，需要对地图数据的初始化。<br />
