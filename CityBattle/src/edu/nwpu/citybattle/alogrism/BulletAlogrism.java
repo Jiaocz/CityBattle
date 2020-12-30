@@ -69,8 +69,8 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	private static int WIDTH = 56;
 	private static int HEIGHT = 40;
 	// 坦克宽高
-	private static int TANK_WIDTH = 5;
-	private static int TANK_HEIGHT = 5;
+	private static int TANK_WIDTH = 3;
+	private static int TANK_HEIGHT = 3;
 
 	/**
 	 * 当需要本类进行判断时，需要对地图数据的初始化。<br />
@@ -156,7 +156,15 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		
 	}
 	
+	/**
+	 * 通过子弹对象进行判断撞击时间，使用前请先传入游戏参数，并完成子弹的移动
+	 * 
+	 * @param b	子弹对象
+	 * @throws NoGameDataException
+	 */
 	public void isHitting(BulletClass b) {
+		if(!hasData) throw new NoGameDataException("未传入游戏参数");
+		
 		// 触碰边界
 		switch (b.direction) {
 		case Bullet.UP:

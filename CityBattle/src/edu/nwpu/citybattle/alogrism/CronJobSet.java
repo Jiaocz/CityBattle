@@ -48,15 +48,15 @@ import java.util.Timer;
  * @see java.util.Timer
  * @see java.util.TimerTask
  */
-public final class CronJobSet extends TimerTask {
+public class CronJobSet extends TimerTask {
 	// 定时任务列表
 	private static ArrayList<Runnable> CronJobs = new ArrayList<Runnable>();
 	private static ArrayList<Movable> Moves = new ArrayList<Movable>();
 
 	// 任务时间设定
 	private static ArrayList<Long> CronJobsInterval = new ArrayList<Long>();
-	private static int FPS = 60;
-	private static int FreshRate = 1000 / FPS;
+	protected static int FPS = 60;
+	protected static int FreshRate = 1000 / FPS;
 
 	// 上次执行时间
 	private static ArrayList<Long> CronJobsLast = new ArrayList<Long>();
@@ -284,7 +284,7 @@ public final class CronJobSet extends TimerTask {
 	}
 
 	// 阻止自行创建对象
-	private CronJobSet() {}
+	protected CronJobSet() {}
 
 	/**
 	 * 测试用main方法，请勿使用<br />

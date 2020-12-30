@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.BulletAlogrism;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
+import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 
 /**
  * 本类为坦克子弹类，子弹对象实例化后会自动挂载到静态子弹列表中及计划任务中。
@@ -60,7 +61,7 @@ public class Bullet implements Movable {
 		this.direction = direction;
 		// Add bullet to LinkedHashSet
 		Bullets.add(this);
-		CronJobSet.addJob(this);
+		ThreadCronJob.addJob(this);
 	}
 
 	/**
