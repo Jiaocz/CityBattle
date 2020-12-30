@@ -4,6 +4,12 @@
 package edu.nwpu.citybattle.IngameElements;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import UI.CustomsPass;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.BulletAlogrism;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
@@ -18,10 +24,10 @@ import edu.nwpu.citybattle.alogrism.ThreadCronJob;
  */
 public class Bullet implements Movable {
 	/**
-	 * 此{@code HashSet}维护所有场上的子弹
+	 * 此{@code LinkedHashSet}维护所有场上的子弹
 	 * 
 	 * @since 1.0.0
-	 * @see HashSet
+	 * @see LinkedHashSet
 	 */
 	public static final HashSet<Bullet> Bullets = new HashSet<Bullet>();
 
@@ -46,7 +52,17 @@ public class Bullet implements Movable {
 
 	// 子弹速度
 	private static int speed = 1;
-
+	
+	public JLabel j;
+	ImageIcon origin_bullet_up;
+	ImageIcon origin_bullet_down;
+	ImageIcon origin_bullet_left;
+	ImageIcon origin_bullet_right;	
+	private static int  ELEMENT_SIZE;
+	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_HEIGHT = 800;
+	public static final int TABLE_WIDTH = 40;
+	public static final int TABLE_HEIGHT = 56;
 	/**
 	 * 构造一个子弹，由其X、Y坐标及其方向
 	 * 
@@ -54,6 +70,7 @@ public class Bullet implements Movable {
 	 * @param pos_y
 	 * @param direction
 	 */
+	
 	public Bullet(int pos_x, int pos_y, int direction) {
 		// Set Attributes
 		this.pos_x = pos_x;
@@ -62,13 +79,40 @@ public class Bullet implements Movable {
 		// Add bullet to LinkedHashSet
 		Bullets.add(this);
 		ThreadCronJob.addJob(this);
+		
+		this.initialPainter();
+		this.loadImg();
+		switch(this.direction) {
+			case UP:
+				j = new JLabel(origin_bullet_up);
+				j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
+				break;
+			case DOWN:
+				j = new JLabel(origin_bullet_down);
+				j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
+				break;
+			case RIGHT:
+				j = new JLabel(origin_bullet_right);
+				j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE);
+				break;
+			case LEFT:
+				j = new JLabel(origin_bullet_left);
+				j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
+				break;
+			default:
+				break;	
+		}
+		CustomsPass.contentPane.add(j);
+		
 	}
-
+	
+	
 	/**
 	 * 每间隔时间后移动子弹
 	 */
 	@Override
 	public void moveNext() {
+		System.out.println(1234);
 		// 该变X、Y坐标
 		switch (this.direction) {
 		case UP:
@@ -95,6 +139,7 @@ public class Bullet implements Movable {
 	 * @return 是否删除成功
 	 */
 	public static boolean remove(Bullet bullet) {
+		CustomsPass.contentPane.remove(bullet.j);
 		return Bullets.remove(bullet) && CronJobSet.removeJob(bullet);
 	}
 
@@ -104,6 +149,25 @@ public class Bullet implements Movable {
 	 * @return 是否删除成功
 	 */
 	public boolean remove() {
+		CustomsPass.contentPane.remove(this.j);
 		return Bullet.Bullets.remove(this) && CronJobSet.removeJob(this);
+	}
+
+	public void initialPainter()
+	{
+		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
+		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
+		
+		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
+	}
+	public void loadImg() {
+		origin_bullet_up = new ImageIcon("img\\bullet_up.png");
+		origin_bullet_up.setImage(origin_bullet_up.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
+		origin_bullet_down = new ImageIcon("img\\bullet_down.png");
+		origin_bullet_down.setImage(origin_bullet_down.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
+		origin_bullet_left = new ImageIcon("img\\bullet_left.png");
+		origin_bullet_left.setImage(origin_bullet_left.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE, 0));
+		origin_bullet_right = new ImageIcon("img\\bullet_down.png");
+		origin_bullet_right.setImage(origin_bullet_right.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE , 0));
 	}
 }

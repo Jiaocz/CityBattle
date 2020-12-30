@@ -22,10 +22,7 @@ public class Painter {
 
 	JPanel contentPane;
 	
-	JLabel bullet_up;
-	JLabel bullet_down;
-	JLabel bullet_left;
-	JLabel bullet_right;
+	JLabel bullets;
 	ArrayList<JLabel> bullet = new ArrayList<JLabel>();
 	
 	ImageIcon origin_bullet_up;
@@ -36,7 +33,6 @@ public class Painter {
 	public Painter(JPanel contentPane) {
 		this.contentPane = contentPane;
 		this.initialPainter();
-		this.loadImg();
 		this.drawBullets();
 	}
 	
@@ -47,38 +43,20 @@ public class Painter {
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 	}
-	public void loadImg() {
-		origin_bullet_up = new ImageIcon("img\\bullet_up.png");
-		origin_bullet_up.setImage(origin_bullet_up.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
-		origin_bullet_down = new ImageIcon("img\\bullet_down.png");
-		origin_bullet_down.setImage(origin_bullet_down.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
-		origin_bullet_left = new ImageIcon("img\\bullet_left.png");
-		origin_bullet_left.setImage(origin_bullet_left.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE, 0));
-		origin_bullet_right = new ImageIcon("img\\bullet_down.png");
-		origin_bullet_right.setImage(origin_bullet_right.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE , 0));
-	}
 	public void drawBullets() {
 		for(Bullet bullet:Bullet.Bullets) {
 			switch(bullet.direction) {
 			case UP:
-				bullet_up = new JLabel(origin_bullet_up);
-				bullet_up.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
-				contentPane.add(bullet_up);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
 				break;
 			case DOWN:
-				bullet_down = new JLabel(origin_bullet_down);
-				bullet_down.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE , ELEMENT_SIZE * 2);
-				contentPane.add(bullet_down);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE , ELEMENT_SIZE * 2);
 				break;
 			case LEFT:
-				bullet_left = new JLabel(origin_bullet_left);
-				bullet_left.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
-				contentPane.add(bullet_left);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
 				break;
 			case RIGHT:
-				bullet_right = new JLabel(origin_bullet_right);
-				bullet_right.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE* 2 , ELEMENT_SIZE);
-				contentPane.add(bullet_right);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE* 2 , ELEMENT_SIZE);
 				break;
 			default :
 				return;

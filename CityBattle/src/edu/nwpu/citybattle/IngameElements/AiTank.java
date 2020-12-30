@@ -2,12 +2,15 @@ package edu.nwpu.citybattle.IngameElements;
 
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import UI.Choice;
+import UI.CustomsPass;
 import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
-import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 
 /**
  * 
@@ -17,18 +20,36 @@ import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 public class AiTank extends Tank implements Movable {
 
 	/**
-	 * 璁板綍AiTank鐨勫垵濮嬩綅缃�
+	 * 记录AiTank的初始位置
 	 */
 	private int initX;
 	private int initY;
 
 	private int speed = 1;
 
-	public void add() {
-		if(Choice.mapNumber == 3) {
-			AiTankArray.aiTank.add(new AiTank(0,0,Tank.DOWN,3));
-		}
-	}
+	public JLabel j;
+	ImageIcon origin_bullet_up;
+	ImageIcon origin_bullet_down;
+	ImageIcon origin_bullet_left;
+	ImageIcon origin_bullet_right;	
+	private static int  ELEMENT_SIZE;
+	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_HEIGHT = 800;
+	public static final int TABLE_WIDTH = 40;
+	public static final int TABLE_HEIGHT = 56;
+	ImageIcon origin_first_tank_up;
+	ImageIcon origin_first_tank_down;
+	ImageIcon origin_first_tank_left;
+	ImageIcon origin_first_tank_right;
+	ImageIcon origin_second_tank_up;
+	ImageIcon origin_second_tank_down;
+	ImageIcon origin_second_tank_left;
+	ImageIcon origin_second_tank_right;
+	ImageIcon origin_third_tank_up;
+	ImageIcon origin_third_tank_down;
+	ImageIcon origin_third_tank_left;
+	ImageIcon origin_third_tank_right;
+	
 	@Override
 	public void moveNext() {
 
@@ -57,7 +78,9 @@ public class AiTank extends Tank implements Movable {
 	@Override
 	public void onHit() {
 		HP--;
-
+		if(HP == 0) {
+			CustomsPass.contentPane.remove(j);
+		}
 		if (HP == 0) {
 			
 			CronJobSet.addDelayJob(new CronJob() {
@@ -66,6 +89,7 @@ public class AiTank extends Tank implements Movable {
 					tank_x = initX;
 					tank_y = initY;
 					HP = 3;
+					CustomsPass.contentPane.add(j);
 				}
 			}, 2000L);
 		}
@@ -181,10 +205,12 @@ public class AiTank extends Tank implements Movable {
 		initY = tank_y;
 
 		AiTankArray.aiTank.add(this);
-		ThreadCronJob.addJob(this);
-
+		this.initialPainter();
+		this.loadImg();
+		j = new JLabel(origin_first_tank_up);
+		j.setBounds(getTank_x()*ELEMENT_SIZE, getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+		CustomsPass.contentPane.add(j);
 	}
-
 	public int getTank_x() {
 		return tank_x;
 	}
@@ -223,6 +249,42 @@ public class AiTank extends Tank implements Movable {
 
 	public void setInitY(int y) {
 		this.initY = y;
+	}
+	
+	public void initialPainter()
+	{
+		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
+		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
+		
+		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
+	}
+	public void loadImg() {
+		origin_first_tank_up = new ImageIcon("img\\enemy1_up.png");
+		origin_first_tank_up.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_first_tank_down = new ImageIcon("img\\enemy1_down.png");
+		origin_first_tank_down.setImage(origin_first_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_first_tank_left = new ImageIcon("img\\enemy1_left.png");
+		origin_first_tank_left.setImage(origin_first_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_first_tank_right = new ImageIcon("img\\enemy1_right.png");
+		origin_first_tank_right.setImage(origin_first_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		
+		origin_second_tank_up = new ImageIcon("img\\enemy2_up.png");
+		origin_second_tank_up.setImage(origin_second_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_second_tank_down = new ImageIcon("img\\enemy2_down.png");
+		origin_second_tank_down.setImage(origin_second_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_second_tank_left = new ImageIcon("img\\enemy2_left.png");
+		origin_second_tank_left.setImage(origin_second_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_second_tank_right = new ImageIcon("img\\enemy2_right.png");
+		origin_second_tank_right.setImage(origin_second_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		
+		origin_third_tank_up = new ImageIcon("img\\enemy3_up.png");
+		origin_third_tank_up.setImage(origin_third_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_down = new ImageIcon("img\\enemy3_down.png");
+		origin_third_tank_down.setImage(origin_third_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_left = new ImageIcon("img\\enemy3_left.png");
+		origin_third_tank_left.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_right = new ImageIcon("img\\enemy3_right.png");
+		origin_third_tank_right.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 	}
 
 }

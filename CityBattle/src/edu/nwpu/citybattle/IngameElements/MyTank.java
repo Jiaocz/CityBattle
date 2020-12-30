@@ -26,12 +26,11 @@ public class MyTank extends Tank {
 	/**
 	 * 坦克的宽，高
 	 */
-	private int width = 5;
-	private int height = 5;
+	private int width = 3;
+	private int height = 3;
 	public MyTank() {
-		this.tank_x = 0;
-		this.tank_y = 0;
-		this.direction = 1;
+		this.tank_y = 36;
+		this.tank_x = 20;
 	}
 	/**
 	 * 调用函数，在坦克朝向的正中间生成子弹
@@ -59,7 +58,6 @@ public class MyTank extends Tank {
 		int i;
 		int x=tank_x;
 		int y=tank_y;
-
 		switch(direction) {
 	//上的情况
 		case UP:
@@ -68,7 +66,7 @@ public class MyTank extends Tank {
 				break;
 				}
 			for(i=0;i<3;i++) {
-				x++;
+				x=x+i;
 				if(Map.wall[x][y-1]!=0)
 					break;
 				if(Map.ironwall[x][y-1]!=0)
@@ -86,33 +84,31 @@ public class MyTank extends Tank {
 				break;
 			}
 			for(i=0;i<3;i++) {
-				y++;
+				y=y+i;
 				if(Map.wall[x-1][y]!=0)
 					break;
 				if(Map.ironwall[x-1][y]!=0)
 					break;
 				if(Map.water[x-1][y]!=0)
 					break;
-				
 				}
 			if(i!=3)
 				direction =0;
 			break;
 	//右的情况		
 		case RIGHT:
-			if(x==51) {
+			if(x==53) {
 				direction=0;
 				break;
 			}
 			for(i=0;i<3;i++) {
-				y++;
-				if(Map.wall[x+3][y]!=0)
+				y=y+i;
+				if(Map.wall[x+2][y]!=0)
 					break;
-				if(Map.ironwall[x+3][y]!=0)
+				if(Map.ironwall[x+2][y]!=0)
 					break;
-				if(Map.water[x+3][y]!=0)
+				if(Map.water[x+2][y]!=0)
 					break;
-	
 				}
 			if(i!=3)
 				direction =0;
@@ -124,14 +120,13 @@ public class MyTank extends Tank {
 				break;
 			}
 			for(i=0;i<3;i++) {
-				x++;
-				if(Map.wall[x][y+3]!=0)
+				x=x+i;
+				if(Map.wall[x][y+2]!=0)
 					break;
-				if(Map.ironwall[x][y+3]!=0)
+				if(Map.ironwall[x][y+2]!=0)
 					break;
-				if(Map.water[x][y+3]!=0)
+				if(Map.water[x][y+2]!=0)
 					break;
-
 				}
 			if(i!=3)
 				direction =0;
