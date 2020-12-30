@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TimerTask;
+
+import edu.nwpu.citybattle.IngameElements.Bullet;
+import edu.nwpu.citybattle.IngameElements.Tank;
 import edu.nwpu.citybattle.actions.Movable;
 import java.util.Timer;
 
@@ -243,12 +246,26 @@ public final class CronJobSet extends TimerTask {
 		}
 	}
 
-	// Movable接口下的任务，至少每Frame执行一次
+	// Movable接口下的任务，至少每Frame执行一次，坦克类每两帧执行一次
 	private static void runMovables() {
 		for (int i = 0; i < Moves.size(); i++) {
-			if (System.currentTimeMillis() - MovesLast.get(i) >= FreshRate) {
-				MovesLast.set(i, System.currentTimeMillis());
-				Moves.get(i).moveNext();
+			if(Moves.get(i) instanceof Tank) {
+				if(System.currentTimeMillis() - MovesLast.get(i) >= 2 * FreshRate) {
+					MovesLast.set(i, System.currentTimeMillis());
+					Moves.get(i).moveNext();
+				}
+			}
+			else if(Moves.get(i) instanceof Bullet) {
+				if(System.currentTimeMillis() - MovesLast.get(i) >= FreshRate) {
+					MovesLast.set(i, System.currentTimeMillis());
+					Moves.get(i).moveNext();
+				}
+			}
+			else {
+				if(System.currentTimeMillis() - MovesLast.get(i) >= FreshRate) {
+					MovesLast.set(i, System.currentTimeMillis());
+					Moves.get(i).moveNext();
+				}
 			}
 		}
 	}
