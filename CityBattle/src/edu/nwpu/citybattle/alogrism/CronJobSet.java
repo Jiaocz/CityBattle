@@ -55,7 +55,7 @@ public final class CronJobSet extends TimerTask {
 
 	// 任务时间设定
 	private static ArrayList<Long> CronJobsInterval = new ArrayList<Long>();
-	private static int FPS = 30;
+	private static int FPS = 60;
 	private static int FreshRate = 1000 / FPS;
 
 	// 上次执行时间
