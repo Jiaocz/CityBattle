@@ -146,204 +146,209 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		if (!hasData)
 			throw new NoGameDataException("ÓÎÏ·Êý¾ÝÎ´´«Èë");
 
-		BulletList: for (BulletClass b : BulletList) {
-			// ´¥Åö±ß½ç
-			switch (b.direction) {
-			case Bullet.UP:
-				if (b.pos_y < 0) {
-					b.remove();
-					continue BulletList;
-				}
-				break;
-			case Bullet.LEFT:
-				if (b.pos_x < 0) {
-					b.remove();
-					continue BulletList;
-				}
-				break;
-			case Bullet.DOWN:
-				if (b.pos_y >= HEIGHT) {
-					b.remove();
-					continue BulletList;
-				}
-				break;
-			case Bullet.RIGHT:
-				if (b.pos_x >= WIDTH) {
-					b.remove();
-					continue BulletList;
-				}
-				break;
+		for (BulletClass b : BulletList) {
+			isHitting(b);
+		}
+		
+	}
+	
+	public void isHitting(BulletClass b) {
+		// ´¥Åö±ß½ç
+		switch (b.direction) {
+		case Bullet.UP:
+			if (b.pos_y < 0) {
+				b.remove();
+				return;
 			}
-
-			// Åö×²¼º·½Ì¹¿Ë
-			switch (b.direction) {
-			case Bullet.UP:
-			case Bullet.LEFT:
-				if (b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH - 1 && b.pos_y >= myTank.tank_y
-						&& b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
-					myTank.onHit();
-					b.remove();
-					continue BulletList;
-				}
-				break;
-			case Bullet.RIGHT:
-				if (b.pos_x + 1 >= myTank.tank_x && b.pos_x + 1 <= myTank.tank_x + TANK_WIDTH - 1
-						&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
-					myTank.onHit();
-					b.remove();
-					continue BulletList;
-				}
-				break;
-			case Bullet.DOWN:
-				if (b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH - 1
-						&& b.pos_y + 1 >= myTank.tank_y && b.pos_y + 1 <= myTank.tank_y + TANK_HEIGHT - 1) {
-					myTank.onHit();
-					b.remove();
-					continue BulletList;
-				}
-				break;
+			break;
+		case Bullet.LEFT:
+			if (b.pos_x < 0) {
+				b.remove();
+				return;
 			}
-
-			// Åö×²µÐ·½Ì¹¿Ë
-			for (AiTank aiTank : ai_tank) {
-				switch (b.direction) {
-				case Bullet.UP:
-				case Bullet.LEFT:
-					if (b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH - 1
-							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
-						aiTank.onHit();
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.RIGHT:
-					if (b.pos_x + 1 >= aiTank.getTank_x() && b.pos_x + 1 <= aiTank.getTank_x() + TANK_WIDTH - 1
-							&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
-						aiTank.onHit();
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				case Bullet.DOWN:
-					if (b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH - 1
-							&& b.pos_y + 1 >= aiTank.getTank_y()
-							&& b.pos_y + 1 <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
-						aiTank.onHit();
-						b.remove();
-						continue BulletList;
-					}
-					break;
-				}
+			break;
+		case Bullet.DOWN:
+			if (b.pos_y >= HEIGHT) {
+				b.remove();
+				return;
 			}
-
-			// Åö×²ÆÕÍ¨Ç½
-			// Observer how many "1" before the bullet
-			int observer = 0;
-
-			switch (b.direction) {
-			case Bullet.UP:
-				if (wall[b.pos_x][b.pos_y] == 1) {
-					for (int i = b.pos_x - 1; i >= 0; i--) {
-						if (wall[i][b.pos_y] == 1) {
-							observer++;
-						}
-					}
-					if (observer % 2 == 0) {
-						wall[b.pos_x][b.pos_y] = wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x][b.pos_y
-								- 1] = wall[b.pos_x + 1][b.pos_y - 1] = 0;
-					} else {
-						wall[b.pos_x][b.pos_y] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x][b.pos_y
-								- 1] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
-					}
-					b.remove();
-					observer = 0;
-					continue BulletList;
-				}
-				break;
-
-			case Bullet.DOWN:
-				if (wall[b.pos_x][b.pos_y + 1] == 1) {
-					for (int i = b.pos_x - 1; i >= 0; i--) {
-						if (wall[i][b.pos_y + 1] == 1) {
-							observer++;
-						}
-					}
-					if (observer % 2 == 0) {
-						wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x + 1][b.pos_y
-								+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x + 1][b.pos_y + 2] = 0;
-					} else {
-						wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y
-								+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x - 1][b.pos_y + 2] = 0;
-					}
-					b.remove();
-					observer = 0;
-					continue BulletList;
-				}
-				break;
-
-			case Bullet.LEFT:
-				if (wall[b.pos_x][b.pos_y] == 1) {
-					for (int i = b.pos_y - 1; i >= 0; i--) {
-						if (wall[b.pos_x][i] == 1) {
-							observer++;
-						}
-					}
-					if (observer % 2 == 0) {
-						wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
-								+ 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y + 1] = 0;
-					} else {
-						wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
-								- 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
-					}
-					b.remove();
-					observer = 0;
-					continue BulletList;
-				}
-				break;
-
-			case Bullet.RIGHT:
-				if (wall[b.pos_x + 1][b.pos_y] == 1) {
-					for (int i = b.pos_y - 1; i >= 0; i--) {
-						if (wall[b.pos_x + 1][i] == 1) {
-							observer++;
-						}
-					}
-					if (observer % 2 == 0) {
-						wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
-								+ 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y + 1] = 0;
-					} else {
-						wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
-								- 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y - 1] = 0;
-					}
-					b.remove();
-					observer = 0;
-					continue BulletList;
-				}
-				break;
+			break;
+		case Bullet.RIGHT:
+			if (b.pos_x >= WIDTH) {
+				b.remove();
+				return;
 			}
+			break;
+		}
 
-			// Åö×²ÌúÇ½
+		// Åö×²¼º·½Ì¹¿Ë
+		switch (b.direction) {
+		case Bullet.UP:
+		case Bullet.LEFT:
+			if (b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH - 1 && b.pos_y >= myTank.tank_y
+					&& b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
+				myTank.onHit();
+				b.remove();
+				return;
+			}
+			break;
+		case Bullet.RIGHT:
+			if (b.pos_x + 1 >= myTank.tank_x && b.pos_x + 1 <= myTank.tank_x + TANK_WIDTH - 1
+					&& b.pos_y >= myTank.tank_y && b.pos_y <= myTank.tank_y + TANK_HEIGHT - 1) {
+				myTank.onHit();
+				b.remove();
+				return;
+			}
+			break;
+		case Bullet.DOWN:
+			if (b.pos_x >= myTank.tank_x && b.pos_x <= myTank.tank_x + TANK_WIDTH - 1
+					&& b.pos_y + 1 >= myTank.tank_y && b.pos_y + 1 <= myTank.tank_y + TANK_HEIGHT - 1) {
+				myTank.onHit();
+				b.remove();
+				return;
+			}
+			break;
+		}
+
+		// Åö×²µÐ·½Ì¹¿Ë
+		for (AiTank aiTank : ai_tank) {
 			switch (b.direction) {
 			case Bullet.UP:
 			case Bullet.LEFT:
-				if (iron_wall[b.pos_x][b.pos_y] == 1) {
+				if (b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH - 1
+						&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+					aiTank.onHit();
 					b.remove();
-					continue BulletList;
+					return;
 				}
 				break;
 			case Bullet.RIGHT:
-				if (iron_wall[b.pos_x + 1][b.pos_y] == 1) {
+				if (b.pos_x + 1 >= aiTank.getTank_x() && b.pos_x + 1 <= aiTank.getTank_x() + TANK_WIDTH - 1
+						&& b.pos_y >= aiTank.getTank_y() && b.pos_y <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+					aiTank.onHit();
 					b.remove();
-					continue BulletList;
+					return;
 				}
 				break;
 			case Bullet.DOWN:
-				if (iron_wall[b.pos_x][b.pos_y + 1] == 1) {
+				if (b.pos_x >= aiTank.getTank_x() && b.pos_x <= aiTank.getTank_x() + TANK_WIDTH - 1
+						&& b.pos_y + 1 >= aiTank.getTank_y()
+						&& b.pos_y + 1 <= aiTank.getTank_y() + TANK_HEIGHT - 1) {
+					aiTank.onHit();
 					b.remove();
-					continue BulletList;
+					return;
 				}
 				break;
 			}
+		}
+
+		// Åö×²ÆÕÍ¨Ç½
+		// Observer how many "1" before the bullet
+		int observer = 0;
+
+		switch (b.direction) {
+		case Bullet.UP:
+			if (wall[b.pos_x][b.pos_y] == 1) {
+				for (int i = b.pos_x - 1; i >= 0; i--) {
+					if (wall[i][b.pos_y] == 1) {
+						observer++;
+					}
+				}
+				if (observer % 2 == 0) {
+					wall[b.pos_x][b.pos_y] = wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x][b.pos_y
+							- 1] = wall[b.pos_x + 1][b.pos_y - 1] = 0;
+				} else {
+					wall[b.pos_x][b.pos_y] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x][b.pos_y
+							- 1] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
+				}
+				b.remove();
+				observer = 0;
+				return;
+			}
+			break;
+
+		case Bullet.DOWN:
+			if (wall[b.pos_x][b.pos_y + 1] == 1) {
+				for (int i = b.pos_x - 1; i >= 0; i--) {
+					if (wall[i][b.pos_y + 1] == 1) {
+						observer++;
+					}
+				}
+				if (observer % 2 == 0) {
+					wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x + 1][b.pos_y
+							+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x + 1][b.pos_y + 2] = 0;
+				} else {
+					wall[b.pos_x][b.pos_y + 1] = wall[b.pos_x - 1][b.pos_y
+							+ 1] = wall[b.pos_x][b.pos_y + 2] = wall[b.pos_x - 1][b.pos_y + 2] = 0;
+				}
+				b.remove();
+				observer = 0;
+				return;
+			}
+			break;
+
+		case Bullet.LEFT:
+			if (wall[b.pos_x][b.pos_y] == 1) {
+				for (int i = b.pos_y - 1; i >= 0; i--) {
+					if (wall[b.pos_x][i] == 1) {
+						observer++;
+					}
+				}
+				if (observer % 2 == 0) {
+					wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
+							+ 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y + 1] = 0;
+				} else {
+					wall[b.pos_x][b.pos_y] = wall[b.pos_x][b.pos_y
+							- 1] = wall[b.pos_x - 1][b.pos_y] = wall[b.pos_x - 1][b.pos_y - 1] = 0;
+				}
+				b.remove();
+				observer = 0;
+				return;
+			}
+			break;
+
+		case Bullet.RIGHT:
+			if (wall[b.pos_x + 1][b.pos_y] == 1) {
+				for (int i = b.pos_y - 1; i >= 0; i--) {
+					if (wall[b.pos_x + 1][i] == 1) {
+						observer++;
+					}
+				}
+				if (observer % 2 == 0) {
+					wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
+							+ 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y + 1] = 0;
+				} else {
+					wall[b.pos_x + 1][b.pos_y] = wall[b.pos_x + 1][b.pos_y
+							- 1] = wall[b.pos_x + 2][b.pos_y] = wall[b.pos_x + 2][b.pos_y - 1] = 0;
+				}
+				b.remove();
+				observer = 0;
+				return;
+			}
+			break;
+		}
+
+		// Åö×²ÌúÇ½
+		switch (b.direction) {
+		case Bullet.UP:
+		case Bullet.LEFT:
+			if (iron_wall[b.pos_x][b.pos_y] == 1) {
+				b.remove();
+				return;
+			}
+			break;
+		case Bullet.RIGHT:
+			if (iron_wall[b.pos_x + 1][b.pos_y] == 1) {
+				b.remove();
+				return;
+			}
+			break;
+		case Bullet.DOWN:
+			if (iron_wall[b.pos_x][b.pos_y + 1] == 1) {
+				b.remove();
+				return;
+			}
+			break;
 		}
 	}
 

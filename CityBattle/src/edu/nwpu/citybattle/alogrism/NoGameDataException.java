@@ -9,7 +9,7 @@ package edu.nwpu.citybattle.alogrism;
  * @author Orangii
  * @version 1.0.0
  */
-public class NoGameDataException extends Exception {
+public class NoGameDataException extends RuntimeException {
 
 	/**
 	 * {@code Exception}类需要有serial，所以在此生成了一个。

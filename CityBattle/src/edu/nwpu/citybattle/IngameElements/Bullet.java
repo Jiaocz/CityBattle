@@ -5,6 +5,7 @@ package edu.nwpu.citybattle.IngameElements;
 
 import java.util.LinkedHashSet;
 import edu.nwpu.citybattle.actions.Movable;
+import edu.nwpu.citybattle.alogrism.BulletAlogrism;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
 
 /**
@@ -82,6 +83,8 @@ public class Bullet implements Movable {
 			this.pos_x += Bullet.speed;
 			break;
 		}
+		
+		BulletAlogrism.<Bullet>getSingletonInstance().isHitting(this);
 	}
 
 	/**
