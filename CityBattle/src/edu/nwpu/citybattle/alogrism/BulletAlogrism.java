@@ -18,7 +18,7 @@ import edu.nwpu.citybattle.IngameElements.MyTank;
  * 其中泛型Bullet为需要维护的子弹的类型，之后调用时可以在函数前去掉泛型{@code <Bullet>}，如本类测试用Main函数中示例。
  * 
  * @author Orangii
- * @version 1.0.5
+ * @version 1.0.6
  */
 public class BulletAlogrism<BulletClass extends Bullet> {
 	/**
@@ -120,6 +120,17 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * 禁止其他类创建对象
 	 */
 	private BulletAlogrism() {
+	}
+	
+	/**
+	 * 无参调用方法，自动传入{@code Bullet.Bullets}
+	 * 
+	 * @throws NoGameDataException
+	 * @since 1.0.6
+	 */
+	@SuppressWarnings("unchecked")
+	public void isHitting() throws NoGameDataException {
+		isHitting((LinkedHashSet<BulletClass>) Bullet.Bullets);
 	}
 
 	/**
