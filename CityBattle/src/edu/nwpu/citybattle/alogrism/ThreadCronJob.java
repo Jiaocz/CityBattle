@@ -10,8 +10,13 @@ import edu.nwpu.citybattle.IngameElements.Tank;
 import edu.nwpu.citybattle.actions.Movable;
 
 /**
+ * 多线程类，分为三个线程，子弹线程、坦克线程和地图刷新线程。<br />
+ * 
  * @author Orangii
- *
+ * @version 1.0.0
+ * @see Runnable
+ * @see CronJob
+ * @see CronJobSet
  */
 public final class ThreadCronJob extends CronJobSet {
 	// 子弹线程存储类
