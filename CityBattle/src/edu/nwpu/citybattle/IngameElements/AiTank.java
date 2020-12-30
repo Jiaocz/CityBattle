@@ -6,6 +6,7 @@ import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
+import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 
 /**
  * 
@@ -15,7 +16,7 @@ import edu.nwpu.citybattle.alogrism.CronJobSet;
 public class AiTank extends Tank implements Movable {
 
 	/**
-	 * 记录AiTank的初始位置
+	 * 璁板綍AiTank鐨勫垵濮嬩綅缃�
 	 */
 	private int initX;
 	private int initY;
@@ -174,6 +175,7 @@ public class AiTank extends Tank implements Movable {
 		initY = tank_y;
 
 		AiTankArray.aiTank.add(this);
+		ThreadCronJob.addJob(this);
 
 	}
 
