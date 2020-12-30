@@ -1,219 +1,220 @@
-
 package edu.nwpu.citybattle.IngameElements;
 
-import edu.nwpu.citybattle.actions.Movable;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
-import java.util.Set;
-import java.awt.Component;
-import javax.swing.JComponent;
 
-
-import javax.imageio.ImageIO;
-
-
+import edu.nwpu.citybattle.TankMap.Map;
+import edu.nwpu.citybattle.actions.Movable;
+import edu.nwpu.citybattle.alogrism.CronJob;
+import edu.nwpu.citybattle.alogrism.CronJobSet;
 
 /**
- * �з�AI̹����
+ * 
  * @version 1.0.0
  * @see Tank
  */
 public class AiTank extends Tank implements Movable {
-	
-	private int tank_x;
-	private int tank_y;
-	private int dir;
+
+	/**
+	 * 记录AiTank的初始位置
+	 */
 	private int initX;
 	private int initY;
-	private int HP;
 
-	
+	private int speed = 1;
 
 	@Override
 	public void moveNext() {
-		// TODO Auto-generated method stub
 
+		if (judgeLimit()) {
+
+			if (direction == Tank.DOWN) {
+				tank_y += speed;
+				setRandomDir();
+			}
+			if (direction == Tank.UP) {
+				tank_y -= speed;
+				setRandomDir();
+			}
+			if (direction == Tank.LEFT) {
+				tank_x -= speed;
+				setRandomDir();
+			}
+			if (direction == Tank.RIGHT) {
+				tank_x += speed;
+				setRandomDir();
+			}
+		} else
+			setRandomDir();
 	}
 
 	@Override
 	public void onHit() {
-		// TODO Auto-generated method stub
+		HP--;
+
+		if (HP == 0) {
+			
+			CronJobSet.addDelayJob(new CronJob() {
+				@Override
+				public void run() {
+					tank_x = initX;
+					tank_y = initY;
+					HP = 3;
+				}
+			}, 2000L);
+		}
+
+	}
+
+	private boolean judgeLimit() {
+		int a;
+
+		if (tank_x <= 0 || tank_x >= 52) {
+			return false;
+		}
+		if (tank_y <= 0 || tank_y >= 36) {
+			return false;
+		}
+		switch (direction) {
+		case Tank.UP:
+			for (int i = 0; i < 5; i++) {
+				a = tank_y - 1;
+				if (Map.ironwall[tank_x + i][a] != 0 && Map.wall[tank_x + i][a] != 0 && Map.water[tank_x + i][a] != 0)
+					return false;
+			}
+
+			return true;
+
+		case Tank.DOWN:
+			for (int i = 0; i < 5; i++) {
+				a = tank_y + 1;
+				if (Map.ironwall[tank_x + i][a] != 0 && Map.wall[tank_x + i][a] != 0 && Map.water[tank_x + i][a] != 0)
+					return false;
+			}
+
+			return true;
+
+		case Tank.LEFT:
+			for (int i = 0; i < 5; i++) {
+				a = tank_x - 1;
+				if (Map.ironwall[a][tank_y + i] != 0 && Map.wall[a][tank_y + i] != 0 && Map.water[a][tank_y + i] != 0)
+					return false;
+			}
+
+			return true;
+
+		case Tank.RIGHT:
+			for (int i = 0; i < 5; i++) {
+				a = tank_x + 1;
+				if (Map.ironwall[a][tank_y + i] != 0 && Map.wall[a][tank_y + i] != 0 && Map.water[a][tank_y + i] != 0)
+					return false;
+			}
+
+			return true;
+
+		default:
+			return false;
+
+		}
 
 	}
 
 	@Override
-	public Bullet shootBullet(float x, float y, int direction) {
-		// TODO Auto-generated method stub
-		return null;
+	public Bullet shootBullet() {
+		int x = this.tank_x + 2;
+		int y = this.tank_y + 2;
+		int direction = this.direction;
+
+		return new Bullet(x, y, direction);
 	}
 
+	private void setRandomDir() {
 
-		
+		boolean f = false;
 
-	public int direction;
-	public static final int UP = 1; // ����
-	public static final int DOWN = 2; // ����
-	public static final int LEFT = 3; // ����
-	public static final int RIGHT = 4; // ����
-		
-		
-		
-	    public  AiTank(int tank_x,int tank_y , int dir , int HP) {
-		     this.tank_x = tank_x;
-		     this.tank_y = tank_y;
-		     this.dir = dir;
-		     this.HP = HP;
-		     
-	              }
-	    
-	    /**
-	     * 
-	     * @return
-	     */
-	    public int getTank_x() {
-	    	return tank_x;
-	    }
-
-	    /**
-	     * 
-	     * @return
-	     */
-	    public int getTank_y() {
-	    	return tank_y;
-	    }
-		
-	    public int getHP() {
-	    	return HP;
-	    }
-	    
-	    
-	    
-	    
-	    
-
-		/**
-		 * ̹�˵ĵ�ǰ����
-		 */
-		private int curDir = 2;
-		
-		
-		public void setCurDir(int dir){
-			this.curDir = dir;
-		}
-		
-		public int getCurDir() {
-			return curDir;
-		}
-		
-		
-		/**
-		 * ̹�˵��ٶ�e
-		 */
-		private int speed = 10;
-		
-		
-		/**
-		 * ̹���ƶ���Ƶ��
-		 */
-		private int f_sleep = 500;
-				
-		boolean flag = true;
-			
-		
-		/**
-		 * �ƶ�
-		 * @param speed
-		 */
-		public void move(int speed){
-				switch(curDir) {
-					case AiTank.DOWN:
-							setBounds(tank_x, tank_y+speed,getWidth(), getHeight());
-						break;
-					case AiTank.LEFT:
-							setBounds(tank_x-speed, tank_y, getWidth(), getHeight());
-						break;
-					case AiTank.RIGHT:
-							setBounds(tank_x+speed, tank_y, getWidth(), getHeight());
-						break;
-					case AiTank.UP:
-							setBounds(tank_x, tank_y-speed, getWidth(), getHeight());
-						break;
-				}
-		}
-		
-		/**
-		 * �����ڵ�
-		 */
-		public void shell(){
-					String dir = null;
-					switch(curDir){
-						case AiTank.DOWN:
-							dir = "DOWN";
-							break;
-						case AiTank.LEFT:
-							dir = "LEFT";
-							break;
-						case AiTank.RIGHT:
-							dir = "RIGHT";
-							break;
-						case AiTank.UP:
-							dir = "UP";
-							break;
-							}
-					}
-					
-					
-					
-		public void run(){
-			Random rd = new Random();
-			while(flag){
-				int key = Math.abs(rd.nextInt())%6;
-					switch(key){
-						case 0:
-						case 1:
-						case 2:
-							if(getCurDir()==AiTank.DOWN) move(speed);
-							break;
-						case 3://��ǰ�����ƶ�
-							move(speed);
-							break;
-						case 4://ת��
-							int dir = Math.abs(rd.nextInt())%4 + 1;
-							if(dir == getCurDir()){
-								move(speed);
-								break;
-							}
-							String dirStr = null;
-							switch(dir){
-								case 1:
-									dirStr = "UP";
-									break;
-								case 2:
-									dirStr = "DOWN";
-									break;
-								case 3:
-									dirStr = "LEFT";
-									break;
-								case 4:
-									dirStr = "RIGHT";
-									break;
-							}
-							break;
-						default://���ֲ���
-							key = Math.abs(rd.nextInt())%100;
-							if(key % 5 ==0)
-								shell();//�����ڵ�
-							break;
-					}
-					try {
-						Thread.sleep(f_sleep);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
+		while (f == false) {
+			int r = new Random().nextInt(5);
+			switch (r) {
+			case 1: {
+				direction = Tank.UP;
+				f = true;
+				break;
 			}
+			case 2: {
+				direction = Tank.DOWN;
+				f = true;
+				break;
+			}
+			case 3: {
+				direction = Tank.LEFT;
+				f = true;
+				break;
+			}
+			case 4: {
+				direction = Tank.RIGHT;
+				f = true;
+				break;
+			}
+			default:
+				direction = Tank.STOP;
+				f = true;
+				break;
+
+			}
+
+		}
 	}
 
+	public AiTank(int tank_x, int tank_y, int direction, int HP) {
+
+		this.tank_x = tank_x;
+		this.tank_y = tank_y;
+		this.direction = direction;
+
+		initX = tank_x;
+		initY = tank_y;
+
+		AiTankArray.aiTank.add(this);
+
+	}
+
+	public int getTank_x() {
+		return tank_x;
+	}
+
+	public int getTank_y() {
+		return tank_y;
+	}
+
+	public int getHP() {
+		return HP;
+	}
+
+	public int getInitX() {
+		return this.initX;
+	}
+
+	public int getInitY() {
+		return this.initY;
+	}
+
+	public void setHP() {
+		this.HP = 3;
+	}
+
+	public void setTank_x(int x) {
+		this.tank_x = x;
+	}
+
+	public void setTank_y(int y) {
+		this.tank_y = y;
+	}
+
+	public void setInitX(int x) {
+		this.initX = x;
+	}
+
+	public void setInitY(int y) {
+		this.initY = y;
+	}
+
+}

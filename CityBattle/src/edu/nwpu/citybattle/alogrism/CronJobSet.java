@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TimerTask;
+
+import edu.nwpu.citybattle.IngameElements.Bullet;
+import edu.nwpu.citybattle.IngameElements.Tank;
 import edu.nwpu.citybattle.actions.Movable;
 import java.util.Timer;
 
@@ -15,6 +18,7 @@ import java.util.Timer;
  * {@code Movable}及{@code CronJob}接口均可以挂在到本计时器下，实现任务的自动执行。<br />
  * 计时器的最小执行时间是游戏设定的刷新率，因为这个值没有静态类保存，在这里我定义为30FPS，<br />
  * 最小执行间隔时间为 1/30s ，小于改值的任务也会使用此时间间隔作为任务间的间隔。<br />
+ * 目前也支持延时执行任务，一次性即失效，请看{@code addDelayJob(Runnable)}<br />
  * <hr />
  * 最简单的，您可以直接将您的{@code Movable}接口使用{@code addJob(Movable)}方法添加进本定时器，本定时器将在每帧执行这些任务，<br
  * />
@@ -37,7 +41,7 @@ import java.util.Timer;
  * <hr />
  * 
  * @author Orangii
- * @version 1.1.2
+ * @version 1.2.0
  * @see Runnable
  * @see CronJob
  * @see edu.nwpu.citybattle.actions.Movable
@@ -57,6 +61,11 @@ public final class CronJobSet extends TimerTask {
 	// 上次执行时间
 	private static ArrayList<Long> CronJobsLast = new ArrayList<Long>();
 	private static ArrayList<Long> MovesLast = new ArrayList<Long>();
+	
+	// 延时执行定时器
+	private static ArrayList<Runnable> DelayJob = new ArrayList<Runnable>();
+	private static ArrayList<Long> DelayJobAddTime = new ArrayList<Long>();
+	private static ArrayList<Long> DelayJobDelays = new ArrayList<Long>();
 
 	// 定时器本体
 	private static Timer timer = new Timer();
@@ -142,7 +151,7 @@ public final class CronJobSet extends TimerTask {
 		}
 		return status;
 	}
-	
+
 	/**
 	 * 通过{@code Set}表添加一系列{@code Movable}接口类型的定时事件
 	 * 
@@ -158,6 +167,26 @@ public final class CronJobSet extends TimerTask {
 			}
 		}
 		return status;
+	}
+	
+	/**
+	 * 添加延时执行任务，可以使用匿名内部类或者实现{@code Runnable}或{@code CronJob}接口添加到本类。<br />
+	 * 延时任务仅执行一次，一次后失效。<br />
+	 * 目前延迟任务不支持删除。
+	 * 
+	 * @since 1.2.0
+	 * @param Job	需要延时运行的任务
+	 * @param Delay	延迟时间
+	 * @return	是否成功添加任务
+	 */
+	public static boolean addDelayJob(Runnable Job, Long Delay) {
+		if(DelayJob.add(Job)) {
+			DelayJobAddTime.add(DelayJob.indexOf(Job), System.currentTimeMillis());
+			DelayJobDelays.add(DelayJob.indexOf(Job), Delay);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -204,6 +233,7 @@ public final class CronJobSet extends TimerTask {
 	public void run() {
 		runCronJobs();
 		runMovables();
+		runDelays();
 	}
 
 	// CronJob接口下的任务
@@ -216,12 +246,39 @@ public final class CronJobSet extends TimerTask {
 		}
 	}
 
-	// Movable接口下的任务，至少每Frame执行一次
+	// Movable接口下的任务，至少每Frame执行一次，坦克类每两帧执行一次
 	private static void runMovables() {
 		for (int i = 0; i < Moves.size(); i++) {
-			if (System.currentTimeMillis() - MovesLast.get(i) >= FreshRate) {
-				MovesLast.set(i, System.currentTimeMillis());
-				Moves.get(i).moveNext();
+			if(Moves.get(i) instanceof Tank) {
+				if(System.currentTimeMillis() - MovesLast.get(i) >= 2 * FreshRate) {
+					MovesLast.set(i, System.currentTimeMillis());
+					Moves.get(i).moveNext();
+				}
+			}
+			else if(Moves.get(i) instanceof Bullet) {
+				if(System.currentTimeMillis() - MovesLast.get(i) >= FreshRate) {
+					MovesLast.set(i, System.currentTimeMillis());
+					Moves.get(i).moveNext();
+				}
+			}
+			else {
+				if(System.currentTimeMillis() - MovesLast.get(i) >= FreshRate) {
+					MovesLast.set(i, System.currentTimeMillis());
+					Moves.get(i).moveNext();
+				}
+			}
+		}
+	}
+	
+	// 延时任务执行
+	private static void runDelays() {
+		for(int i = 0; i < DelayJob.size(); i++) {
+			if(System.currentTimeMillis() - DelayJobAddTime.get(i) >= DelayJobDelays.get(i)) {
+				DelayJob.get(i).run();
+				
+				DelayJob.remove(i);
+				DelayJobAddTime.remove(i);
+				DelayJobDelays.remove(i);
 			}
 		}
 	}
