@@ -152,7 +152,15 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 		
 	}
 	
+	/**
+	 * 通过子弹对象进行判断撞击时间，使用前请先传入游戏参数，并完成子弹的移动
+	 * 
+	 * @param b	子弹对象
+	 * @throws NoGameDataException
+	 */
 	public void isHitting(BulletClass b) {
+		if(!hasData) throw new NoGameDataException("未传入游戏参数");
+		
 		// 触碰边界
 		switch (b.direction) {
 		case Bullet.UP:
