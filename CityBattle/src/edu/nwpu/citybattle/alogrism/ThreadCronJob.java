@@ -13,7 +13,7 @@ import edu.nwpu.citybattle.actions.Movable;
  * 多线程类，分为三个线程，子弹线程、坦克线程和地图刷新线程。<br />
  * 
  * @author Orangii
- * @version 1.0.0
+ * @version 1.0.2
  * @see Runnable
  * @see CronJob
  * @see CronJobSet
@@ -76,6 +76,7 @@ public final class ThreadCronJob extends CronJobSet {
 	 * 
 	 * @param cronJob	坦克或子弹对象
 	 * @return	是否添加成功
+	 * @since 1.0.0
 	 */
 	public static boolean addJob(Movable cronJob) {
 		if(cronJob instanceof Bullet) {
@@ -95,11 +96,35 @@ public final class ThreadCronJob extends CronJobSet {
 	 * 
 	 * @param cronJob	地图执行方法
 	 * @return	添加是否成功（实际上并不会失败）
+	 * @since 1.0.0
 	 */
 	public static boolean addJob(Runnable cronJob) {
 		MapThread.map = cronJob;
 		MapThread.lastTime = System.currentTimeMillis();
 		return true;
+	}
+	
+	/**
+	 * 通过{@code Movable}接口删除定时任务
+	 * 
+	 * @param cronJob	需要删除的任务
+	 * @return	删除是否成功
+	 * @since 1.0.2
+	 */
+	public static boolean removeJob(Movable cronJob) {
+		if(cronJob instanceof Tank) {
+			if(TankThread.tanks.contains(cronJob)) {
+				TankThread.tanks_last.remove(TankThread.tanks.indexOf(cronJob));
+				TankThread.tanks.remove(cronJob);
+				return true;
+			}
+		} else if(cronJob instanceof Bullet) {
+			if(BulletThread.bullets.contains(cronJob)) {
+				BulletThread.bullets.remove(cronJob);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	// 三个线程
