@@ -10,25 +10,25 @@ public class Map {
 	public static int[][] water;
 	public static void selectMap() {
 		if(Choice.mapNumber == 1) {
-			wall = Map1.wall;
-			ironwall = Map1.ironwall;
-			grass = Map1.grass;
-			water = Map1.water;
+			wall = Transpose.tfunction(Map1.wall);
+			ironwall = Transpose.tfunction(Map1.ironwall);
+			grass = Transpose.tfunction(Map1.grass);
+			water = Transpose.tfunction(Map1.water);
 		}else if(Choice.mapNumber == 2) {
-			wall = Map2.wall;
-			ironwall = Map2.ironwall;
-			grass = Map2.grass;
-			water = Map2.water;
+			wall = Transpose.tfunction(Map2.wall);
+			ironwall = Transpose.tfunction(Map2.ironwall);
+			grass = Transpose.tfunction(Map2.grass);
+			water = Transpose.tfunction(Map2.water);
 		}else if(Choice.mapNumber == 3) {
-			wall = Map3.wall;
-			ironwall = Map3.ironwall;
-			grass = Map3.grass;
-			water = Map3.water;
+			wall = Transpose.tfunction(Map3.wall);
+			ironwall = Transpose.tfunction(Map3.ironwall);
+			grass = Transpose.tfunction(Map3.grass);
+			water = Transpose.tfunction(Map3.water);
 		}else if(Choice.mapNumber == 4) {
-			wall = Map4.wall;
-			ironwall = Map4.ironwall;
-			grass = Map4.grass;
-			water = Map4.water;
+			wall = Transpose.tfunction(Map4.wall);
+			ironwall = Transpose.tfunction(Map4.ironwall);
+			grass = Transpose.tfunction(Map4.grass);
+			water = Transpose.tfunction(Map4.water);
 		}
 	}
 	

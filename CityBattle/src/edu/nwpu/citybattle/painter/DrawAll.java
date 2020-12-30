@@ -2,27 +2,34 @@ package edu.nwpu.citybattle.painter;
 
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 import UI.CustomsPass;
+import edu.nwpu.citybattle.IngameElements.MyTank;
 
 /**
- * ¸ÃÀàÓÃÓÚ½«ÓÎÏ·»­Ãæ»æÖÆ³öÀ´
- * @author Î¢Ğ¦Î´Ê§
+ * ç’‡ãƒ§è¢«é¢ã„¤ç°¬çå—˜çˆ¶é´å¿•æ•¾é—ˆãˆ¢ç²¯é’è·ºåš­é‰ï¿½
+ * @author å¯°î†¾ç‘§éˆî„ã‘
  * @see draw
  */
 public class DrawAll {
 	private BulletsPainter bulletsPainter;
-	private ShapePainter shapPainter;
+	private ShapePainter shapePainter;
 	private TankPainter tankPainter;
-	public DrawAll(CustomsPass custompass,Graphics g2d) {
-		this.bulletsPainter = new BulletsPainter(custompass);
-		this.shapPainter = new ShapePainter(custompass);
-		this.tankPainter = new TankPainter(custompass);
-		bulletsPainter.drawBullets(g2d);
-		tankPainter.drawTanks(g2d);
-		shapPainter.drawAllShap(g2d);
+	public DrawAll(MyTank myTank,JPanel contentPane) {
+		this.shapePainter = new ShapePainter(contentPane);
+		this.tankPainter = new TankPainter(contentPane,myTank);
+		this.bulletsPainter = new BulletsPainter(contentPane);
+	}
+	public void drawShape() {	
+		shapePainter.drawAllShape();	
+		bulletsPainter.drawBullets();
+		tankPainter.drawAITanks();
+		tankPainter.drawMyTank();
+		
 	}
 	/**
-	 * ¸Ã·½·¨ÓÃÓÚ»æÖÆËùĞèÒªÓÃµ½µÄ»­Ãæ
+	 * ç’‡ãƒ¦æŸŸå¨‰æ› æ•¤æµœåº£ç²¯é’èˆµå¢é—‡ï¿½ç‘•ä½ºæ•¤é’æ‰®æ®‘é¢å©šæ½°
 	 * @param g2d
 	 */
 }
