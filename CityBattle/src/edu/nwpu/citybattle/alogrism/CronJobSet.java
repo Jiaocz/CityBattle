@@ -68,8 +68,18 @@ public class CronJobSet extends TimerTask {
 	private static ArrayList<Long> DelayJobDelays = new ArrayList<Long>();
 
 	// 定时器本体
-	private static Timer timer = new Timer();
-	private static TimerTask crons = new CronJobSet();
+	private static Timer timer;
+	private static CronJobSet instance_ = new CronJobSet();
+	
+	private class Crons extends TimerTask{
+		@Override
+		public void run() {
+			runCronJobs();
+			runMovables();
+			runDelays();
+		}
+		
+	}
 
 	/**
 	 * 开始定时器，启动定时任务，每半帧游戏进行一次运行（每frame）
@@ -77,7 +87,8 @@ public class CronJobSet extends TimerTask {
 	 * @since 1.0.0
 	 */
 	public static void startCronJob() {
-		timer.schedule(crons, 0, FreshRate);
+		
+		(timer = new Timer()).schedule(instance_.new Crons(), 0, FreshRate);
 	}
 
 	/**
@@ -89,6 +100,7 @@ public class CronJobSet extends TimerTask {
 	public static void stopCronJob() {
 		timer.cancel();
 		timer.purge();
+		timer = null;
 	}
 
 	/**
@@ -98,7 +110,7 @@ public class CronJobSet extends TimerTask {
 	 * @since 1.0.0
 	 */
 	public static void manualRun() {
-		crons.run();
+		(instance_.new Crons()).run();
 	}
 
 	/**

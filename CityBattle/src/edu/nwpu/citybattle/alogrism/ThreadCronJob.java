@@ -146,9 +146,9 @@ public final class ThreadCronJob extends CronJobSet {
 	}
 	
 	// 三个线程
-	private static Thread bullet = new BulletThread();
-	private static Thread tank = new TankThread();
-	private static Thread map = new MapThread();
+	private static Thread bullet;
+	private static Thread tank;
+	private static Thread map;
 	
 	/**
 	 * 启动三个线程，已经启动的并不会启动。
@@ -156,6 +156,27 @@ public final class ThreadCronJob extends CronJobSet {
 	 * @since 1.0.0
 	 */
 	public static void start() {
+		if((bullet != null && bullet.getState() != Thread.State.TERMINATED) ||
+				(tank != null && tank.getState() != Thread.State.TERMINATED) ||
+				(map != null && map.getState() != Thread.State.TERMINATED)) {
+			throw new RuntimeException("Thread is still running!");
+		}
+		
+		if(bullet == null || bullet.getState() != Thread.State.NEW) {
+			bullet = null;
+			bullet = new BulletThread();
+		}
+		
+		if(tank == null || tank.getState() != Thread.State.NEW) {
+			tank = null;
+			tank = new BulletThread();
+		}
+		
+		if(map == null || map.getState() != Thread.State.NEW) {
+			map = null;
+			map = new BulletThread();
+		}
+		
 		if(bullet.getState() == Thread.State.NEW) bullet.start();
 		if(tank.getState() == Thread.State.NEW) tank.start();
 		if(map.getState() == Thread.State.NEW) map.start();
