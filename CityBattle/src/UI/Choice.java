@@ -75,41 +75,42 @@ public class Choice extends JFrame {
 		
 		JLabel lblNewLabel_0 = new JLabel("关卡选择");
 		lblNewLabel_0.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_0.setForeground(Color.WHITE);
-		lblNewLabel_0.setFont(new Font("方正显仁简体", Font.PLAIN, 60));
+		lblNewLabel_0.setForeground(Color.BLACK);
+		lblNewLabel_0.setFont(new Font("方正显仁简体", Font.BOLD, 60));
 		lblNewLabel_0.setBounds(320, 0, 360, 120);
 		contentPane.add(lblNewLabel_0);
 		
 		JLabel lblNewLabel_1 = new JLabel("第一关");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_1.setForeground(Color.RED);
+		lblNewLabel_1.setFont(new Font("宋体", Font.BOLD, 18));
 		lblNewLabel_1.setBounds(190, 90, 120, 36);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("第二关");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_1_1.setForeground(Color.RED);
+		lblNewLabel_1_1.setFont(new Font("宋体", Font.BOLD, 18));
 		lblNewLabel_1_1.setBounds(690, 90, 120, 36);;
 		contentPane.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel = new JLabel("第三关");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel.setFont(new Font("宋体", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setBounds(190, 320, 120, 36);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("第四关");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_2.setForeground(Color.WHITE);
-		lblNewLabel_1_2.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_1_2.setForeground(Color.RED);
+		lblNewLabel_1_2.setFont(new Font("宋体", Font.BOLD, 18));
 		lblNewLabel_1_2.setBounds(690, 320, 120, 36);
 		contentPane.add(lblNewLabel_1_2);
 
 		//JLabel lblNewLabel_2_2 = new JLabel("");//第一关图片
-		ImageIcon icon_JLabel_1 = new ImageIcon("img\\map1.jpg");
+		ImageIcon icon_JLabel_1 = new ImageIcon("img\\Map1.png");
+		icon_JLabel_1.setImage(icon_JLabel_1.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_1 = new JLabel(icon_JLabel_1);
 		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -138,7 +139,8 @@ public class Choice extends JFrame {
 		contentPane.add(lblNewLabel_2_1);
 		
 		//JLabel lblNewLabel_2 = new JLabel("");//第二关图片
-		ImageIcon icon_JLabel_2 = new ImageIcon("img\\map2.jpg");
+		ImageIcon icon_JLabel_2 = new ImageIcon("img\\Map2.png");
+		icon_JLabel_2.setImage(icon_JLabel_2.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_2 = new JLabel(icon_JLabel_2);
 		lblNewLabel_2_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -166,7 +168,8 @@ public class Choice extends JFrame {
 		contentPane.add(lblNewLabel_2_2);
 
 		//JLabel lblNewLabel_2_1 = new JLabel("");//第三关图片
-		ImageIcon icon_JLabel_3 = new ImageIcon("img\\map3.jpg");
+		ImageIcon icon_JLabel_3 = new ImageIcon("img\\Map3.png");
+		icon_JLabel_3.setImage(icon_JLabel_3.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_3 = new JLabel(icon_JLabel_3);
 		lblNewLabel_2_3.addMouseListener(new MouseAdapter() {
 			@Override
@@ -195,7 +198,8 @@ public class Choice extends JFrame {
 
 		
 		//JLabel lblNewLabel_2_1_1 = new JLabel("");//第四关图片
-		ImageIcon icon_JLabel_4 = new ImageIcon("img\\map4.jpg");
+		ImageIcon icon_JLabel_4 = new ImageIcon("img\\Map4.png");
+		icon_JLabel_4.setImage(icon_JLabel_4.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_4 = new JLabel(icon_JLabel_4);
 		lblNewLabel_2_4.addMouseListener(new MouseAdapter() {
 			@Override
@@ -252,5 +256,12 @@ public class Choice extends JFrame {
 		btnNewButton_begin.setIcon(icon_JButton_begin);
 		contentPane.add(btnNewButton_begin);
 
+		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
+		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));
+		contentPane.add(lblNewLabel_B);
+		lblNewLabel_B.setIcon(icon_JLabel_B);
+		
 	}
 }

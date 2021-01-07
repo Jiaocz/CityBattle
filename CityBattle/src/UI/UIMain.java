@@ -22,7 +22,7 @@ public class UIMain {
 	
 	public static void playMusic() {// 背景音乐播放
 		try {
-			AudioInputStream ais = AudioSystem.getAudioInputStream(new File("music\\打上花火-DAOKO.wav")); // 绝对路径
+			AudioInputStream ais = AudioSystem.getAudioInputStream(new File("music\\Alive.wav")); // 绝对路径
 			AudioFormat aif = ais.getFormat();
 			final SourceDataLine sdl;
 			DataLine.Info info = new DataLine.Info(SourceDataLine.class, aif);

@@ -64,10 +64,10 @@ public class Help extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		ImageIcon icon_JLabel = new ImageIcon("img\\tankebegin.png");
+		ImageIcon icon_JLabel = new ImageIcon("img\\KeyHelp.png");
 		//JLabel lblNewLabel  = new JLabel(icon_JLabel);
-		lblNewLabel.setBounds(357, -20, 858, 214);
-		icon_JLabel.setImage(icon_JLabel.getImage().getScaledInstance(286, 71, 0));
+		lblNewLabel.setBounds(262, 120, 600, 240);
+		icon_JLabel.setImage(icon_JLabel.getImage().getScaledInstance(600, 240, 0));
 		lblNewLabel.setIcon(icon_JLabel);
 		contentPane.add(lblNewLabel);
 		/*
@@ -134,6 +134,14 @@ public class Help extends JFrame {
 		lblNewLabel_1.setEnabled(false);
 		lblNewLabel_1.setBounds(425, 540, 150, 15);
 		contentPane.add(lblNewLabel_1);
+		
+		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
+		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));
+		contentPane.add(lblNewLabel_B);
+		lblNewLabel_B.setIcon(icon_JLabel_B);
+		
 	}
 
 }

@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -67,13 +69,13 @@ public class AllVictory extends JFrame {
 		JLabel lblNewLabel = new JLabel("\u606D\u559C\u4F60");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("方正显仁简体", Font.PLAIN, 80));
-		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setBounds(369, 42, 262, 128);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u4F60\u901A\u5173\u4E86\uFF01");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		lblNewLabel_1.setFont(new Font("方正显仁简体", Font.PLAIN, 60));
 		lblNewLabel_1.setBounds(348, 140, 350, 112);
 		contentPane.add(lblNewLabel_1);
@@ -139,10 +141,15 @@ public class AllVictory extends JFrame {
 		btnNewButton_skip.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CustomsPass customspass = new CustomsPass();			
-				customspass.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				dispose();
+                Goutou goutou  = new Goutou();
+                goutou.setVisible(true);
+                class t extends TimerTask{
+					@Override
+					public void run() {
+						goutou.setVisible(false);
+					}
+                }
+                (new Timer()).schedule(new t(), 3000L);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -153,7 +160,7 @@ public class AllVictory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_skip = new ImageIcon("img\\JustSkip.png");
+		ImageIcon icon_JButton_skip = new ImageIcon("img\\Guli.png");
 		btnNewButton_skip.setBounds(405, 440, 190, height2);
 		icon_JButton_skip.setImage(icon_JButton_skip.getImage().getScaledInstance(190, height2, 0));
 		btnNewButton_skip.setIcon(icon_JButton_skip);
@@ -167,6 +174,13 @@ public class AllVictory extends JFrame {
 		lblNewLabel_11.setBounds(425, 540, 150, 15);
 		contentPane.add(lblNewLabel_11);
 
+		
+		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+		lblNewLabel_B.setBounds(-180, 0, 1180, 600);
+		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1180, 600, 0));
+		contentPane.add(lblNewLabel_B);
+		lblNewLabel_B.setIcon(icon_JLabel_B);
 	}
 
 }
