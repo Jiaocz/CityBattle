@@ -53,7 +53,7 @@ public final class ThreadCronJob extends CronJobSet {
 			@Override
 			public void run() {
 				for(int i = 0; i < tanks.size(); i++) {
-					if(System.currentTimeMillis() - tanks_last.get(i) >= 2 * FreshRate) {
+					if(System.currentTimeMillis() - tanks_last.get(i) >= 10 * FreshRate) {
 						tanks_last.set(i, System.currentTimeMillis());
 						tanks.get(i).moveNext();
 					}
@@ -181,7 +181,7 @@ public final class ThreadCronJob extends CronJobSet {
 		
 		/* if(bullet.getState() == Thread.State.NEW) */ bullet.start();
 		/* if(tank.getState() == Thread.State.NEW) */ tank.start();
-		// /* if(map.getState() == Thread.State.NEW) */ map.start();
+		/* if(map.getState() == Thread.State.NEW) */ map.start();
 	}
 	
 	/**
@@ -207,7 +207,6 @@ public final class ThreadCronJob extends CronJobSet {
 	}
 	
 	public static void main(String[] args) {
-		ThreadCronJob.start();
 		ThreadCronJob.start();
 		ThreadCronJob.stop();
 		ThreadCronJob.start();

@@ -147,6 +147,7 @@ public class AiTank extends Tank implements Movable {
 
 	@Override
 	public void onHit() {
+		System.out.println("[DEBUG] " + this.toString() +" Get Hitted");
 		HP--;
 		if (HP == 0) {
 			if(initHP == 1) {
