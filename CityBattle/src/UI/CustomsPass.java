@@ -33,7 +33,7 @@ import edu.nwpu.citybattle.painter.ShapePainterbeiyong;
 
 import java.awt.event.KeyEvent;
 /**
- * @author 鐞氱繑
+ * @author 琚翔
  * version V1.0
  */
 public class CustomsPass extends JFrame {

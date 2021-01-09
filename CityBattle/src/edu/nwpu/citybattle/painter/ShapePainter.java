@@ -10,7 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.nwpu.citybattle.TankMap.Map;
-
+/**
+ * 该类用于绘制各种墙体
+ * @author 微笑未失
+ * @see initialPainter
+ * @see loadImg
+ * @see drawWall
+ * @see drawBackground
+ */
 public class ShapePainter {
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 800;
@@ -38,7 +45,9 @@ public class ShapePainter {
 		initialPainter();
 		loadImg();
 	}
-
+	/**
+	 * 该方法用于初始化绘制大小
+	 */
 	public void initialPainter()
 	{
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
@@ -46,6 +55,9 @@ public class ShapePainter {
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 	}
+	/**
+	 * 该方法用于导入图片
+	 */
 	public void loadImg() {
 		origin_background = new ImageIcon("img\\background.png");
 		origin_background.setImage(origin_background.getImage().getScaledInstance(800, 600, 0));
@@ -99,6 +111,9 @@ public class ShapePainter {
 			}
 		}
 	}
+	/**
+	 * 该方法用于根据可销毁墙的位置改变重新绘制
+	 */
 	public void drawWall() {
 		Iterator<JLabel> iterator = wall.iterator();
 		while(iterator.hasNext()) {
@@ -116,6 +131,9 @@ public class ShapePainter {
 //			}
 //		}
 	}
+	/**
+	 * 该方法用于绘制背景图
+	 */
 	public void drawBackground() {
 		background = new JLabel(origin_background);
 		background.setBounds(0, 0, 800, 600);

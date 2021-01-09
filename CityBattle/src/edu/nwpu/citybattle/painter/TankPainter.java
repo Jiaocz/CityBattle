@@ -10,6 +10,15 @@ import edu.nwpu.citybattle.IngameElements.AiTank;
 import edu.nwpu.citybattle.IngameElements.AiTankArray;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
+/**
+ * 该类用于绘制坦克，包括己方和敌方坦克
+ * @author 微笑未失
+ * @see initialPainter
+ * @see loadImg
+ * @see drawAITanks
+ * @see drawMyTank
+ * @see drawTanks
+ */
 public class TankPainter {
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 800;
@@ -54,6 +63,9 @@ public class TankPainter {
 		this.loadImg();
 		this.drawTanks();
 	}
+	/**
+	 * 该方法用于初始化绘制大小
+	 */
 	public void initialPainter()
 	{
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
@@ -61,6 +73,9 @@ public class TankPainter {
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 	}
+	/**
+	 * 该方法用于初始化绘制大小
+	 */
 	public void loadImg() {
 		origin_my_tank_up = new ImageIcon("img\\mytank_up.gif");
 		origin_my_tank_up.setImage(origin_my_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
@@ -103,6 +118,9 @@ public class TankPainter {
 		contentPane.add(my_tank);
 		contentPane.updateUI();
 	}
+	/**
+	 * 该方法用于绘制己方坦克
+	 */
 	public void drawMyTank() {
 		switch(myTank.direction) {
 			case UP:
@@ -131,10 +149,13 @@ public class TankPainter {
 				return;
 		}
 	}
+	/**
+	 * 该方法用于绘制AI坦克
+	 */
 	public void drawAITanks() {
 		for(AiTank ai:AiTankArray.aiTank) {
 			switch(ai.HP) {
-				case 1://锟斤拷一锟斤拷坦锟斤拷
+				case 1:
 					if(ai.direction == UP) {
 						ai.j.setIcon(origin_first_tank_up);
 						ai.j.setBounds(ai.getTank_x()*ELEMENT_SIZE, ai.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
@@ -194,6 +215,9 @@ public class TankPainter {
 			}
 		}
 	}
+	/**
+	 * 调用该方法可以绘制所有坦克
+	 */
 	public void drawTanks() {
 		drawAITanks();
 		drawMyTank();

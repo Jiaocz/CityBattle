@@ -8,9 +8,9 @@ import UI.CustomsPass;
 import edu.nwpu.citybattle.IngameElements.MyTank;
 
 /**
- * 鐠囥儳琚悽銊ょ艾鐏忓棙鐖堕幋蹇曟暰闂堛垻绮崚璺哄毉閺夛拷
- * @author 瀵邦喚鐟ч張顏勩亼
- * @see draw
+ * 该类用于集中绘制各种图像，在创建对象时绘制一次，然后每调用一下drawShap方法，就进行一次重绘
+ * @author 微笑未失
+ * @see drawShape
  */
 public class DrawAll {
 	//public Painter bulletsPainter;
@@ -24,6 +24,9 @@ public class DrawAll {
 		this.tankPainter = new TankPainter(contentPane,myTank);
 		
 	}
+	/**
+	 * 调用该方法可以绘制所有图像
+	 */
 	public void drawShape() {	
 		shapePainter.drawWall();	
 		//bulletsPainter.drawBullets();

@@ -9,7 +9,14 @@ import javax.swing.JPanel;
 
 import edu.nwpu.citybattle.IngameElements.Bullet;
 
-public class Painter {
+/**
+ * 该类用于子弹的绘制 
+ * @author 微笑未失
+ * @see drawBullets
+ * @see loadImg
+ * @see initialPainter
+ */
+public class PaintBullets {
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TABLE_WIDTH = 40;
@@ -30,12 +37,14 @@ public class Painter {
 	ImageIcon origin_bullet_left;
 	ImageIcon origin_bullet_right;
 	
-	public Painter(JPanel contentPane) {
+	public PaintBullets(JPanel contentPane) {
 		this.contentPane = contentPane;
 		this.initialPainter();
 		this.drawBullets();
 	}
-	
+	/**
+	 * 该方法用于初始化绘制大小
+	 */
 	public void initialPainter()
 	{
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
@@ -43,6 +52,9 @@ public class Painter {
 		
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 	}
+	/**
+	 * 该方法用于根据子弹数组绘制子弹
+	 */
 	public void drawBullets() {
 		for(Bullet bullet:Bullet.Bullets) {
 			switch(bullet.direction) {
