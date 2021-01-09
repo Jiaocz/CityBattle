@@ -33,8 +33,4 @@ public class DrawAll {
 		//tankPainter.drawAITanks();
 		tankPainter.drawMyTank();
 	}
-	/**
-	 * 鐠囥儲鏌熷▔鏇犳暏娴滃海绮崚鑸靛闂囷拷鐟曚胶鏁ら崚鎵畱閻㈠娼�
-	 * @param g2d
-	 */
 }

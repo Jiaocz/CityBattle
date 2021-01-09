@@ -29,11 +29,11 @@ import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
 import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 import edu.nwpu.citybattle.painter.DrawAll;
-import edu.nwpu.citybattle.painter.ShapePainterbeiyong;
 
 import java.awt.event.KeyEvent;
 /**
  * @author 琚翔
+ * @author 微笑未失
  * version V1.0
  */
 public class CustomsPass extends JFrame {
@@ -83,7 +83,7 @@ public class CustomsPass extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//鑾峰緱灞忓箷灏哄
 		int width = 1000;
-		int height = 600;//璁剧疆绐楀彛瀹藉害鍜岄珮搴�
+		int height = 600;
 		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//绐楀彛鐨勫潗鏍囧拰灏哄锛屼互姝ょ鏂瑰紡灞呬腑
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
@@ -146,9 +146,10 @@ public class CustomsPass extends JFrame {
 		ThreadCronJob.start();
 	 	bindKey();
 	}
-	
+	/**
+	 * 键盘事件
+	 */
 	private void bindKey(){
-		//缂佹垵鐣鹃幐澶愭暛
 				this.addKeyListener(new KeyListener() {
 					
 					@Override
@@ -158,31 +159,31 @@ public class CustomsPass extends JFrame {
 						
 						System.out.println(keyCode);
 						switch(keyCode){
-						case 'W'://娑撳﹪鏁幐澶夌瑓閿涘牊妫嗘潪顒婄礆
+						case 'W':
 						case 'w':
 						case KeyEvent.VK_UP:
 							myTank.moveNext(MyTank.UP);
 							draw.drawShape();
 							break;
-						case 'D'://閸欐娊鏁幐澶夌瑓
+						case 'D':
 						case 'd':
 						case KeyEvent.VK_RIGHT:
 							myTank.moveNext(MyTank.RIGHT);
 							draw.drawShape();
 							break;
-						case 'S'://娑撳鏁幐澶夌瑓
+						case 'S':
 						case 's':
 						case KeyEvent.VK_DOWN:
 							myTank.moveNext(MyTank.DOWN);
 							draw.drawShape();
 							break;
-						case 'A'://瀹革箓鏁幐澶夌瑓
+						case 'A':
 						case 'a':
 						case KeyEvent.VK_LEFT:
 							myTank.moveNext(MyTank.LEFT);
 							draw.drawShape();
 							break;
-						case KeyEvent.VK_SPACE://缁岀儤鐗搁柨顔藉瘻娑撳绱欓拃钘夌俺閿涳拷
+						case KeyEvent.VK_SPACE:
 							myTank.shootBullet();
 							draw.drawShape();
 							break;

@@ -66,12 +66,11 @@ public class MyTank extends Tank {
 				break;
 				}
 			for(i=0;i<3;i++) {
-				x=x+i;
-				if(Map.wall[x][y-1]!=0)
+				if(Map.wall[x+i][y-1]!=0)
 					break;
-				if(Map.ironwall[x][y-1]!=0)
+				if(Map.ironwall[x+i][y-1]!=0)
 					break;
-				if(Map.water[x][y-1]!=0)
+				if(Map.water[x+i][y-1]!=0)
 					break;
 				}
 			if(i!=3)
@@ -84,12 +83,11 @@ public class MyTank extends Tank {
 				break;
 			}
 			for(i=0;i<3;i++) {
-				y=y+i;
-				if(Map.wall[x-1][y]!=0)
+				if(Map.wall[x-1][y+i]!=0)
 					break;
-				if(Map.ironwall[x-1][y]!=0)
+				if(Map.ironwall[x-1][y+i]!=0)
 					break;
-				if(Map.water[x-1][y]!=0)
+				if(Map.water[x-1][y+i]!=0)
 					break;
 				}
 			if(i!=3)
@@ -102,12 +100,11 @@ public class MyTank extends Tank {
 				break;
 			}
 			for(i=0;i<3;i++) {
-				y=y+i;
-				if(Map.wall[x+2][y]!=0)
+				if(Map.wall[x+3][y+i]!=0)
 					break;
-				if(Map.ironwall[x+2][y]!=0)
+				if(Map.ironwall[x+3][y+i]!=0)
 					break;
-				if(Map.water[x+2][y]!=0)
+				if(Map.water[x+3][y+i]!=0)
 					break;
 				}
 			if(i!=3)
@@ -115,17 +112,16 @@ public class MyTank extends Tank {
 			break;
 	//下的情况		
 		case DOWN:
-			if(y==35) {
+			if(y==38) {
 				direction=0;
 				break;
 			}
 			for(i=0;i<3;i++) {
-				x=x+i;
-				if(Map.wall[x][y+2]!=0)
+				if(Map.wall[x+i][y+3]!=0)
 					break;
-				if(Map.ironwall[x][y+2]!=0)
+				if(Map.ironwall[x+i][y+3]!=0)
 					break;
-				if(Map.water[x][y+2]!=0)
+				if(Map.water[x+i][y+3]!=0)
 					break;
 				}
 			if(i!=3)
