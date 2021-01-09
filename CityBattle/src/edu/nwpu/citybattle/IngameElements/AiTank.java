@@ -32,8 +32,8 @@ public class AiTank extends Tank implements Movable {
 	ImageIcon origin_bullet_up;
 	ImageIcon origin_bullet_down;
 	ImageIcon origin_bullet_left;
-	ImageIcon origin_bullet_right;	
-	private static int  ELEMENT_SIZE;
+	ImageIcon origin_bullet_right;
+	private static int ELEMENT_SIZE;
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TABLE_WIDTH = 40;
@@ -50,7 +50,7 @@ public class AiTank extends Tank implements Movable {
 	ImageIcon origin_third_tank_down;
 	ImageIcon origin_third_tank_left;
 	ImageIcon origin_third_tank_right;
-	
+
 	@Override
 	public void moveNext() {
 		if (judgeLimit()) {
@@ -72,78 +72,90 @@ public class AiTank extends Tank implements Movable {
 			}
 		} else
 			setRandomDir();
-	
-	switch(this.HP) {
+
+		switch (this.HP) {
 		case 1:
-			if(this.direction == Tank.UP) {
+			if (this.direction == Tank.UP) {
 				this.j.setIcon(origin_first_tank_up);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.DOWN) {
+			} else if (this.direction == Tank.DOWN) {
 				this.j.setIcon(origin_first_tank_down);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.LEFT) {
+			} else if (this.direction == Tank.LEFT) {
 				this.j.setIcon(origin_first_tank_left);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE,ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.RIGHT) {
+			} else if (this.direction == Tank.RIGHT) {
 				this.j.setIcon(origin_first_tank_right);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
 			}
 			break;
 		case 2:
-			if(this.direction == Tank.UP) {
+			if (this.direction == Tank.UP) {
 				this.j.setIcon(origin_second_tank_up);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.DOWN) {
+			} else if (this.direction == Tank.DOWN) {
 				this.j.setIcon(origin_second_tank_down);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE,ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.LEFT) {
+			} else if (this.direction == Tank.LEFT) {
 				this.j.setIcon(origin_second_tank_left);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.RIGHT) {
+			} else if (this.direction == Tank.RIGHT) {
 				this.j.setIcon(origin_second_tank_right);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
 			}
 			break;
 		case 3:
-			if(this.direction == Tank.UP) {
+			if (this.direction == Tank.UP) {
 				this.j.setIcon(origin_third_tank_up);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.DOWN) {
+			} else if (this.direction == Tank.DOWN) {
 				this.j.setIcon(origin_third_tank_down);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.LEFT) {
+			} else if (this.direction == Tank.LEFT) {
 				this.j.setIcon(origin_third_tank_left);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
-			}else if(this.direction == Tank.RIGHT) {
+			} else if (this.direction == Tank.RIGHT) {
 				this.j.setIcon(origin_third_tank_right);
-				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+				this.j.setBounds(this.getTank_x() * ELEMENT_SIZE, this.getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3,
+						ELEMENT_SIZE * 3);
 				CustomsPass.contentPane.updateUI();
 			}
 			break;
+		}
 	}
-}
 
 	@Override
 	public void onHit() {
 		HP--;
-		if(HP == 0) {
+		if (HP == 0) {
 			CustomsPass.contentPane.remove(j);
 			CustomsPass.winFlag++;
 		}
 		CustomsPass.next();
 		if (HP == 0) {
-			
+
 			CronJobSet.addDelayJob(new CronJob() {
 				@Override
 				public void run() {
@@ -168,37 +180,44 @@ public class AiTank extends Tank implements Movable {
 		}
 		switch (direction) {
 		case Tank.UP:
-			for (int i = 0; i < 4; i++) {
-				a = tank_y - 1;
-				if (Map.ironwall[tank_x + i][a] != 0 || Map.wall[tank_x + i][a] != 0 || Map.water[tank_x + i][a] != 0)
-					return false;
+			for (int i = -1; i < 4; i++) {
+				for (a = -1; a < 4 ; a++) {
+					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
+							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
+						return false;
+				}
 			}
-
 			return true;
 
 		case Tank.DOWN:
-			for (int i = 0; i < 4; i++) {
-				a = tank_y + 1;
-				if (Map.ironwall[tank_x + i][a] != 0 || Map.wall[tank_x + i][a] != 0 || Map.water[tank_x + i][a] != 0)
-					return false;
+			for (int i = -1; i < 4; i++) {
+				for (a = -1; a < 4 ; a++) {
+					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
+							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
+						return false;
+				}
 			}
 
 			return true;
 
 		case Tank.LEFT:
-			for (int i = 0; i < 4; i++) {
-				a = tank_x - 1;
-				if (Map.ironwall[a][tank_y + i] != 0 || Map.wall[a][tank_y + i] != 0 || Map.water[a][tank_y + i] != 0)
-					return false;
+			for (int i = -1; i < 4; i++) {
+				for (a = -1; a < 4 ; a++) {
+					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
+							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
+						return false;
+				}
 			}
 
 			return true;
 
 		case Tank.RIGHT:
-			for (int i = 0; i < 4; i++) {
-				a = tank_x + 1;
-				if (Map.ironwall[a][tank_y + i] != 0 || Map.wall[a][tank_y + i] != 0 || Map.water[a][tank_y + i] != 0)
-					return false;
+			for (int i = -1; i < 4; i++) {
+				for (a = -1; a < 4 ; a++) {
+					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
+							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
+						return false;
+				}
 			}
 
 			return true;
@@ -269,19 +288,20 @@ public class AiTank extends Tank implements Movable {
 		this.initialPainter();
 		this.loadImg();
 		j = new JLabel(origin_third_tank_up);
-		j.setBounds(getTank_x()*ELEMENT_SIZE, getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
+		j.setBounds(getTank_x() * ELEMENT_SIZE, getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
 		CustomsPass.contentPane.add(j);
-		
-		//ThreadCronJob.addJob(this);
+
+		// ThreadCronJob.addJob(this);
 		CronJobSet.addJob(new CronJob() {
 
 			@Override
 			public void run() {
 				moveNext();
 			}
-			
+
 		}, 1000L);
 	}
+
 	public int getTank_x() {
 		return tank_x;
 	}
@@ -321,41 +341,53 @@ public class AiTank extends Tank implements Movable {
 	public void setInitY(int y) {
 		this.initY = y;
 	}
-	
-	public void initialPainter()
-	{
+
+	public void initialPainter() {
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
-		
-		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
+
+		ELEMENT_SIZE = size1 < size2 ? size1 : size2;
 	}
+
 	public void loadImg() {
 		origin_first_tank_up = new ImageIcon("img\\enemy1_up.png");
-		origin_first_tank_up.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_first_tank_up
+				.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_first_tank_down = new ImageIcon("img\\enemy1_down.png");
-		origin_first_tank_down.setImage(origin_first_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_first_tank_down
+				.setImage(origin_first_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_first_tank_left = new ImageIcon("img\\enemy1_left.png");
-		origin_first_tank_left.setImage(origin_first_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_first_tank_left
+				.setImage(origin_first_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_first_tank_right = new ImageIcon("img\\enemy1_right.png");
-		origin_first_tank_right.setImage(origin_first_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		
+		origin_first_tank_right
+				.setImage(origin_first_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+
 		origin_second_tank_up = new ImageIcon("img\\enemy2_up.png");
-		origin_second_tank_up.setImage(origin_second_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_second_tank_up
+				.setImage(origin_second_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_second_tank_down = new ImageIcon("img\\enemy2_down.png");
-		origin_second_tank_down.setImage(origin_second_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_second_tank_down
+				.setImage(origin_second_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_second_tank_left = new ImageIcon("img\\enemy2_left.png");
-		origin_second_tank_left.setImage(origin_second_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_second_tank_left
+				.setImage(origin_second_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_second_tank_right = new ImageIcon("img\\enemy2_right.png");
-		origin_second_tank_right.setImage(origin_second_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		
+		origin_second_tank_right
+				.setImage(origin_second_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+
 		origin_third_tank_up = new ImageIcon("img\\enemy3_up.png");
-		origin_third_tank_up.setImage(origin_third_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_up
+				.setImage(origin_third_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_third_tank_down = new ImageIcon("img\\enemy3_down.png");
-		origin_third_tank_down.setImage(origin_third_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_down
+				.setImage(origin_third_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_third_tank_left = new ImageIcon("img\\enemy3_left.png");
-		origin_third_tank_left.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_left
+				.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 		origin_third_tank_right = new ImageIcon("img\\enemy3_right.png");
-		origin_third_tank_right.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+		origin_third_tank_right
+				.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 	}
 
 }
