@@ -124,7 +124,7 @@ public class CustomsPass extends JFrame {
 		AiTankArray.firstTankNumber = 0;
 		AiTankArray.secondTankNumber = 0;
 		AiTankArray.thirdTankNumber = 0;
-		AiTankArray.choice();
+		//AiTankArray.choice();
 		
 		Map.selectMap();
 		//this.choice();
