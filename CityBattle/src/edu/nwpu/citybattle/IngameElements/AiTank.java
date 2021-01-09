@@ -309,6 +309,7 @@ public class AiTank extends Tank implements Movable {
 		 */
 
 		Random random = new Random();
+
 		switch(random.nextInt(5)){
 			case 0:
 			case 1:
@@ -327,6 +328,7 @@ public class AiTank extends Tank implements Movable {
 						direction = Tank.RIGHT;
 						break;
 				}
+				break;
 			case 3:
 				direction = Tank.STOP;
 			case 4:
@@ -336,10 +338,6 @@ public class AiTank extends Tank implements Movable {
 				direction = Tank.STOP;
 				break;
 		}
-
-		CronJobSet.addDelayJob(() -> {
-			AiTank.this.setRandomDir();
-		},1500L);
 	}
 
 	public AiTank(int tank_x, int tank_y, int direction, int HP) {
@@ -361,8 +359,9 @@ public class AiTank extends Tank implements Movable {
 		CustomsPass.contentPane.add(j);
 
 		// Change random direction and randomly shoot bullet
-		CronJobSet.addDelayJob((CronJob) () -> setRandomDir(), 1500L);
+		CronJobSet.addJob(() -> setRandomDir(), 1500L);
 		ThreadCronJob.addJob(this);
+		System.out.println(this.toString() + " Created");
 	}
 
 	public int getTank_x() {

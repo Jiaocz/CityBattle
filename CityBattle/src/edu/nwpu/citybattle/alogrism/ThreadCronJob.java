@@ -169,17 +169,17 @@ public final class ThreadCronJob extends CronJobSet {
 		
 		if(tank == null || tank.getState() != Thread.State.NEW) {
 			tank = null;
-			tank = new BulletThread();
+			tank = new TankThread();
 		}
 		
 		if(map == null || map.getState() != Thread.State.NEW) {
 			map = null;
-			map = new BulletThread();
+			map = new MapThread();
 		}
 		
-		if(bullet.getState() == Thread.State.NEW) bullet.start();
-		if(tank.getState() == Thread.State.NEW) tank.start();
-		if(map.getState() == Thread.State.NEW) map.start();
+		/* if(bullet.getState() == Thread.State.NEW) */ bullet.start();
+		/* if(tank.getState() == Thread.State.NEW) */ tank.start();
+		// /* if(map.getState() == Thread.State.NEW) */ map.start();
 	}
 	
 	/**
