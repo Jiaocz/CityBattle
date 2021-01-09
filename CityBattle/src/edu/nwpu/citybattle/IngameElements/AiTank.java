@@ -25,7 +25,7 @@ public class AiTank extends Tank implements Movable {
 	 */
 	private int initX;
 	private int initY;
-
+	private int initHP;//记录初始值
 	private int speed = 1;
 
 	public JLabel j;
@@ -148,6 +148,13 @@ public class AiTank extends Tank implements Movable {
 	public void onHit() {
 		HP--;
 		if (HP == 0) {
+			if(initHP == 1) {
+				AiTankArray.firstTankNumber++;
+			}else if(initHP == 2) {
+				AiTankArray.secondTankNumber++;
+			}else if(initHP == 3) {
+				AiTankArray.thirdTankNumber++;
+			}
 			CustomsPass.contentPane.remove(j);
 			CustomsPass.winFlag++;
 		}
@@ -159,7 +166,7 @@ public class AiTank extends Tank implements Movable {
 				public void run() {
 					tank_x = initX;
 					tank_y = initY;
-					HP = 3;
+					HP = initHP;//回到最初的HP的值
 					CustomsPass.contentPane.add(j);
 				}
 			}, 2000L);
@@ -305,6 +312,7 @@ public class AiTank extends Tank implements Movable {
 		this.tank_y = tank_y;
 		this.direction = direction;
 		this.HP = HP;
+		this.initHP = HP;//记录初始值
 
 		initX = tank_x;
 		initY = tank_y;
@@ -346,7 +354,9 @@ public class AiTank extends Tank implements Movable {
 	public int getInitY() {
 		return this.initY;
 	}
-
+	public int getInitHP() {
+		return this.initHP;
+	}
 	public void setHP() {
 		this.HP = 3;
 	}

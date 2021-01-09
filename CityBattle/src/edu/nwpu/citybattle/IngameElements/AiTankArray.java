@@ -17,37 +17,45 @@ import UI.Choice;
 public class AiTankArray {
 
 	public static final ArrayList<AiTank> aiTank = new ArrayList<AiTank>();
-
+	//记录击毙的各种坦克的数量
+	public static int firstTankNumber;
+	public static int secondTankNumber;
+	public static int thirdTankNumber;
+	{
+		firstTankNumber = 0;
+		secondTankNumber = 0;
+		thirdTankNumber = 0;
+	}
 	/**
 	 *按地图绘制AiTank
 	 */
 	public static void choice() {
 		if(Choice.mapNumber == 1) {
-			new AiTank(15,20,Tank.DOWN,3);
-			new AiTank(35,1,Tank.RIGHT,3);
+			new AiTank(15,20,Tank.DOWN,1);
+			new AiTank(35,1,Tank.RIGHT,2);
 			new AiTank(4,20,Tank.DOWN,3);
 		}
 		
 		if(Choice.mapNumber == 2) {
-			new AiTank(20,1,Tank.RIGHT,3);
-			new AiTank(50,1,Tank.DOWN,3);
+			new AiTank(20,1,Tank.RIGHT,1);
+			new AiTank(50,1,Tank.DOWN,2);
 			new AiTank(50,29,Tank.DOWN,3);
 			new AiTank(1,30,Tank.DOWN,3);
 		}
 		
 		if(Choice.mapNumber == 3) {
-			new AiTank(1,1,Tank.DOWN,3);
-			new AiTank(50,1,Tank.RIGHT,3);
-			new AiTank(1,20,Tank.DOWN,3);
+			new AiTank(1,1,Tank.DOWN,1);
+			new AiTank(50,1,Tank.RIGHT,2);
+			new AiTank(1,20,Tank.DOWN,2);
 			new AiTank(1,27,Tank.DOWN,3);
 			new AiTank(50,35,Tank.DOWN,3);
 		}
 		
 		if(Choice.mapNumber == 4) {
-			new AiTank(1,1,Tank.RIGHT,3);
-			new AiTank(40,1,Tank.RIGHT,3);
+			new AiTank(1,1,Tank.RIGHT,1);
+			new AiTank(40,1,Tank.RIGHT,2);
 			new AiTank(1,27,Tank.DOWN,3);
-			new AiTank(52,18,Tank.DOWN,3);
+			new AiTank(52,18,Tank.DOWN,2);
 			new AiTank(13,8,Tank.DOWN,3);
 		}
 	

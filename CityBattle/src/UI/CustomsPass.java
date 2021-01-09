@@ -119,6 +119,11 @@ public class CustomsPass extends JFrame {
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
 
+		//重置AI坦克数组
+		AiTankArray.aiTank.clear();
+		AiTankArray.firstTankNumber = 0;
+		AiTankArray.secondTankNumber = 0;
+		AiTankArray.thirdTankNumber = 0;
 		
 		Map.selectMap();
 		//this.choice();
