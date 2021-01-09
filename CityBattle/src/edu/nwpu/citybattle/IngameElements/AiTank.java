@@ -168,7 +168,7 @@ public class AiTank extends Tank implements Movable {
 		}
 		switch (direction) {
 		case Tank.UP:
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 4; i++) {
 				a = tank_y - 1;
 				if (Map.ironwall[tank_x + i][a] != 0 || Map.wall[tank_x + i][a] != 0 || Map.water[tank_x + i][a] != 0)
 					return false;
@@ -177,7 +177,7 @@ public class AiTank extends Tank implements Movable {
 			return true;
 
 		case Tank.DOWN:
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 4; i++) {
 				a = tank_y + 1;
 				if (Map.ironwall[tank_x + i][a] != 0 || Map.wall[tank_x + i][a] != 0 || Map.water[tank_x + i][a] != 0)
 					return false;
@@ -186,7 +186,7 @@ public class AiTank extends Tank implements Movable {
 			return true;
 
 		case Tank.LEFT:
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 4; i++) {
 				a = tank_x - 1;
 				if (Map.ironwall[a][tank_y + i] != 0 || Map.wall[a][tank_y + i] != 0 || Map.water[a][tank_y + i] != 0)
 					return false;
@@ -195,7 +195,7 @@ public class AiTank extends Tank implements Movable {
 			return true;
 
 		case Tank.RIGHT:
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 4; i++) {
 				a = tank_x + 1;
 				if (Map.ironwall[a][tank_y + i] != 0 || Map.wall[a][tank_y + i] != 0 || Map.water[a][tank_y + i] != 0)
 					return false;
