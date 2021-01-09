@@ -56,22 +56,18 @@ public class AiTank extends Tank implements Movable {
 		if (judgeLimit()) {
 			if (direction == Tank.DOWN) {
 				tank_y += speed;
-				setRandomDir();
 			}
 			if (direction == Tank.UP) {
 				tank_y -= speed;
-				setRandomDir();
 			}
 			if (direction == Tank.LEFT) {
 				tank_x -= speed;
-				setRandomDir();
 			}
 			if (direction == Tank.RIGHT) {
 				tank_x += speed;
-				setRandomDir();
 			}
-		} else
-			setRandomDir();
+		}
+
 
 		switch (this.HP) {
 		case 1:
@@ -144,6 +140,8 @@ public class AiTank extends Tank implements Movable {
 			}
 			break;
 		}
+		// Change Direction after Paint the Tank.
+		setRandomDir();
 	}
 
 	@Override
@@ -172,18 +170,36 @@ public class AiTank extends Tank implements Movable {
 	private boolean judgeLimit() {
 		int a;
 
+		/*
 		if (tank_x <= 1 || tank_x >= 53) {
 			return false;
 		}
 		if (tank_y <= 1 || tank_y >= 37) {
 			return false;
 		}
+		*/
+		switch(direction){
+			case Tank.UP:
+				if(tank_y == 0) return false;
+				break;
+			case Tank.LEFT:
+				if(tank_x == 0) return false;
+				break;
+			case Tank.RIGHT:
+				if(tank_x + 3 > 56) return false;
+				break;
+			case Tank.DOWN:
+				if(tank_y + 3 > 40) return false;
+				break;
+		}
+
+
 		switch (direction) {
 		case Tank.UP:
 
 			for (a = 0; a < 3; a++) {
 				if (Map.ironwall[tank_x + a][tank_y - 1] != 0 || Map.wall[tank_x + a][tank_y - 1] != 0
-						|| Map.water[tank_x + a][tank_y - 1] != 0 || Map.grass[tank_x + a][tank_y - 1] != 0)
+						|| Map.water[tank_x + a][tank_y - 1] != 0)
 					return false;
 			}
 
@@ -191,8 +207,8 @@ public class AiTank extends Tank implements Movable {
 
 		case Tank.DOWN:
 			for (a = 0; a < 3; a++) {
-				if (Map.ironwall[tank_x + a][tank_y + 1] != 0 || Map.wall[tank_x + a][tank_y + 1] != 0
-						|| Map.water[tank_x + a][tank_y + 1] != 0 || Map.grass[tank_x + a][tank_y + 1] != 0)
+				if (Map.ironwall[tank_x + a][tank_y + 3] != 0 || Map.wall[tank_x + a][tank_y + 3] != 0
+						|| Map.water[tank_x + a][tank_y + 3] != 0 )
 					return false;
 			}
 			return true;
@@ -201,7 +217,7 @@ public class AiTank extends Tank implements Movable {
 
 			for (a = 0; a < 3; a++) {
 				if (Map.ironwall[tank_x - 1][tank_y + a] != 0 || Map.wall[tank_x - 1][tank_y + a] != 0
-						|| Map.water[tank_x - 1][tank_y + a] != 0 || Map.grass[tank_x - 1][tank_y + a] != 0)
+						|| Map.water[tank_x - 1][tank_y + a] != 0)
 					return false;
 			}
 
@@ -209,8 +225,8 @@ public class AiTank extends Tank implements Movable {
 
 		case Tank.RIGHT:
 			for (a = 0; a < 3; a++) {
-				if (Map.ironwall[tank_x + 1][tank_y + a] != 0 || Map.wall[tank_x + 1][tank_y + a] != 0
-						|| Map.water[tank_x + 1][tank_y + a] != 0 || Map.grass[tank_x + 1][tank_y + a] != 0)
+				if (Map.ironwall[tank_x + 3][tank_y + a] != 0 || Map.wall[tank_x + 3][tank_y + a] != 0
+						|| Map.water[tank_x + 3][tank_y + a] != 0)
 					return false;
 			}
 
@@ -225,10 +241,25 @@ public class AiTank extends Tank implements Movable {
 
 	@Override
 	public Bullet shootBullet() {
+		/*
 		int x = this.tank_x + 2;
 		int y = this.tank_y + 2;
 		int direction = this.direction;
 		return new Bullet(x, y, direction);
+		*/
+
+		switch(direction){
+			case Tank.UP:
+				return new Bullet(tank_x+1, tank_y,Bullet.UP);
+			case Tank.DOWN:
+				return new Bullet(tank_x+1, tank_y+2,Bullet.DOWN);
+			case Tank.LEFT:
+				return new Bullet(tank_x, tank_y+1, Bullet.LEFT);
+			case Tank.RIGHT:
+				return new Bullet(tank_x+1, tank_y+1, Bullet.RIGHT);
+			default:
+				return null;
+		}
 	}
 
 	private void setRandomDir() {
@@ -293,7 +324,7 @@ public class AiTank extends Tank implements Movable {
 				moveNext();
 			}
 
-		}, 1000L);
+		}, 100L);
 	}
 
 	public int getTank_x() {
