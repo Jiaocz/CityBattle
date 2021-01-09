@@ -1,5 +1,6 @@
 package edu.nwpu.citybattle.IngameElements;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -270,7 +271,7 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	private void setRandomDir() {
-
+		/*
 		boolean f = false;
 
 		while (f == false) {
@@ -304,6 +305,41 @@ public class AiTank extends Tank implements Movable {
 			}
 
 		}
+
+		 */
+
+		Random random = new Random();
+		switch(random.nextInt(5)){
+			case 0:
+			case 1:
+			case 2:
+				switch(random.nextInt(4)){
+					case 1:
+						direction = Tank.UP;
+						break;
+					case 2:
+						direction = Tank.DOWN;
+						break;
+					case 3:
+						direction = Tank.LEFT;
+						break;
+					default:
+						direction = Tank.RIGHT;
+						break;
+				}
+			case 3:
+				direction = Tank.STOP;
+			case 4:
+				this.shootBullet();
+				break;
+			default:
+				direction = Tank.STOP;
+				break;
+		}
+
+		CronJobSet.addDelayJob(() -> {
+			AiTank.this.setRandomDir();
+		},1500L);
 	}
 
 	public AiTank(int tank_x, int tank_y, int direction, int HP) {
@@ -324,15 +360,9 @@ public class AiTank extends Tank implements Movable {
 		j.setBounds(getTank_x() * ELEMENT_SIZE, getTank_y() * ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
 		CustomsPass.contentPane.add(j);
 
-		// ThreadCronJob.addJob(this);
-		CronJobSet.addJob(new CronJob() {
-
-			@Override
-			public void run() {
-				moveNext();
-			}
-
-		}, 100L);
+		// Change random direction and randomly shoot bullet
+		CronJobSet.addDelayJob((CronJob) () -> setRandomDir(), 1500L);
+		ThreadCronJob.addJob(this);
 	}
 
 	public int getTank_x() {
@@ -423,6 +453,41 @@ public class AiTank extends Tank implements Movable {
 		origin_third_tank_right = new ImageIcon("img\\enemy3_right.png");
 		origin_third_tank_right
 				.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
+	}
+
+	/**
+	 * 完全删除一个指定的坦克对象在坦克在表中和线程中的引用
+	 *
+	 * @param tank 需要删除的坦克
+	 * @return 是否删除成功
+	 */
+	public static boolean remove(AiTank tank){
+		if(AiTankArray.aiTank.contains(tank)){
+			return AiTankArray.aiTank.remove(tank) && ThreadCronJob.removeJob(tank);
+		}
+		else
+			return false;
+	}
+
+	/**
+	 * 完全删除一个制定的坦克对象的线程及其在列表中的引用
+	 *
+	 * @return 是否成功删除
+	 */
+	public boolean remove(){
+		return AiTank.remove(this);
+	}
+
+	/**
+	 * 删除所有坦克示例。
+	 */
+	public static void removeAllTank(){
+		Iterator<AiTank> iterator = AiTankArray.aiTank.iterator();
+		while(iterator.hasNext()){
+			ThreadCronJob.removeJob(iterator.next());
+		}
+		AiTankArray.aiTank.clear();
+
 	}
 
 }
