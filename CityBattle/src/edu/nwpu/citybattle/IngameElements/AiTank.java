@@ -180,44 +180,38 @@ public class AiTank extends Tank implements Movable {
 		}
 		switch (direction) {
 		case Tank.UP:
-			for (int i = -1; i < 4; i++) {
-				for (a = -1; a < 4 ; a++) {
-					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
-							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
-						return false;
-				}
+
+			for (a = 0; a < 3; a++) {
+				if (Map.ironwall[tank_x + a][tank_y - 1] != 0 || Map.wall[tank_x + a][tank_y - 1] != 0
+						|| Map.water[tank_x + a][tank_y - 1] != 0 || Map.grass[tank_x + a][tank_y - 1] != 0)
+					return false;
 			}
+
 			return true;
 
 		case Tank.DOWN:
-			for (int i = -1; i < 4; i++) {
-				for (a = -1; a < 4 ; a++) {
-					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
-							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
-						return false;
-				}
+			for (a = 0; a < 3; a++) {
+				if (Map.ironwall[tank_x + a][tank_y + 1] != 0 || Map.wall[tank_x + a][tank_y + 1] != 0
+						|| Map.water[tank_x + a][tank_y + 1] != 0 || Map.grass[tank_x + a][tank_y + 1] != 0)
+					return false;
 			}
-
 			return true;
 
 		case Tank.LEFT:
-			for (int i = -1; i < 4; i++) {
-				for (a = -1; a < 4 ; a++) {
-					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
-							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
-						return false;
-				}
+
+			for (a = 0; a < 3; a++) {
+				if (Map.ironwall[tank_x - 1][tank_y + a] != 0 || Map.wall[tank_x - 1][tank_y + a] != 0
+						|| Map.water[tank_x - 1][tank_y + a] != 0 || Map.grass[tank_x - 1][tank_y + a] != 0)
+					return false;
 			}
 
 			return true;
 
 		case Tank.RIGHT:
-			for (int i = -1; i < 4; i++) {
-				for (a = -1; a < 4 ; a++) {
-					if (Map.ironwall[tank_x + a][tank_y + i] != 0 || Map.wall[tank_x + a][tank_y + i] != 0
-							|| Map.water[tank_x + a][tank_y + i] != 0 || Map.grass[tank_x + a][tank_y + i] != 0)
-						return false;
-				}
+			for (a = 0; a < 3; a++) {
+				if (Map.ironwall[tank_x + 1][tank_y + a] != 0 || Map.wall[tank_x + 1][tank_y + a] != 0
+						|| Map.water[tank_x + 1][tank_y + a] != 0 || Map.grass[tank_x + 1][tank_y + a] != 0)
+					return false;
 			}
 
 			return true;
