@@ -35,11 +35,15 @@ public final class ThreadCronJob extends CronJobSet {
 		}
 		// 需要执行的对象
 		public static ArrayList<Movable> bullets = new ArrayList<Movable>();
-		public static Timer timer = new Timer();
+		public static Timer timer;
+		TimerTask running;
 		
 		@Override
 		public void run() {
-			timer.schedule(new Running(), 0, FreshRate);
+			running = null;
+			running = new Running();
+			timer = null;
+			(timer = new Timer()).schedule(running, 0, FreshRate);
 		}
 	}
 	// 坦克线程存储类
@@ -47,7 +51,8 @@ public final class ThreadCronJob extends CronJobSet {
 		// 需要执行的对象
 		public static ArrayList<Movable> tanks = new ArrayList<Movable>();
 		public static ArrayList<Long> tanks_last = new ArrayList<Long>();
-		public static Timer timer = new Timer();
+		public static Timer timer;
+		TimerTask running;
 		// 定时用的类
 		private class Running extends TimerTask {
 			@Override
@@ -63,7 +68,10 @@ public final class ThreadCronJob extends CronJobSet {
 		// 定时执行
 		@Override
 		public void run() {
-			timer.schedule(new Running(), 0, FreshRate);
+			running = null;
+			running = new Running();
+			timer = null;
+			(timer = new Timer()).schedule(running, 0, FreshRate);
 		}
 	}
 	// 地图刷新线程
@@ -71,7 +79,8 @@ public final class ThreadCronJob extends CronJobSet {
 		
 		public static Runnable map;
 		public static Long lastTime;
-		public static Timer timer = new Timer();
+		public static Timer timer;
+		TimerTask running;
 		
 		private class Running extends TimerTask {
 			@Override
@@ -85,7 +94,10 @@ public final class ThreadCronJob extends CronJobSet {
 		
 		@Override
 		public void run() {
-			timer.schedule(new Running(), 0, FreshRate);
+			running = null;
+			running = new Running();
+			timer = null;
+			(timer = new Timer()).schedule(running, 0, FreshRate);
 		}
 	}
 	
