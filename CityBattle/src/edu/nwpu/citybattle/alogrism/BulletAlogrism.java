@@ -110,7 +110,6 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 * 本方法用于获取本类唯一对象，且需要在第一次使用时确定子弹类型并传入泛型以获取正确类型返回值<br />
 	 * 
 	 * @since 1.0.0
-	 * @param <Bullet> 第一次调用时确定子弹类型
 	 * @return 单一实例
 	 * @see BulletAlogrism
 	 */
