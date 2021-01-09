@@ -49,7 +49,6 @@ public class CustomsPass extends JFrame {
 		
 	}
 	public static MyTank myTank;
-	//Bullet bullet;
 	JLabel background;
 	JLabel wall;
 	JLabel water;
@@ -122,7 +121,7 @@ public class CustomsPass extends JFrame {
 
 		
 		Map.selectMap();
-		this.choice();
+		//this.choice();
 		customspass = this;
 		myTank = new MyTank();
 		draw = new DrawAll(myTank,contentPane);
@@ -140,6 +139,7 @@ public class CustomsPass extends JFrame {
 	 				contentPane.updateUI();
 	 			}
 		}, 1);
+		this.choice();
 		//contentPane.repaint();
 		BulletAlogrism.initAlogrism(Map.wall, Map.ironwall, AiTankArray.aiTank, myTank);
 		CronJobSet.startCronJob();
