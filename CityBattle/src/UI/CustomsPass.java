@@ -124,6 +124,7 @@ public class CustomsPass extends JFrame {
 		//this.choice();
 		customspass = this;
 		myTank = new MyTank();
+		//Map.selectMap();
 		draw = new DrawAll(myTank,contentPane);
 		CronJobSet.addJob(new CronJob() {
 	 			public void run() {
@@ -213,11 +214,37 @@ public class CustomsPass extends JFrame {
 		//}
 	}
 	public static void next() {
-		if(winFlag == 5) {
+		switch(Choice.mapNumber) {
+			case 1:
+				if(winFlag == 4) {
+					Victory	victory = new Victory();			
+					victory.setVisible(true);
+					customspass.dispose();
+				}
+			case 2:
+				if(winFlag == 6) {
+					Victory	victory = new Victory();			
+					victory.setVisible(true);
+					customspass.dispose();
+				}
+			case 3:
+				if(winFlag == 8) {
+					Victory	victory = new Victory();			
+					victory.setVisible(true);
+					customspass.dispose();
+				}
+			case 4:
+				if(winFlag == 10) {
+					AllVictory	allvictory = new AllVictory();			
+					allvictory.setVisible(true);
+					customspass.dispose();
+				}
+		}
+		/*if(winFlag == 5) {
 		Victory	victory = new Victory();			
 		victory.setVisible(true);
 		customspass.dispose();
-		}
+		}*/
 	}
 	public static void isLose() {
 		Lose lose = new Lose();			

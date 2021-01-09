@@ -18,6 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import edu.nwpu.citybattle.TankMap.Map;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -114,7 +117,9 @@ public class Victory extends JFrame {
 		btnNewButton_diy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				mapNumber = mapNumber+1;
+				Choice.mapNumber = Choice.mapNumber+1;
+				Map.selectMap();
+				System.out.println("µÚ¼¸¹Ø£º"+Choice.mapNumber);
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
