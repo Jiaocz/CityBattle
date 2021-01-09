@@ -206,10 +206,11 @@ public class CustomsPass extends JFrame {
 				});
 	}
 	public void choice() {
+		AiTankArray.choice();
 		//if(Choice.mapNumber == 1) {
-			new AiTank(4,30,Tank.RIGHT,3);
-			new AiTank(33,15,Tank.LEFT,1);
-			new AiTank(18,3,Tank.DOWN,2);
+//			new AiTank(4,30,Tank.RIGHT,3);
+//			new AiTank(33,15,Tank.LEFT,1);
+//			new AiTank(18,3,Tank.DOWN,2);
 			//new AiTank(22,4,Tank.UP,2);
 		//}
 	}

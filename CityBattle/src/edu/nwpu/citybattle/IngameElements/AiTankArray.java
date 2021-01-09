@@ -21,11 +21,11 @@ public class AiTankArray {
 	/**
 	 *∞¥µÿÕºªÊ÷∆AiTank
 	 */
-	public void choice() {
+	public static void choice() {
 		if(Choice.mapNumber == 1) {
-			new AiTank(1,30,Tank.DOWN,3);
+			new AiTank(15,20,Tank.DOWN,3);
 			new AiTank(35,1,Tank.RIGHT,3);
-			new AiTank(1,45,Tank.DOWN,3);
+			new AiTank(4,20,Tank.DOWN,3);
 		}
 		
 		if(Choice.mapNumber == 2) {
