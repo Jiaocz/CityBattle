@@ -72,9 +72,11 @@ public class AiTank extends Tank implements Movable {
 			}
 		} else
 			setRandomDir();
-		
+	/**
+	 * 判断AiTank现在的方向做出判断
+	 */
 	switch(this.HP) {
-		case 1://锟斤拷一锟斤拷坦锟斤拷
+		case 1:
 			if(this.direction == Tank.UP) {
 				this.j.setIcon(origin_first_tank_up);
 				this.j.setBounds(this.getTank_x()*ELEMENT_SIZE, this.getTank_y()*ELEMENT_SIZE, ELEMENT_SIZE * 3, ELEMENT_SIZE * 3);
@@ -160,15 +162,15 @@ public class AiTank extends Tank implements Movable {
 	private boolean judgeLimit() {
 		int a;
 
-		if (tank_x <= 0 || tank_x >= 52) {
+		if (tank_x <= 1 || tank_x >= 53) {
 			return false;
 		}
-		if (tank_y <= 0 || tank_y >= 36) {
+		if (tank_y <= 1 || tank_y >= 37) {
 			return false;
 		}
 		switch (direction) {
 		case Tank.UP:
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 3; i++) {
 				a = tank_y - 1;
 				if (Map.ironwall[tank_x + i][a] != 0 && Map.wall[tank_x + i][a] != 0 && Map.water[tank_x + i][a] != 0)
 					return false;
@@ -177,7 +179,7 @@ public class AiTank extends Tank implements Movable {
 			return true;
 
 		case Tank.DOWN:
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 3; i++) {
 				a = tank_y + 1;
 				if (Map.ironwall[tank_x + i][a] != 0 && Map.wall[tank_x + i][a] != 0 && Map.water[tank_x + i][a] != 0)
 					return false;
@@ -186,7 +188,7 @@ public class AiTank extends Tank implements Movable {
 			return true;
 
 		case Tank.LEFT:
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 3; i++) {
 				a = tank_x - 1;
 				if (Map.ironwall[a][tank_y + i] != 0 && Map.wall[a][tank_y + i] != 0 && Map.water[a][tank_y + i] != 0)
 					return false;
@@ -195,7 +197,7 @@ public class AiTank extends Tank implements Movable {
 			return true;
 
 		case Tank.RIGHT:
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 3; i++) {
 				a = tank_x + 1;
 				if (Map.ironwall[a][tank_y + i] != 0 && Map.wall[a][tank_y + i] != 0 && Map.water[a][tank_y + i] != 0)
 					return false;
