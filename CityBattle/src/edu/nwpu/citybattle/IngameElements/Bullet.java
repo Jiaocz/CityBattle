@@ -98,7 +98,6 @@ public class Bullet implements Movable {
 				j = new JLabel(origin_bullet_left);
 				
 				j.setBounds(this.pos_x*ELEMENT_SIZE, this.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
-				System.out.println(j == null);
 				break;
 			default:
 				break;	
