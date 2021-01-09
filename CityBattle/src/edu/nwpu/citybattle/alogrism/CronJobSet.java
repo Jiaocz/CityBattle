@@ -87,7 +87,7 @@ public class CronJobSet extends TimerTask {
 	 * @since 1.0.0
 	 */
 	public static void startCronJob() {
-		
+		System.out.println("[DEBUG] CronJob started : " + (new java.text.SimpleDateFormat()).format(new java.util.Date()));
 		(timer = new Timer()).schedule(instance_.new Crons(), 0, FreshRate);
 	}
 
@@ -98,6 +98,7 @@ public class CronJobSet extends TimerTask {
 	 * @since 1.0.0
 	 */
 	public static void stopCronJob() {
+		System.out.println("[DEBUG] CronJob stoped : " + (new java.text.SimpleDateFormat()).format(new java.util.Date()));
 		timer.cancel();
 		timer.purge();
 		timer = null;

@@ -142,7 +142,7 @@ public class AiTank extends Tank implements Movable {
 			break;
 		}
 		// Change Direction after Paint the Tank.
-		setRandomDir();
+		//setRandomDir();
 	}
 
 	@Override
@@ -359,7 +359,7 @@ public class AiTank extends Tank implements Movable {
 		CustomsPass.contentPane.add(j);
 
 		// Change random direction and randomly shoot bullet
-		CronJobSet.addJob(() -> setRandomDir(), 1500L);
+		CronJobSet.addJob(() -> AiTank.this.setRandomDir(), 200L);
 		ThreadCronJob.addJob(this);
 		System.out.println(this.toString() + " Created");
 	}

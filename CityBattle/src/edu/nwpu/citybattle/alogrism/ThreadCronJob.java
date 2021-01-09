@@ -176,6 +176,8 @@ public final class ThreadCronJob extends CronJobSet {
 			map = null;
 			map = new MapThread();
 		}
+
+		System.out.println("[DEBUG] Thread started : " + (new java.text.SimpleDateFormat()).format(new java.util.Date()));
 		
 		/* if(bullet.getState() == Thread.State.NEW) */ bullet.start();
 		/* if(tank.getState() == Thread.State.NEW) */ tank.start();
@@ -200,10 +202,16 @@ public final class ThreadCronJob extends CronJobSet {
 		MapThread.timer.cancel();
 		MapThread.timer.purge();
 		map.stop();
+
+		System.out.println("[DEBUG] Thread stop : " + (new java.text.SimpleDateFormat()).format(new java.util.Date()));
 	}
 	
 	public static void main(String[] args) {
 		ThreadCronJob.start();
+		ThreadCronJob.start();
+		ThreadCronJob.stop();
+		ThreadCronJob.start();
+		ThreadCronJob.stop();
 	}
 	
 }
