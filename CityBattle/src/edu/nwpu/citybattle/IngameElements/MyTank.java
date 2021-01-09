@@ -3,6 +3,7 @@
  */
 package edu.nwpu.citybattle.IngameElements;
 
+import UI.CustomsPass;
 import edu.nwpu.citybattle.TankMap.*;
 /**
  * 己方坦克类，由玩家控制
@@ -39,7 +40,7 @@ public class MyTank extends Tank {
 		if(direction == UP)
 			return new Bullet(tank_x+1,tank_y,Bullet.UP);
 		if(direction==DOWN)
-			return new Bullet(tank_x+1,tank_y+2,Bullet.DOWN);
+			return new Bullet(tank_x+1,tank_y+1,Bullet.DOWN);
 		if(direction==LEFT)
 			return new Bullet(tank_x,tank_y+1,Bullet.LEFT);
 		if(direction==RIGHT)
@@ -161,6 +162,9 @@ public class MyTank extends Tank {
 	 */
 	public void onHit() {
 		HP--;
+		if(this.HP == 0) {
+			CustomsPass.isLose();
+		}
 	}
 	
 	/**

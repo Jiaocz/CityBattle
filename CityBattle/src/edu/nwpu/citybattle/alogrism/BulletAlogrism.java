@@ -164,7 +164,10 @@ public class BulletAlogrism<BulletClass extends Bullet> {
 	 */
 	public void isHitting(BulletClass b) {
 		if(!hasData) throw new NoGameDataException("未传入游戏参数");
-		
+		//触碰home，判输
+		if(b.pos_x >= 26&&b.pos_x <= 28&&b.pos_y >= 36&&b.pos_y <=39) {
+			CustomsPass.isLose();
+		}
 		// 触碰边界
 		switch (b.direction) {
 		case Bullet.UP:
