@@ -463,6 +463,7 @@ public class AiTank extends Tank implements Movable {
 	 */
 	public static boolean remove(AiTank tank){
 		if(AiTankArray.aiTank.contains(tank)){
+			tank.j.setVisible(false);
 			return AiTankArray.aiTank.remove(tank) && ThreadCronJob.removeJob(tank);
 		}
 		else
@@ -484,7 +485,9 @@ public class AiTank extends Tank implements Movable {
 	public static void removeAllTank(){
 		Iterator<AiTank> iterator = AiTankArray.aiTank.iterator();
 		while(iterator.hasNext()){
-			ThreadCronJob.removeJob(iterator.next());
+			AiTank ai = iterator.next();
+			ThreadCronJob.removeJob(ai);
+			ai.j.setVisible(false);
 		}
 		AiTankArray.aiTank.clear();
 
