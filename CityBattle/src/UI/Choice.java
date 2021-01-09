@@ -58,7 +58,7 @@ public class Choice extends JFrame {
 	 * Create the frame.
 	 */
 	public Choice() {
-		super("坦克大战choice");
+		super("坦克大战");
 		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
