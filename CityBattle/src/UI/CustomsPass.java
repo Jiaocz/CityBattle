@@ -227,24 +227,28 @@ public class CustomsPass extends JFrame {
 					Victory	victory = new Victory();			
 					victory.setVisible(true);
 					customspass.dispose();
+					ThreadCronJob.stop();
 				}
 			case 2:
 				if(winFlag == 6) {
 					Victory	victory = new Victory();			
 					victory.setVisible(true);
 					customspass.dispose();
+					ThreadCronJob.stop();
 				}
 			case 3:
 				if(winFlag == 8) {
 					Victory	victory = new Victory();			
 					victory.setVisible(true);
 					customspass.dispose();
+					ThreadCronJob.stop();
 				}
 			case 4:
 				if(winFlag == 10) {
 					AllVictory	allvictory = new AllVictory();			
 					allvictory.setVisible(true);
 					customspass.dispose();
+					ThreadCronJob.stop();
 				}
 		}
 		/*if(winFlag == 5) {
@@ -256,6 +260,7 @@ public class CustomsPass extends JFrame {
 	public static void isLose() {
 		Lose lose = new Lose();			
 		lose.setVisible(true);
+		ThreadCronJob.stop();
 		customspass.dispose();
 	}
 	/*public void loadImg() {
