@@ -4,6 +4,7 @@
 package edu.nwpu.citybattle.IngameElements;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 import javax.swing.ImageIcon;
@@ -156,6 +157,13 @@ public class Bullet implements Movable {
 	public boolean remove() {
 		CustomsPass.contentPane.remove(this.j);
 		return Bullet.Bullets.remove(this) && ThreadCronJob.removeJob(this);
+	}
+	
+	public static void removeAllBullets() {
+		Iterator<Bullet> iterator = Bullets.iterator();
+		while(iterator.hasNext()) {
+			Bullet.remove(iterator.next());
+		}
 	}
 
 	public void initialPainter()
