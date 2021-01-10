@@ -157,6 +157,8 @@ public class AiTank extends Tank implements Movable {
 			}else if(initHP == 3) {
 				AiTankArray.thirdTankNumber++;
 			}
+			super.tank_x = 0;
+			super.tank_y = 0;
 			CustomsPass.contentPane.remove(j);
 			CustomsPass.winFlag++;
 		}
