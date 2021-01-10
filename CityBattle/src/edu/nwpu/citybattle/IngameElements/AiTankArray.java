@@ -58,6 +58,12 @@ public class AiTankArray {
 			new AiTank(52,18,Tank.DOWN,2);
 			new AiTank(13,8,Tank.DOWN,3);
 		}
+		if(Choice.mapNumber == 5) {
+			new AiTank(1,1,Tank.RIGHT,1);
+			new AiTank(50,1,Tank.RIGHT,2);
+			new AiTank(1,36,Tank.DOWN,3);
+			new AiTank(50,36,Tank.DOWN,2);
+		}
 	
 	}
 }

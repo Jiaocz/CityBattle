@@ -1,6 +1,6 @@
 package UI;
 import java.awt.Color;
-
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -8,8 +8,11 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -165,12 +168,46 @@ public class CustomsPass extends JFrame {
 		lblNewLabel1.setBounds(830, 0, 108, 74);
 		contentPane.add(lblNewLabel1);
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\Right.png");
+		ImageIcon icon_JLabel_B = new ImageIcon("img\\Right3.png");
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(785, 0, 200, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
+//		/*
+//		 * 返回按键
+//		 */
+//		ImageIcon icon_JLabel_Back = new ImageIcon("img\\Return.png");
+//		JLabel lblNewLabel_Back  = new JLabel(icon_JLabel_Back);
+//		lblNewLabel_Back.setBounds(785, 0, 200, 600);
+//		icon_JLabel_Back.setImage(icon_JLabel_Back.getImage().getScaledInstance(200, 600, 0));
+//		contentPane.add(lblNewLabel_Back);
+//		lblNewLabel_Back.setIcon(icon_JLabel_Back);
+//		JButton btnNewButton_begin = new JButton("");
+//		btnNewButton_begin.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+////				dispose();
+//				Choice choice = new Choice();			
+//				choice.setVisible(true);
+//				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//				dispose();
+//			}
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//			}
+//			@Override
+//			public void mouseExited(MouseEvent e) {
+//				setCursor(Cursor.getDefaultCursor());
+//			}
+//		});
+//		ImageIcon icon_JButton_begin = new ImageIcon("img\\Return.png");
+//		int height2 = 48;
+//		btnNewButton_begin.setBounds(800, 500, 94, height2);
+//		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(94, height2, 0));
+//		btnNewButton_begin.setIcon(icon_JButton_begin);
+//		contentPane.add(btnNewButton_begin);
 		
 		//重置AI坦克数组
 		AiTank.removeAllTank();
@@ -196,6 +233,26 @@ public class CustomsPass extends JFrame {
 	 				//contentPane.invalidate();
 	 				draw.drawShape();
 	 				//System.out.println(myTank.direction +" " + myTank.tank_x +  " num:" + myTank.tank_y );
+	 				if(myTank.HP == 1) {
+	 					ImageIcon icon_JLabel_B = new ImageIcon("img\\Right1.png");
+	 					lblNewLabel_B.setBounds(785, 0, 200, 600);
+	 					icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
+//	 					contentPane.add(lblNewLabel_B);
+	 					lblNewLabel_B.setIcon(icon_JLabel_B);
+	 				}else if(myTank.HP == 2) {
+	 					ImageIcon icon_JLabel_B = new ImageIcon("img\\Right2.png");
+	 					lblNewLabel_B.setBounds(785, 0, 200, 600);
+	 					icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
+//	 					contentPane.add(lblNewLabel_B);
+	 					lblNewLabel_B.setIcon(icon_JLabel_B);
+	 				}else if(myTank.HP == 3) {
+	 					ImageIcon icon_JLabel_B = new ImageIcon("img\\Right3.png");
+	 					lblNewLabel_B.setBounds(785, 0, 200, 600);
+	 					icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
+//	 					contentPane.add(lblNewLabel_B);
+	 					lblNewLabel_B.setIcon(icon_JLabel_B);
+	 				}
+	 				
 	 				lblNewLabel.setText(""+winFlag);
 	 				lblNewLabel.setFont(new Font("宋体", Font.BOLD, 50));
 	 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -228,7 +285,9 @@ public class CustomsPass extends JFrame {
 		CronJobSet.startCronJob();
 		ThreadCronJob.start();
 	 	bindKey();
+	 	
 	}
+	
 	/**
 	 * 键盘事件
 	 */
@@ -345,6 +404,7 @@ public class CustomsPass extends JFrame {
 		customspass.dispose();
 		}*/
 	}
+	
 	public static void isLose() {
 		Lose lose = new Lose();			
 		lose.setVisible(true);
@@ -353,6 +413,7 @@ public class CustomsPass extends JFrame {
 		CronJobSet.removeAll();
 		
 	}
+	
 	/*public void loadImg() {
 		ImageIcon origin_background = new ImageIcon("img\\tankebegin.png");
 		ImageIcon origin_wall = new ImageIcon("img\\tankebegin.png");

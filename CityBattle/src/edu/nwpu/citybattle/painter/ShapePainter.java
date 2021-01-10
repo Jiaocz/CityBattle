@@ -1,10 +1,12 @@
 package edu.nwpu.citybattle.painter;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,6 +41,7 @@ public class ShapePainter {
 	ImageIcon origin_iron_wall;
 	ImageIcon origin_water;
 	ImageIcon origin_grass;
+	ImageIcon origin_home;
 	
 	public ShapePainter(JPanel contentPane) {
 		this.contentPane = contentPane;
@@ -62,13 +65,20 @@ public class ShapePainter {
 		origin_background = new ImageIcon("img\\background.png");
 		origin_background.setImage(origin_background.getImage().getScaledInstance(800, 600, 0));
 		origin_wall = new ImageIcon("img\\wall.jpg");
-		origin_wall.setImage(origin_wall.getImage().getScaledInstance(ELEMENT_SIZE * 5, ELEMENT_SIZE * 5, 0));
+		origin_wall.setImage(origin_wall.getImage().getScaledInstance(ELEMENT_SIZE*5 , ELEMENT_SIZE *5, 0));
 		origin_iron_wall = new ImageIcon("img\\ironwall.jpg");
 		origin_iron_wall.setImage(origin_iron_wall.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
 		origin_grass = new ImageIcon("img\\grass.png");
 		origin_grass.setImage(origin_grass.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
 		origin_water = new ImageIcon("img\\water.jpg");
 		origin_water.setImage(origin_water.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
+		origin_home = new ImageIcon("img\\home.png");
+		origin_home.setImage(origin_home.getImage().getScaledInstance(ELEMENT_SIZE*3, ELEMENT_SIZE*3, 0));
+		
+		addJLabel = new JLabel(origin_home);
+		addJLabel.setBounds(27*ELEMENT_SIZE , 36*ELEMENT_SIZE, ELEMENT_SIZE*3, ELEMENT_SIZE*3);
+//		addJLabel.setIcon((Icon) ((Image) addJLabel.getIcon()).getScaledInstance(45, 45, 0));
+		contentPane.add(addJLabel);
 		
 		for(int x = 0;x < Map.wall.length;x++) {
 			for(int y = 0;y < Map.wall[x].length;y++) {
@@ -110,6 +120,7 @@ public class ShapePainter {
 				}
 			}
 		}
+
 	}
 	/**
 	 * 该方法用于根据可销毁墙的位置改变重新绘制

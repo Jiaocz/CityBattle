@@ -17,7 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import edu.nwpu.citybattle.IngameElements.MyTank;
 import edu.nwpu.citybattle.TankMap.MapSelf;
+import edu.nwpu.citybattle.painter.DrawAll;
 import edu.nwpu.citybattle.painter.SelfPainter;
 /**
  * @author 琚翔
@@ -103,13 +106,22 @@ public class SelfConfigFrame extends JFrame {
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
 		//转置数组
-		
+		/**
+		 * 放置皇冠
+		 */
+		ImageIcon icon_JLabel_H = new ImageIcon("img\\home.png");
+		JLabel lblNewLabel_H  = new JLabel(icon_JLabel_H);
+		lblNewLabel_H.setBounds(405, 540, 45, 45);
+		icon_JLabel_H.setImage(icon_JLabel_H.getImage().getScaledInstance(45, 45, 0));
+		contentPane.add(lblNewLabel_H);
+		lblNewLabel_H.setIcon(icon_JLabel_H);
 		/*
 		 * 绘制网格方便放置图案
 		 */
 		ImageIcon icon_JLabel_FangGe = new ImageIcon("img\\FangGe.png");
 		//ImageIcon icon_JLabel_FangGe = new ImageIcon("");
 		JLabel lblNewLabel_FangGe  = new JLabel(icon_JLabel_FangGe);
+		new SelfPainter(this.contentPane);
 		//selfPainter = new SelfPainter();
 		lblNewLabel_FangGe.addMouseListener(new MouseAdapter() {
 			public void  mousePressed(MouseEvent e) {
