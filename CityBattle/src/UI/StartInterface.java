@@ -1,12 +1,8 @@
 package UI;
 
-import java.awt.AWTException;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Image;
-import java.awt.Robot;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -15,26 +11,31 @@ import javax.swing.border.EmptyBorder;
 
 import edu.nwpu.citybattle.TankMap.Map;
 
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Cursor;
 
-import javax.swing.DropMode;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Timer;
-import java.util.TimerTask;
 
+/**
+ * 游戏启动页面，即游戏主界面
+ * 
+ * @author 琚翔
+ * @version 1.0.0
+ */
 public class StartInterface extends JFrame {
 
+	/**
+	 * Random Serial Version UID
+	 */
+	private static final long serialVersionUID = -9183953073775794474L;
 	private JPanel contentPane;
 	CardLayout c = new CardLayout();
+
 	/**
 	 * Launch the application.
 	 */
@@ -50,21 +51,22 @@ public class StartInterface extends JFrame {
 			}
 		});
 	}
+
+	@SuppressWarnings("deprecation")
 	public void ini_background() {
-    // 背景图片
-     ImageIcon background = new ImageIcon(
-     this.getClass().getResource("img\\finalbackground.png"));
-     // 把背景图片显示在一个标签里面
-     JLabel label = new JLabel(background);
-     // 设置标签大小
-     label.setBounds(0, 0, 440, 335);
-     // 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
-     JPanel imagePanel = (JPanel) this.getContentPane();
-     imagePanel.setOpaque(false);
-     this.getLayeredPane().setLayout(null);
-     // 把背景图片添加到分层窗格的最底层作为背景
-     this.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
- }
+		// 背景图片
+		ImageIcon background = new ImageIcon(this.getClass().getResource("img\\finalbackground.png"));
+		// 把背景图片显示在一个标签里面
+		JLabel label = new JLabel(background);
+		// 设置标签大小
+		label.setBounds(0, 0, 440, 335);
+		// 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
+		JPanel imagePanel = (JPanel) this.getContentPane();
+		imagePanel.setOpaque(false);
+		this.getLayeredPane().setLayout(null);
+		// 把背景图片添加到分层窗格的最底层作为背景
+		this.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
+	}
 
 	/**
 	 * Create the frame.
@@ -73,8 +75,7 @@ public class StartInterface extends JFrame {
 		super("坦克大战");
 		setResizable(false);
 		setBackground(new Color(0, 0, 0));
-		
-   
+
 //        //导入图片
 //        ImageIcon img = new ImageIcon("img\\\\finalbackground.png");
 //        // 图片缩放为适合Frame大小
@@ -90,26 +91,22 @@ public class StartInterface extends JFrame {
 //        //将ContentPane透明化
 //         JPanel cp= (JPanel)  frame.getContentPane();            
 //         cp.setOpaque(false);
-         
-         
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//获得屏幕尺寸
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();// 获得屏幕尺寸
 		int width = 1000;
-		int height = 600;//设置窗口宽度和高度
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//窗口的坐标和尺寸，以此种方式居中
+		int height = 600;// 设置窗口宽度和高度
+		setBounds((d.width - width) / 2, (d.height - height) / 2, width, height);// 窗口的坐标和尺寸，以此种方式居中
 		contentPane = new JPanel();
-		
-		
+
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-	
-		
-		//JLabel lblNewLabel = new JLabel("");
+
+		// JLabel lblNewLabel = new JLabel("");
 		ImageIcon icon_JLabel = new ImageIcon("img\\tankebegin.png");
-		JLabel lblNewLabel  = new JLabel(icon_JLabel);
+		JLabel lblNewLabel = new JLabel(icon_JLabel);
 		lblNewLabel.setBounds(71, 40, 858, 214);
 		contentPane.add(lblNewLabel);
 		/*
@@ -120,15 +117,17 @@ public class StartInterface extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 //				dispose();
-				Choice choice = new Choice();			
+				Choice choice = new Choice();
 				choice.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -149,9 +148,9 @@ public class StartInterface extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Choice.mapNumber = 5;
 				Map.selectMap();
-                SelfConfigFrame selfConfigFrame = new SelfConfigFrame();
-                selfConfigFrame.setVisible(true);
-                dispose();	
+				SelfConfigFrame selfConfigFrame = new SelfConfigFrame();
+				selfConfigFrame.setVisible(true);
+				dispose();
 //                class t extends TimerTask{
 //					@Override
 //					public void run() {
@@ -159,12 +158,14 @@ public class StartInterface extends JFrame {
 //					}
 //                }
 //                (new Timer()).schedule(new t(), 3000L);
-                
+
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -182,15 +183,17 @@ public class StartInterface extends JFrame {
 		btnNewButton_help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Help help = new Help();			
+				Help help = new Help();
 				help.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -209,21 +212,21 @@ public class StartInterface extends JFrame {
 		lblNewLabel_1.setEnabled(false);
 		lblNewLabel_1.setBounds(425, 540, 150, 15);
 		contentPane.add(lblNewLabel_1);
-		
+
 //		ImageIcon shanshuo1 = new ImageIcon("img\\坦克出现.gif");
 //		JLabel shanshuo_1  = new JLabel(shanshuo1);
 //		shanshuo_1.setBounds(71, 40, 858, 214);
 //		contentPane.add(shanshuo_1);
-		
+
 //		ImageIcon icon_JLabel_A = new ImageIcon("img\\xuehua.gif");
 //		JLabel lblNewLabel_A  = new JLabel(icon_JLabel_A);
 //		lblNewLabel_A.setBounds(-60, 0, 1060, 600);
 //		icon_JLabel_A.setImage(icon_JLabel_A.getImage().getScaledInstance(1060, 600, 0));
 //		contentPane.add(lblNewLabel_A);
 //		lblNewLabel_A.setIcon(icon_JLabel_A);
-		
+
 		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
-		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+		JLabel lblNewLabel_B = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));
 		contentPane.add(lblNewLabel_B);

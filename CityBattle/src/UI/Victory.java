@@ -3,7 +3,6 @@
  */
 package UI;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -25,11 +24,17 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 /**
+ * 游戏胜利画面
+ * 
  * @author 琚翔
- * version V1.0
+ * @version V1.0
  */
 public class Victory extends JFrame {
 
+	/**
+	 * Random Serial Version UID
+	 */
+	private static final long serialVersionUID = 5510638339320406907L;
 	private JPanel contentPane;
 	public static int mapNumber;
 
@@ -55,33 +60,33 @@ public class Victory extends JFrame {
 	public Victory() {
 		super("坦克大战");
 		setResizable(false);
-		
+
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//获得屏幕尺寸
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();// 获得屏幕尺寸
 		int width = 1000;
-		int height = 600;//设置窗口宽度和高度
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//窗口的坐标和尺寸，以此种方式居中
+		int height = 600;// 设置窗口宽度和高度
+		setBounds((d.width - width) / 2, (d.height - height) / 2, width, height);// 窗口的坐标和尺寸，以此种方式居中
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("\u606D\u559C\u4F60");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("方正显仁简体", Font.PLAIN, 80));
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setBounds(367, 41, 262, 128);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("\u4F60\u8D62\u4E86\uFF01");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setFont(new Font("方正显仁简体", Font.PLAIN, 60));
 		lblNewLabel_1.setBounds(383, 144, 305, 112);
 		contentPane.add(lblNewLabel_1);
-		
+
 		/*
 		 * 再玩一次按键
 		 */
@@ -90,15 +95,17 @@ public class Victory extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 //				dispose();
-				CustomsPass customspass = new CustomsPass();			
+				CustomsPass customspass = new CustomsPass();
 				customspass.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -117,18 +124,20 @@ public class Victory extends JFrame {
 		btnNewButton_diy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Choice.mapNumber = Choice.mapNumber+1;
+				Choice.mapNumber = Choice.mapNumber + 1;
 				Map.selectMap();
-				System.out.println("第几关："+Choice.mapNumber);
-				CustomsPass customspass = new CustomsPass();			
+				System.out.println("第几关：" + Choice.mapNumber);
+				CustomsPass customspass = new CustomsPass();
 				customspass.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -146,15 +155,17 @@ public class Victory extends JFrame {
 		btnNewButton_help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				StartInterface startinterface = new StartInterface();			
+				StartInterface startinterface = new StartInterface();
 				startinterface.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -165,7 +176,7 @@ public class Victory extends JFrame {
 		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(230, height2, 0));
 		contentPane.add(btnNewButton_help);
 		btnNewButton_help.setIcon(icon_JButton_help);
-		
+
 		/**
 		 * 创作团队：成群结队
 		 */
@@ -174,9 +185,9 @@ public class Victory extends JFrame {
 		lblNewLabel_11.setEnabled(false);
 		lblNewLabel_11.setBounds(425, 540, 150, 15);
 		contentPane.add(lblNewLabel_11);
-		
+
 		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
-		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+		JLabel lblNewLabel_B = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));
 		contentPane.add(lblNewLabel_B);

@@ -5,8 +5,6 @@ package UI;
 
 import java.awt.EventQueue;
 import java.io.File;
-import java.net.URI;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -15,11 +13,13 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
 /**
+ * 游戏界面启动器，包含游戏BGM播放
+ * 
  * @author 琚翔
- * version V1.0
+ * @version V1.0
  */
 public class UIMain {
-	
+
 	public static void playMusic() {// 背景音乐播放
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(new File("music\\Alive.wav")); // 绝对路径
@@ -46,7 +46,7 @@ public class UIMain {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +54,10 @@ public class UIMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Thread(()->{while(true) {playMusic();} //while中的true可换成参数来控制音乐的停止播放
+					new Thread(() -> {
+						while (true) {
+							playMusic();
+						} // while中的true可换成参数来控制音乐的停止播放
 					}).start();
 					StartInterface startinterface = new StartInterface();
 					startinterface.setVisible(true);
@@ -64,9 +67,5 @@ public class UIMain {
 			}
 		});
 	}
-	
-	
-	
-	
 
 }
