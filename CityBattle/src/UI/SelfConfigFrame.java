@@ -39,8 +39,8 @@ public class SelfConfigFrame extends JFrame {
 //	private int height=0, width=0;
 	public static JPanel contentPane;
 	
-	public SelfPainter selfPainter;
-
+	ImageIcon icon_JLabel;
+	JLabel lblNewLabel;
 	/**
 	 * Launch the application.
 	 */
@@ -104,8 +104,8 @@ public class SelfConfigFrame extends JFrame {
 		/*
 		 * 绘制网格方便放置图案
 		 */
-//		ImageIcon icon_JLabel_FangGe = new ImageIcon("img\\FangGe.png");
-		ImageIcon icon_JLabel_FangGe = new ImageIcon("");
+		ImageIcon icon_JLabel_FangGe = new ImageIcon("img\\FangGe.png");
+		//ImageIcon icon_JLabel_FangGe = new ImageIcon("");
 		JLabel lblNewLabel_FangGe  = new JLabel(icon_JLabel_FangGe);
 		//selfPainter = new SelfPainter();
 		lblNewLabel_FangGe.addMouseListener(new MouseAdapter() {
@@ -130,25 +130,48 @@ public class SelfConfigFrame extends JFrame {
 				System.out.println(y);
 				switch(type) {
 					case 1:
-						if(MapSelf.grass[x][y]==0&&MapSelf.ironwall[x][y]==0&&MapSelf.wall[x][y]==0&&MapSelf.water[x][y]==0)
-							MapSelf.wall[x][y]=1;
-						System.out.println(MapSelf.wall[x][y]);
-						ImageIcon icon_JLabel = new ImageIcon("img\\wall.jpg");
-						JLabel lblNewLabel  = new JLabel(icon_JLabel);
-						lblNewLabel.setBounds(15*x+100, 15*y+100, 111,111);
+						if(MapSelf.grass[x][y]==0&&MapSelf.ironwall[x][y]==0&&MapSelf.wall[x][y]==0&&MapSelf.water[x][y]==0) {
+						MapSelf.wall[x][y]=1;
+						icon_JLabel = new ImageIcon("img\\wall.jpg");
+						lblNewLabel  = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15*x, 15*y, 15,15);
 						contentPane.add(lblNewLabel);
-						System.out.println(MapSelf.wall[x][y]);
+						contentPane.updateUI();
+						}
+						
+						break;
 					case 2:
-						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
+						if(MapSelf.grass[x][y]==0&&MapSelf.ironwall[x][y]==0&&MapSelf.wall[x][y]==0&&MapSelf.water[x][y]==0) {
 							MapSelf.ironwall[x][y]=1;
+						icon_JLabel = new ImageIcon("img\\ironwall.jpg");
+						lblNewLabel  = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15*x, 15*y, 15,15);
+						contentPane.add(lblNewLabel);
+						contentPane.updateUI();
+						}
+							
 						//selfPainter.drawWall();
 					case 3:
-						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
+						if(MapSelf.grass[x][y]==0&&MapSelf.ironwall[x][y]==0&&MapSelf.wall[x][y]==0&&MapSelf.water[x][y]==0) {
 							MapSelf.water[x][y]=1;
+						icon_JLabel = new ImageIcon("img\\water.jpg");
+						lblNewLabel  = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15*x, 15*y, 15,15);
+						contentPane.add(lblNewLabel);
+						contentPane.updateUI();
+						}
+							break;
 						//selfPainter.drawWall();
 					case 4:
-						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
+						if(MapSelf.grass[x][y]==0&&MapSelf.ironwall[x][y]==0&&MapSelf.wall[x][y]==0&&MapSelf.water[x][y]==0) {
 							MapSelf.grass[x][y]=1;
+						icon_JLabel = new ImageIcon("img\\grass.png");
+						lblNewLabel  = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15*x, 15*y, 15,15);
+						contentPane.add(lblNewLabel);
+						contentPane.updateUI();
+						}
+							break;
 						//selfPainter.drawWall();
 					default:
 						return;
