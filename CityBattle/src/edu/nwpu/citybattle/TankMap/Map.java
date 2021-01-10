@@ -29,6 +29,11 @@ public class Map {
 			ironwall = Transpose.tfunction(Map4.ironwall);
 			grass = Transpose.tfunction(Map4.grass);
 			water = Transpose.tfunction(Map4.water);
+		}else if(Choice.mapNumber == 5) {
+			wall = Transpose.tfunction(MapSelf.wall);
+			ironwall = Transpose.tfunction(MapSelf.ironwall);
+			grass = Transpose.tfunction(MapSelf.grass);
+			water = Transpose.tfunction(MapSelf.water);
 		}
 	}
 	

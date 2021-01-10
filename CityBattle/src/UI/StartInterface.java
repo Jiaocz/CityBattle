@@ -12,6 +12,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import edu.nwpu.citybattle.TankMap.Map;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -144,16 +147,18 @@ public class StartInterface extends JFrame {
 		btnNewButton_diy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                Recent recent = new Recent();
-                recent.setVisible(true);
-                
-                class t extends TimerTask{
-					@Override
-					public void run() {
-						recent.setVisible(false);
-					}
-                }
-                (new Timer()).schedule(new t(), 3000L);
+				Choice.mapNumber = 5;
+				Map.selectMap();
+                SelfConfigFrame selfConfigFrame = new SelfConfigFrame();
+                selfConfigFrame.setVisible(true);
+                dispose();	
+//                class t extends TimerTask{
+//					@Override
+//					public void run() {
+//						recent.setVisible(false);
+//					}
+//                }
+//                (new Timer()).schedule(new t(), 3000L);
                 
 			}
 			@Override

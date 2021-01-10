@@ -264,7 +264,7 @@ public class AiTank extends Tank implements Movable {
 			case Tank.UP:
 				return new Bullet(tank_x+1, tank_y,Bullet.UP);
 			case Tank.DOWN:
-				return new Bullet(tank_x+1, tank_y+2,Bullet.DOWN);
+				return new Bullet(tank_x+1, tank_y+1,Bullet.DOWN);
 			case Tank.LEFT:
 				return new Bullet(tank_x, tank_y+1, Bullet.LEFT);
 			case Tank.RIGHT:
