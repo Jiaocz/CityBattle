@@ -333,7 +333,8 @@ public class AiTank extends Tank implements Movable {
 			case 3:
 				direction = Tank.STOP;
 			case 4:
-				this.shootBullet();
+				if(random.nextInt(5)>=2)
+					this.shootBullet();
 				break;
 			default:
 				direction = Tank.STOP;
