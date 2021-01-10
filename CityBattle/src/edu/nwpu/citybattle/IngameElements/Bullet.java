@@ -159,11 +159,16 @@ public class Bullet implements Movable {
 		return Bullet.Bullets.remove(this) && ThreadCronJob.removeJob(this);
 	}
 	
+	/**
+	 * 删除所有子弹及其计划任务
+	 */
 	public static void removeAllBullets() {
 		Iterator<Bullet> iterator = Bullets.iterator();
 		while(iterator.hasNext()) {
-			Bullet.remove(iterator.next());
+			Bullet t = iterator.next();
+			ThreadCronJob.removeJob(t);
 		}
+		Bullets.clear();
 	}
 
 	public void initialPainter()
