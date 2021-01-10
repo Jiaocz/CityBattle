@@ -71,13 +71,13 @@ public class Victory extends JFrame {
 		JLabel lblNewLabel = new JLabel("\u606D\u559C\u4F60");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("方正显仁简体", Font.PLAIN, 80));
-		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setBounds(367, 41, 262, 128);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u4F60\u8D62\u4E86\uFF01");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setFont(new Font("方正显仁简体", Font.PLAIN, 60));
 		lblNewLabel_1.setBounds(383, 144, 305, 112);
 		contentPane.add(lblNewLabel_1);
