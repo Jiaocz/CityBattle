@@ -160,7 +160,7 @@ public class AiTank extends Tank implements Movable {
 			CustomsPass.contentPane.remove(j);
 			CustomsPass.winFlag++;
 		}
-		CustomsPass.next();
+		CustomsPass.win();
 		if (HP == 0) {
 
 			CronJobSet.addDelayJob(new CronJob() {

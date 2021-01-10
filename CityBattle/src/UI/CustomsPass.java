@@ -74,6 +74,7 @@ public class CustomsPass extends JFrame {
 	 * Create the frame.
 	 */
 	public CustomsPass() {
+		
 		super("坦克大战");
 		setResizable(false);
 		
@@ -118,13 +119,19 @@ public class CustomsPass extends JFrame {
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
-
+		
 		//重置AI坦克数组
 		AiTank.removeAllTank();
 		AiTankArray.firstTankNumber = 0;
 		AiTankArray.secondTankNumber = 0;
 		AiTankArray.thirdTankNumber = 0;
 		//AiTankArray.choice();
+		
+		//去除分数
+		winFlag = 0;
+		
+		//去除子弹
+		Bullet.Bullets.clear();
 		
 		Map.selectMap();
 		//this.choice();
@@ -220,7 +227,7 @@ public class CustomsPass extends JFrame {
 			//new AiTank(22,4,Tank.UP,2);
 		//}
 	}
-	public static void next() {
+	public static void win() {
 		switch(Choice.mapNumber) {
 			case 1:
 				if(winFlag == 4) {
@@ -260,8 +267,9 @@ public class CustomsPass extends JFrame {
 	public static void isLose() {
 		Lose lose = new Lose();			
 		lose.setVisible(true);
-		ThreadCronJob.stop();
 		customspass.dispose();
+		ThreadCronJob.stop();
+		
 	}
 	/*public void loadImg() {
 		ImageIcon origin_background = new ImageIcon("img\\tankebegin.png");
