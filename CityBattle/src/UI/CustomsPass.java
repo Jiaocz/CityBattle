@@ -129,7 +129,8 @@ public class CustomsPass extends JFrame {
 		
 		//去除分数
 		winFlag = 0;
-		
+		//去除子弹
+		Bullet.removeAllBullets();
 		
 		Map.selectMap();
 		//this.choice();
