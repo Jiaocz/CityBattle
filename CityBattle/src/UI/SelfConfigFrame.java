@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import edu.nwpu.citybattle.TankMap.MapSelf;
+import edu.nwpu.citybattle.painter.SelfPainter;
 /**
  * @author 琚翔
  * @version 1.0
@@ -36,7 +37,9 @@ public class SelfConfigFrame extends JFrame {
 	public static int y;
 //	private String img_path = null;
 //	private int height=0, width=0;
-	private JPanel contentPane;
+	public static JPanel contentPane;
+	
+	public SelfPainter selfPainter;
 
 	/**
 	 * Launch the application.
@@ -101,8 +104,10 @@ public class SelfConfigFrame extends JFrame {
 		/*
 		 * 绘制网格方便放置图案
 		 */
-		ImageIcon icon_JLabel_FangGe = new ImageIcon("img\\FangGe.png");
+//		ImageIcon icon_JLabel_FangGe = new ImageIcon("img\\FangGe.png");
+		ImageIcon icon_JLabel_FangGe = new ImageIcon("");
 		JLabel lblNewLabel_FangGe  = new JLabel(icon_JLabel_FangGe);
+		//selfPainter = new SelfPainter();
 		lblNewLabel_FangGe.addMouseListener(new MouseAdapter() {
 			public void  mousePressed(MouseEvent e) {
 				int screenWidth = d.width;
@@ -113,29 +118,38 @@ public class SelfConfigFrame extends JFrame {
 //				System.out.println(getLocation().getY());
 				x = (int) (e.getXOnScreen()-getLocationOnScreen().getX()-5);
 				y = (int) (e.getYOnScreen()-getLocationOnScreen().getY()-36);
-				System.out.println(e.getXOnScreen());
-				System.out.println(e.getYOnScreen());
-				System.out.println(getLocation().getX());
-				System.out.println(getLocation().getY());
-				System.out.println(x);
-				System.out.println(y);
+//				System.out.println(e.getXOnScreen());
+//				System.out.println(e.getYOnScreen());
+//				System.out.println(getLocation().getX());
+//				System.out.println(getLocation().getY());
+//				System.out.println(x);
+//				System.out.println(y);
 				x=x/15;
 				y=y/15;
 				System.out.println(x);
 				System.out.println(y);
 				switch(type) {
 					case 1:
-						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
+						if(MapSelf.grass[x][y]==0&&MapSelf.ironwall[x][y]==0&&MapSelf.wall[x][y]==0&&MapSelf.water[x][y]==0)
 							MapSelf.wall[x][y]=1;
+						System.out.println(MapSelf.wall[x][y]);
+						ImageIcon icon_JLabel = new ImageIcon("img\\wall.jpg");
+						JLabel lblNewLabel  = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15*x+100, 15*y+100, 111,111);
+						contentPane.add(lblNewLabel);
+						System.out.println(MapSelf.wall[x][y]);
 					case 2:
 						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
 							MapSelf.ironwall[x][y]=1;
+						//selfPainter.drawWall();
 					case 3:
 						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
 							MapSelf.water[x][y]=1;
+						//selfPainter.drawWall();
 					case 4:
 						if(MapSelf.grass[x][y]!=0&&MapSelf.ironwall[x][y]!=0&&MapSelf.wall[x][y]!=0&&MapSelf.water[x][y]!=0)
 							MapSelf.grass[x][y]=1;
+						//selfPainter.drawWall();
 					default:
 						return;
 				}

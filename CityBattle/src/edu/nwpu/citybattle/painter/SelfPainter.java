@@ -9,7 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.nwpu.citybattle.TankMap.Map;
+import UI.SelfConfigFrame;
+import edu.nwpu.citybattle.TankMap.MapSelf;
 /**
  * 该类用于绘制各种墙体
  * @author 微笑未失
@@ -19,7 +20,7 @@ import edu.nwpu.citybattle.TankMap.Map;
  * @see drawBackground
  */
 public class SelfPainter {
-	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_WIDTH = 590;
 	public static final int WINDOW_HEIGHT = 840;
 	public static final int TABLE_WIDTH = 40;
 	public static final int TABLE_HEIGHT = 56;
@@ -29,10 +30,10 @@ public class SelfPainter {
 	
 	JLabel background;
 	JLabel addJLabel;
-	static ArrayList<JLabel> wall = new ArrayList<JLabel>();
-	static ArrayList<JLabel> water = new ArrayList<JLabel>();
-    static ArrayList<JLabel> ironWall = new ArrayList<JLabel>();
-	static ArrayList<JLabel> grass = new ArrayList<JLabel>();
+	ArrayList<JLabel> wall = new ArrayList<JLabel>();
+	ArrayList<JLabel> water = new ArrayList<JLabel>();
+    ArrayList<JLabel> ironWall = new ArrayList<JLabel>();
+	ArrayList<JLabel> grass = new ArrayList<JLabel>();
 	
 	ImageIcon origin_background;
 	ImageIcon origin_wall;
@@ -40,8 +41,7 @@ public class SelfPainter {
 	ImageIcon origin_water;
 	ImageIcon origin_grass;
 	
-	public SelfPainter(JPanel contentPane) {
-		this.contentPane = contentPane;
+	public SelfPainter() {
 		initialPainter();
 		loadImg();
 	}
@@ -70,55 +70,77 @@ public class SelfPainter {
 		origin_water = new ImageIcon("img\\water.jpg");
 		origin_water.setImage(origin_water.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
 		
-		for(int x = 0;x < Map.wall.length;x++) {
-			for(int y = 0;y < Map.wall[x].length;y++) {
-				if(Map.wall[x][y] == 1) {
+		for(int x = 0;x < MapSelf.wall.length;x++) {
+			for(int y = 0;y < MapSelf.wall[x].length;y++) {
+				if(MapSelf.wall[x][y] == 1) {
 					addJLabel = new JLabel(origin_wall);
 					addJLabel.setBounds(x*ELEMENT_SIZE, y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
 					wall.add(addJLabel);
-					contentPane.add(addJLabel);
+					SelfConfigFrame.contentPane.add(addJLabel);
 				}
 			}
 		}
-		for(int x = 0;x < Map.ironwall.length;x++) {
-			for(int y = 0;y < Map.ironwall[x].length;y++) {
-				if(Map.ironwall[x][y] == 1) {
+		for(int x = 0;x < MapSelf.ironwall.length;x++) {
+			for(int y = 0;y < MapSelf.ironwall[x].length;y++) {
+				if(MapSelf.ironwall[x][y] == 1) {
 					addJLabel = new JLabel(origin_iron_wall);
 					addJLabel.setBounds(x*ELEMENT_SIZE, y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
 					ironWall.add(addJLabel);
-					contentPane.add(addJLabel);
+					SelfConfigFrame.contentPane.add(addJLabel);
 				}
 			}
 		}
-		for(int x = 0;x < Map.water.length;x++) {
-			for(int y = 0;y < Map.water[x].length;y++) {
-				if(Map.water[x][y] == 1) {
+		for(int x = 0;x < MapSelf.water.length;x++) {
+			for(int y = 0;y < MapSelf.water[x].length;y++) {
+				if(MapSelf.water[x][y] == 1) {
 					addJLabel = new JLabel(origin_water);
 					addJLabel.setBounds(x*ELEMENT_SIZE, y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
 					water.add(addJLabel);
-					contentPane.add(addJLabel);
+					SelfConfigFrame.contentPane.add(addJLabel);
 				}
 			}
 		}
-		for(int x = 0;x < Map.grass.length;x++) {
-			for(int y = 0;y < Map.grass[x].length;y++) {
-				if(Map.grass[x][y] == 1) {
+		for(int x = 0;x < MapSelf.grass.length;x++) {
+			for(int y = 0;y < MapSelf.grass[x].length;y++) {
+				if(MapSelf.grass[x][y] == 1) {
 					addJLabel = new JLabel(origin_grass);
 					addJLabel.setBounds(x*ELEMENT_SIZE, y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
 					grass.add(addJLabel);
-					contentPane.add(addJLabel);
+					SelfConfigFrame.contentPane.add(addJLabel);
 				}
 			}
 		}
 	}
-	public static void drawWall(int x,int y) {
-		Iterator<JLabel> iterator = wall.iterator();
+	public void drawWall() {
+			for(int i = 0;i < MapSelf.wall.length;i++) {
+				for(int j = 0;j < MapSelf.wall[i].length;j++) {
+					if(MapSelf.wall[i][j] == 1) {
+						addJLabel = new JLabel(origin_wall);
+						addJLabel.setBounds(i*ELEMENT_SIZE, j*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
+						wall.add(addJLabel);
+						SelfConfigFrame.contentPane.add(addJLabel);
+					}
+				}
+			}
+	}
+	public void drawIronWall() {
+		Iterator<JLabel> iterator = ironWall.iterator();
 		while(iterator.hasNext()) {
 			JLabel j = iterator.next();
-			if(Map.wall[j.getX()/ELEMENT_SIZE][j.getY()/ELEMENT_SIZE] == 0) {
-				
-			iterator.remove();
-		}
+				SelfConfigFrame.contentPane.remove(j);
+				SelfConfigFrame.contentPane.updateUI();
+				iterator.remove();
+			}
+			for(int i = 0;i < MapSelf.ironwall.length;i++) {
+				for(int j1 = 0;j1 < MapSelf.ironwall[i].length;j1++) {
+					if(MapSelf.ironwall[i][j1] == 1) {
+						addJLabel = new JLabel(origin_iron_wall);
+						addJLabel.setBounds(i*ELEMENT_SIZE, j1*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
+						ironWall.add(addJLabel);
+						SelfConfigFrame.contentPane.add(addJLabel);
+					}
+				}
+			}
 	}
 //	public void drawWall() {
 //		Iterator<JLabel> iterator = wall.iterator();
@@ -136,13 +158,12 @@ public class SelfPainter {
 //				wall.remove(j);
 //			}
 //		}
-	}
 	/**
 	 * 该方法用于绘制背景图
 	 */
-	public void drawBackground() {
-		background = new JLabel(origin_background);
-		background.setBounds(0, 0, 800, 600);
-		contentPane.add(background);
-	}
+//	public void drawBackground() {
+//		background = new JLabel(origin_background);
+//		background.setBounds(0, 0, 800, 600);
+//		contentPane.add(background);
+//	}
 }
