@@ -166,33 +166,28 @@ public class CustomsPass extends JFrame {
 				this.addKeyListener(new KeyListener() {
 					
 					@Override
-					public void keyTyped(KeyEvent e) {
-						// TODO Auto-generated method stub
+					public void keyPressed(KeyEvent e) {
 						char keyCode = e.getKeyChar();
 						
-						System.out.println(keyCode);
+						//System.out.println(keyCode);
 						switch(keyCode){
 						case 'W':
 						case 'w':
-						case KeyEvent.VK_UP:
 							myTank.moveNext(MyTank.UP);
 							draw.drawShape();
 							break;
 						case 'D':
 						case 'd':
-						case KeyEvent.VK_RIGHT:
 							myTank.moveNext(MyTank.RIGHT);
 							draw.drawShape();
 							break;
 						case 'S':
 						case 's':
-						case KeyEvent.VK_DOWN:
 							myTank.moveNext(MyTank.DOWN);
 							draw.drawShape();
 							break;
 						case 'A':
 						case 'a':
-						case KeyEvent.VK_LEFT:
 							myTank.moveNext(MyTank.LEFT);
 							draw.drawShape();
 							break;
@@ -200,6 +195,25 @@ public class CustomsPass extends JFrame {
 							myTank.shootBullet();
 							draw.drawShape();
 							break;
+						}
+						
+						switch(e.getKeyCode()) {
+							case KeyEvent.VK_UP:
+								myTank.moveNext(MyTank.UP);
+								draw.drawShape();
+								break;
+							case KeyEvent.VK_RIGHT:
+								myTank.moveNext(MyTank.RIGHT);
+								draw.drawShape();
+								break;
+							case KeyEvent.VK_DOWN:
+								myTank.moveNext(MyTank.DOWN);
+								draw.drawShape();
+								break;
+							case KeyEvent.VK_LEFT:
+								myTank.moveNext(MyTank.LEFT);
+								draw.drawShape();
+								break;
 						}
 						
 					}
@@ -211,7 +225,7 @@ public class CustomsPass extends JFrame {
 					}
 					
 					@Override
-					public void keyPressed(KeyEvent e) {
+					public void keyTyped(KeyEvent e) {
 						// TODO Auto-generated method stub
 						
 					}
@@ -234,6 +248,7 @@ public class CustomsPass extends JFrame {
 					victory.setVisible(true);
 					customspass.dispose();
 					ThreadCronJob.stop();
+					CronJobSet.removeAll();
 				}
 			case 2:
 				if(winFlag == 6) {
@@ -241,6 +256,7 @@ public class CustomsPass extends JFrame {
 					victory.setVisible(true);
 					customspass.dispose();
 					ThreadCronJob.stop();
+					CronJobSet.removeAll();
 				}
 			case 3:
 				if(winFlag == 8) {
@@ -248,6 +264,7 @@ public class CustomsPass extends JFrame {
 					victory.setVisible(true);
 					customspass.dispose();
 					ThreadCronJob.stop();
+					CronJobSet.removeAll();
 				}
 			case 4:
 				if(winFlag == 10) {
@@ -255,6 +272,7 @@ public class CustomsPass extends JFrame {
 					allvictory.setVisible(true);
 					customspass.dispose();
 					ThreadCronJob.stop();
+					CronJobSet.removeAll();
 				}
 		}
 		/*if(winFlag == 5) {
@@ -268,6 +286,7 @@ public class CustomsPass extends JFrame {
 		lose.setVisible(true);
 		customspass.dispose();
 		ThreadCronJob.stop();
+		CronJobSet.removeAll();
 		
 	}
 	/*public void loadImg() {
