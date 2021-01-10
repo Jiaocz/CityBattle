@@ -90,8 +90,41 @@ public class CustomsPass extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		/*
+		 * firstTankNumber
+		 */
+		JLabel lblNewLabel_f = new JLabel("");
+//		lblNewLabel.setText(Int.valueOf(mapNumber));
+		lblNewLabel_f.setText(""+AiTankArray.firstTankNumber);
+		lblNewLabel_f.setFont(new Font("宋体", Font.BOLD, 45));
+		lblNewLabel_f.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_f.setForeground(new Color(0, 255, 255));
+		lblNewLabel_f.setBounds(850, 138, 108, 74);
+		contentPane.add(lblNewLabel_f);
+		/*
+		 * secondTankNumber
+		 */
+		JLabel lblNewLabel_s = new JLabel("");
+//		lblNewLabel.setText(Int.valueOf(mapNumber));
+		lblNewLabel_s.setText(""+AiTankArray.secondTankNumber);
+		lblNewLabel_s.setFont(new Font("宋体", Font.BOLD, 45));
+		lblNewLabel_s.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_s.setForeground(new Color(0, 255, 255));
+		lblNewLabel_s.setBounds(850, 183, 108, 74);
+		contentPane.add(lblNewLabel_s);
+		/*
+		 * thirdTankNumber
+		 */
+		JLabel lblNewLabel_t = new JLabel("");
+//		lblNewLabel.setText(Int.valueOf(mapNumber));
+		lblNewLabel_t.setText(""+AiTankArray.thirdTankNumber);
+		lblNewLabel_t.setFont(new Font("宋体", Font.BOLD, 45));
+		lblNewLabel_t.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_t.setForeground(new Color(0, 255, 255));
+		lblNewLabel_t.setBounds(850, 228, 108, 74);
+		contentPane.add(lblNewLabel_t);
 		/**
-		 * 总分数
+		 * 总分数显示
 		 */
 		JLabel lblNewLabel = new JLabel("");
 //		lblNewLabel.setText(Int.valueOf(mapNumber));
@@ -101,8 +134,27 @@ public class CustomsPass extends JFrame {
 		lblNewLabel.setForeground(new Color(0, 255, 255));
 		lblNewLabel.setBounds(880, 305, 108, 74);
 		contentPane.add(lblNewLabel);
+		/*
+		 * 总分数
+		 */
+		JLabel lblNewLabel_1_2 = new JLabel("总分数");
+		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_2.setForeground(new Color(0, 255, 255));
+		lblNewLabel_1_2.setFont(new Font("宋体", Font.BOLD, 40));
+		lblNewLabel_1_2.setBounds(780, 305, 140, 74);;
+		contentPane.add(lblNewLabel_1_2);
+		/*
+		 * 第几关的第和关
+		 */
+		JLabel lblNewLabel_1_1 = new JLabel("第 关");
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setForeground(new Color(0, 255, 255));
+		lblNewLabel_1_1.setFont(new Font("宋体", Font.BOLD, 70));
+		lblNewLabel_1_1.setBounds(736, 0, 300, 74);;
+		contentPane.add(lblNewLabel_1_1);
+		
 		/**
-		 * 第几关
+		 * 第几关的几
 		 */
 		JLabel lblNewLabel1 = new JLabel("");
 //		lblNewLabel.setText(Int.valueOf(mapNumber));
@@ -115,7 +167,7 @@ public class CustomsPass extends JFrame {
 		
 		ImageIcon icon_JLabel_B = new ImageIcon("img\\Right.png");
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
-		lblNewLabel_B.setBounds(785, 5, 200, 600);
+		lblNewLabel_B.setBounds(785, 0, 200, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
@@ -149,6 +201,24 @@ public class CustomsPass extends JFrame {
 	 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	 				lblNewLabel.setForeground(new Color(0, 255, 255));
 	 				lblNewLabel.setBounds(880, 305, 108, 74);
+	 				
+	 				lblNewLabel_f.setText(""+AiTankArray.firstTankNumber);
+	 				lblNewLabel_f.setFont(new Font("宋体", Font.BOLD, 45));
+	 				lblNewLabel_f.setHorizontalAlignment(SwingConstants.CENTER);
+	 				lblNewLabel_f.setForeground(new Color(0, 255, 255));
+	 				lblNewLabel_f.setBounds(850, 138, 108, 74);
+	 				
+	 				lblNewLabel_s.setText(""+AiTankArray.secondTankNumber);
+	 				lblNewLabel_s.setFont(new Font("宋体", Font.BOLD, 45));
+	 				lblNewLabel_s.setHorizontalAlignment(SwingConstants.CENTER);
+	 				lblNewLabel_s.setForeground(new Color(0, 255, 255));
+	 				lblNewLabel_s.setBounds(850, 183, 108, 74);
+	 				
+	 				lblNewLabel_t.setText(""+AiTankArray.thirdTankNumber);
+	 				lblNewLabel_t.setFont(new Font("宋体", Font.BOLD, 45));
+	 				lblNewLabel_t.setHorizontalAlignment(SwingConstants.CENTER);
+	 				lblNewLabel_t.setForeground(new Color(0, 255, 255));
+	 				lblNewLabel_t.setBounds(850, 228, 108, 74);
 	 				contentPane.updateUI();
 	 			}
 		}, 1);

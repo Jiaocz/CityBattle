@@ -10,6 +10,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -184,8 +185,8 @@ public class SelfConfigFrame extends JFrame {
 				}
 			}//设置鼠标监听，获取x,y的相对坐标
 		});
-		lblNewLabel_FangGe.setBounds(0, 0, 840, 590);
-		icon_JLabel_FangGe.setImage(icon_JLabel_FangGe.getImage().getScaledInstance(840, 590, 0));
+		lblNewLabel_FangGe.setBounds(0, 0, 840, 600);
+		icon_JLabel_FangGe.setImage(icon_JLabel_FangGe.getImage().getScaledInstance(840, 600, 0));
 		contentPane.add(lblNewLabel_FangGe);
 		lblNewLabel_FangGe.setIcon(icon_JLabel_FangGe);
 		/*
@@ -282,6 +283,61 @@ public class SelfConfigFrame extends JFrame {
 		icon_JLabel_Grass.setImage(icon_JLabel_Grass.getImage().getScaledInstance(50, 50, 0));
 		contentPane.add(lblNewLabel_Grass);
 		lblNewLabel_Grass.setIcon(icon_JLabel_Grass);
+		/*
+		 * 开始游戏
+		 */
+		JButton btnNewButton_begin = new JButton("");
+		btnNewButton_begin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				dispose();
+				Choice.mapNumber = 5;
+				CustomsPass customsPass = new CustomsPass();			
+				customsPass.setVisible(true);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getDefaultCursor());
+			}
+		});
+		ImageIcon icon_JButton_begin = new ImageIcon("img\\ButtonBegin.png");
+		int height2 = 48;
+		btnNewButton_begin.setBounds(870, 340, 94, height2);
+		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(94, height2, 0));
+		btnNewButton_begin.setIcon(icon_JButton_begin);
+		contentPane.add(btnNewButton_begin);
+		/*
+		 * 返回主菜单
+		 */
+		JButton btnNewButton_help = new JButton("");
+		btnNewButton_help.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				StartInterface startinterface = new StartInterface();			
+				startinterface.setVisible(true);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getDefaultCursor());
+			}
+		});
+		ImageIcon icon_JButton_help = new ImageIcon("img\\Return.png");
+		btnNewButton_help.setBounds(870, 400, 94, height2);
+		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(94, height2, 0));
+		contentPane.add(btnNewButton_help);
+		btnNewButton_help.setIcon(icon_JButton_help);
 	}
 	
 	
