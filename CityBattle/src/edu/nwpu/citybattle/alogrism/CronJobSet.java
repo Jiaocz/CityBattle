@@ -238,6 +238,17 @@ public class CronJobSet extends TimerTask {
 		}
 		return false;
 	}
+	
+	/**
+	 * 过关后需要清除所有任务
+	 */
+	public static void removeAll() {
+		Moves.clear();
+		CronJobs.clear();
+		CronJobsInterval.clear();
+		CronJobsLast.clear();
+		MovesLast.clear();
+	}
 
 	/**
 	 * 每一帧进行一次操作，决定运行哪些函数。

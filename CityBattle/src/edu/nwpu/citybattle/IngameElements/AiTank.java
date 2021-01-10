@@ -162,16 +162,15 @@ public class AiTank extends Tank implements Movable {
 		}
 		CustomsPass.win();
 		if (HP == 0) {
-
-			CronJobSet.addDelayJob(new CronJob() {
-				@Override
-				public void run() {
+			ThreadCronJob.removeJob(this);
+			tank_x = tank_y = -5;
+			CronJobSet.addDelayJob(() -> {
 					tank_x = initX;
 					tank_y = initY;
 					HP = initHP;//回到最初的HP的值
 					CustomsPass.contentPane.add(j);
-				}
-			}, 2000L);
+					ThreadCronJob.addJob(AiTank.this);
+				}, 2000L);
 		}
 
 	}
@@ -189,10 +188,10 @@ public class AiTank extends Tank implements Movable {
 		*/
 		switch(direction){
 			case Tank.UP:
-				if(tank_y == 0) return false;
+				if(tank_y <= 0) return false;
 				break;
 			case Tank.LEFT:
-				if(tank_x == 0) return false;
+				if(tank_x <= 0) return false;
 				break;
 			case Tank.RIGHT:
 				if(tank_x + 3 > 56) return false;
@@ -256,6 +255,8 @@ public class AiTank extends Tank implements Movable {
 		int direction = this.direction;
 		return new Bullet(x, y, direction);
 		*/
+		if(HP <= 0)
+			return null;
 
 		switch(direction){
 			case Tank.UP:
