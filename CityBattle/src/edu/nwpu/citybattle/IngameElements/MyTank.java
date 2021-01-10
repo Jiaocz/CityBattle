@@ -32,6 +32,7 @@ public class MyTank extends Tank {
 	public MyTank() {
 		this.tank_y = 36;
 		this.tank_x = 20;
+		this.HP = 3;
 	}
 	/**
 	 * 调用函数，在坦克朝向的正中间生成子弹
