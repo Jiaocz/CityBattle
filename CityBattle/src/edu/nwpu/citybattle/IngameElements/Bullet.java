@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import UI.CustomsPass;
 import edu.nwpu.citybattle.actions.Movable;
 import edu.nwpu.citybattle.alogrism.BulletAlogrism;
-import edu.nwpu.citybattle.alogrism.CronJobSet;
 import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 
 /**
