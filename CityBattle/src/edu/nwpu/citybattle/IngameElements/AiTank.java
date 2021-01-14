@@ -6,14 +6,15 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import UI.Choice;
 import UI.CustomsPass;
 import edu.nwpu.citybattle.TankMap.Map;
 import edu.nwpu.citybattle.actions.Movable;
+import edu.nwpu.citybattle.alogrism.CronJob;
 import edu.nwpu.citybattle.alogrism.CronJobSet;
 import edu.nwpu.citybattle.alogrism.ThreadCronJob;
 
 /**
- * AI坦克类，即游戏中非玩家操控的敌方坦克类
  * 
  * @version 1.0.0
  * @see Tank
@@ -176,7 +177,6 @@ public class AiTank extends Tank implements Movable {
 
 	}
 
-	//判断是否可移动
 	private boolean judgeLimit() {
 		int a;
 
@@ -411,9 +411,6 @@ public class AiTank extends Tank implements Movable {
 		this.initY = y;
 	}
 
-	/**
-	 * 初始化坦克绘画
-	 */
 	public void initialPainter() {
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
@@ -421,9 +418,6 @@ public class AiTank extends Tank implements Movable {
 		ELEMENT_SIZE = size1 < size2 ? size1 : size2;
 	}
 
-	/**
-	 * 加载坦克图片
-	 */
 	public void loadImg() {
 		origin_first_tank_up = new ImageIcon(getClass().getResource("enemy1_up.png"));
 		origin_first_tank_up

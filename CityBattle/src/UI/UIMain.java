@@ -4,13 +4,9 @@
 package UI;
 
 import java.awt.EventQueue;
-<<<<<<< HEAD
 import java.io.*;
 import java.net.URI;
 
-=======
-import java.io.File;
->>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,18 +15,12 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.SourceDataLine;
 
 /**
- * 游戏界面启动器，包含游戏BGM播放
- * 
  * @author 琚翔
- * @version V1.0
+ * version V1.0
  */
 public class UIMain {
-<<<<<<< HEAD
 	
 	
-=======
-
->>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 	public static void playMusic() {// 背景音乐播放
 		try {
 //			getFile();
@@ -59,15 +49,11 @@ public class UIMain {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
 //	public void getFile(){
 //		File file = new File(this.getClass().getResource("/city.josn").getPath());
 //		
 //	}
 	
-=======
-
->>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 	/**
 	 * Launch the application.
 	 */
@@ -76,10 +62,7 @@ public class UIMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Thread(() -> {
-						while (true) {
-							playMusic();
-						} // while中的true可换成参数来控制音乐的停止播放
+					new Thread(()->{while(true) {playMusic();} //while中的true可换成参数来控制音乐的停止播放
 					}).start();
 					StartInterface startinterface = new StartInterface();
 					startinterface.setVisible(true);
@@ -89,5 +72,9 @@ public class UIMain {
 			}
 		});
 	}
+	
+	
+	
+	
 
 }

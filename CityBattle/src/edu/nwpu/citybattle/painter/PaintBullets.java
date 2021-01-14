@@ -1,5 +1,6 @@
 package edu.nwpu.citybattle.painter;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -9,8 +10,7 @@ import javax.swing.JPanel;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 
 /**
- * 该类用于子弹的绘制
- * 
+ * 该类用于子弹的绘制 
  * @author 微笑未失
  * @see drawBullets
  * @see loadImg
@@ -21,64 +21,59 @@ public class PaintBullets {
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TABLE_WIDTH = 40;
 	public static final int TABLE_HEIGHT = 56;
-	private static int ELEMENT_SIZE;
+	private static int  ELEMENT_SIZE;
 	public static final int UP = 1;
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
 
 	JPanel contentPane;
-
+	
 	JLabel bullets;
 	ArrayList<JLabel> bullet = new ArrayList<JLabel>();
-
+	
 	ImageIcon origin_bullet_up;
 	ImageIcon origin_bullet_down;
 	ImageIcon origin_bullet_left;
 	ImageIcon origin_bullet_right;
-
+	
 	public PaintBullets(JPanel contentPane) {
 		this.contentPane = contentPane;
 		this.initialPainter();
 		this.drawBullets();
 	}
-
 	/**
 	 * 该方法用于初始化绘制大小
 	 */
-	public void initialPainter() {
+	public void initialPainter()
+	{
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
-
-		ELEMENT_SIZE = size1 < size2 ? size1 : size2;
+		
+		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
 	}
-
 	/**
 	 * 该方法用于根据子弹数组绘制子弹
 	 */
 	public void drawBullets() {
-		for (Bullet bullet : Bullet.Bullets) {
-			switch (bullet.direction) {
+		for(Bullet bullet:Bullet.Bullets) {
+			switch(bullet.direction) {
 			case UP:
-				bullet.j.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE,
-						ELEMENT_SIZE * 2);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
 				break;
 			case DOWN:
-				bullet.j.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE,
-						ELEMENT_SIZE * 2);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE , ELEMENT_SIZE * 2);
 				break;
 			case LEFT:
-				bullet.j.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE * 2,
-						ELEMENT_SIZE);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
 				break;
 			case RIGHT:
-				bullet.j.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE * 2,
-						ELEMENT_SIZE);
+				bullet.j.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE* 2 , ELEMENT_SIZE);
 				break;
-			default:
+			default :
 				return;
 			}
 		}
 	}
-
+	
 }
