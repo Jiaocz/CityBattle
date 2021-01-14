@@ -1,7 +1,5 @@
 package edu.nwpu.citybattle.painter;
 
-import java.awt.Graphics;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,7 +7,8 @@ import javax.swing.JPanel;
 import edu.nwpu.citybattle.IngameElements.Bullet;
 
 /**
- * 该类用于子弹的绘制 
+ * 该类用于子弹的绘制
+ * 
  * @author 微笑未失
  * @see drawBullets
  * @see loadImg
@@ -20,14 +19,14 @@ public class BulletsPainter {
 	public static final int WINDOW_HEIGHT = 800;
 	public static final int TABLE_WIDTH = 40;
 	public static final int TABLE_HEIGHT = 56;
-	private static int  ELEMENT_SIZE;
+	private static int ELEMENT_SIZE;
 	public static final int UP = 1;
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
 
 	JPanel contentPane;
-	
+
 	JLabel bullet_up;
 	JLabel bullet_down;
 	JLabel bullet_left;
@@ -36,66 +35,86 @@ public class BulletsPainter {
 	ImageIcon origin_bullet_down;
 	ImageIcon origin_bullet_left;
 	ImageIcon origin_bullet_right;
-	
+
 	public BulletsPainter(JPanel contentPane) {
 		this.contentPane = contentPane;
 		this.initialPainter();
 		this.loadImg();
 		this.drawBullets();
 	}
+
 	/**
 	 * 该方法用于初始化绘制大小
 	 */
-	public void initialPainter()
-	{
+	public void initialPainter() {
 		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
 		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
-		
-		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
+
+		ELEMENT_SIZE = size1 < size2 ? size1 : size2;
 	}
+
 	/**
 	 * 该方法用于载入图片
 	 */
 	public void loadImg() {
+<<<<<<< HEAD
 		origin_bullet_up = new ImageIcon(getClass().getResource("bullet_up.png"));
 		origin_bullet_up.setImage(origin_bullet_up.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
 		origin_bullet_down = new ImageIcon(getClass().getResource("bullet_down.png"));
 		origin_bullet_down.setImage(origin_bullet_down.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
 		origin_bullet_left = new ImageIcon(getClass().getResource("bullet_left.png"));
+=======
+		origin_bullet_up = new ImageIcon("img\\bullet_up.png");
+		origin_bullet_up.setImage(origin_bullet_up.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE * 2, 0));
+		origin_bullet_down = new ImageIcon("img\\bullet_down.png");
+		origin_bullet_down.setImage(origin_bullet_down.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE * 2, 0));
+		origin_bullet_left = new ImageIcon("img\\bullet_left.png");
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		origin_bullet_left.setImage(origin_bullet_left.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE, 0));
+<<<<<<< HEAD
 		origin_bullet_right = new ImageIcon(getClass().getResource("bullet_right.png"));
 		origin_bullet_right.setImage(origin_bullet_right.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE , 0));
+=======
+		origin_bullet_right = new ImageIcon("img\\bullet_down.png");
+		origin_bullet_right
+				.setImage(origin_bullet_right.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE, 0));
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 	}
+
 	/**
 	 * 该方法用于根据子弹数组绘制子弹
 	 */
 	public void drawBullets() {
-		for(Bullet bullet:Bullet.Bullets) {
-			switch(bullet.direction) {
+		for (Bullet bullet : Bullet.Bullets) {
+			switch (bullet.direction) {
 			case UP:
 				bullet_up = new JLabel(origin_bullet_up);
-				bullet_up.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE * 2);
+				bullet_up.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE,
+						ELEMENT_SIZE * 2);
 				contentPane.add(bullet_up);
 				break;
 			case DOWN:
 				bullet_down = new JLabel(origin_bullet_down);
-				bullet_down.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE , ELEMENT_SIZE * 2);
+				bullet_down.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE,
+						ELEMENT_SIZE * 2);
 				contentPane.add(bullet_down);
 				break;
 			case LEFT:
 				bullet_left = new JLabel(origin_bullet_left);
-				bullet_left.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE * 2, ELEMENT_SIZE );
+				bullet_left.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE * 2,
+						ELEMENT_SIZE);
 				contentPane.add(bullet_left);
 				break;
 			case RIGHT:
 				bullet_right = new JLabel(origin_bullet_right);
-				bullet_right.setBounds(bullet.pos_x*ELEMENT_SIZE, bullet.pos_y*ELEMENT_SIZE, ELEMENT_SIZE* 2 , ELEMENT_SIZE);
+				bullet_right.setBounds(bullet.pos_x * ELEMENT_SIZE, bullet.pos_y * ELEMENT_SIZE, ELEMENT_SIZE * 2,
+						ELEMENT_SIZE);
 				contentPane.add(bullet_right);
 				break;
-			default :
+			default:
 				return;
 			}
 		}
 	}
-	
+
 }

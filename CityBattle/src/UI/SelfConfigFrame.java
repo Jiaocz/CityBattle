@@ -23,37 +23,45 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+<<<<<<< HEAD
 import edu.nwpu.citybattle.TankMap.Map;
+=======
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 import edu.nwpu.citybattle.TankMap.MapSelf;
 import edu.nwpu.citybattle.painter.SelfPainter;
+
 /**
+ * 自定义地图界面
+ * 
  * @author 琚翔
  * @version 1.0
  */
 public class SelfConfigFrame extends JFrame {
-	/**
-	 * 
-	 */
+
 	public static int type;
-	public static int Wall=1;
-	public static int IronWall=2;
-	public static int Water=3;
-	public static int Grass=4;
-	
+	public static int Wall = 1;
+	public static int IronWall = 2;
+	public static int Water = 3;
+	public static int Grass = 4;
+
 	private static final long serialVersionUID = 1L;
 	public static int x;
 	public static int y;
 //	private String img_path = null;
 //	private int height=0, width=0;
 	public static JPanel contentPane;
-	
+
 	ImageIcon icon_JLabel;
 	JLabel lblNewLabel;
+<<<<<<< HEAD
 	
 	ArrayList<JLabel> wall = new ArrayList<JLabel>();
 	ArrayList<JLabel> water = new ArrayList<JLabel>();
 	ArrayList<JLabel> ironWall = new ArrayList<JLabel>();
 	ArrayList<JLabel> grass = new ArrayList<JLabel>();
+=======
+
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 	/**
 	 * Launch the application.
 	 */
@@ -67,8 +75,7 @@ public class SelfConfigFrame extends JFrame {
 					e.printStackTrace();
 				}
 			}
-			
-			
+
 //			/*
 //			 * 设置方格用于划分
 //			 */
@@ -80,16 +87,15 @@ public class SelfConfigFrame extends JFrame {
 //				    Line2D lin = new Line2D.Float(15, 0, 115, 600);
 //				    g2.draw(lin);
 //				  }
-		}
-		);
-	}	
+		});
+	}
+
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public SelfConfigFrame() {
-		
-		
-		
+
 		super("坦克大战");
 		
 		Toolkit tk=Toolkit.getDefaultToolkit();
@@ -99,31 +105,41 @@ public class SelfConfigFrame extends JFrame {
 //		this.setUndecorated(true);//隐藏标题栏		
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//获得屏幕尺寸
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();// 获得屏幕尺寸
 		int width = 1000;
-		int height = 640;//设置窗口宽度和高度
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//窗口的坐标和尺寸，以此种方式居中
+		int height = 640;// 设置窗口宽度和高度
+		setBounds((d.width - width) / 2, (d.height - height) / 2, width, height);// 窗口的坐标和尺寸，以此种方式居中
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		/*
 		 * 设置一条白线分界
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/line.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+=======
+		ImageIcon icon_JLabel_B = new ImageIcon("img\\line.png");
+		JLabel lblNewLabel_B = new JLabel(icon_JLabel_B);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_B.setBounds(61, 0, 1000, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1000, 600, 0));
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
-		//转置数组
+		// 转置数组
 		/**
 		 * 放置皇冠
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_H = new ImageIcon(getClass().getResource("img/home.png"));
 		JLabel lblNewLabel_H  = new JLabel(icon_JLabel_H);
+=======
+		ImageIcon icon_JLabel_H = new ImageIcon("img\\home.png");
+		JLabel lblNewLabel_H = new JLabel(icon_JLabel_H);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_H.setBounds(405, 540, 45, 45);
 		icon_JLabel_H.setImage(icon_JLabel_H.getImage().getScaledInstance(45, 45, 0));
 		contentPane.add(lblNewLabel_H);
@@ -140,6 +156,7 @@ public class SelfConfigFrame extends JFrame {
 		/*
 		 * 绘制网格方便放置图案
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_FangGe = new ImageIcon((getClass().getResource("img/FangGe.png")));
 		//ImageIcon icon_JLabel_FangGe = new ImageIcon("");
 		JLabel lblNewLabel_FangGe  = new JLabel(icon_JLabel_FangGe);
@@ -150,16 +167,31 @@ public class SelfConfigFrame extends JFrame {
 			public void  mouseDragged(MouseEvent e) {
 				//				x=(dint) ((screenWidth-getLocation().getX())/2);
 //				y=(dint) ((screenHeight-getLocation().getY())/2);//框架frame的左上角坐标
+=======
+		ImageIcon icon_JLabel_FangGe = new ImageIcon("img\\FangGe.png");
+		// ImageIcon icon_JLabel_FangGe = new ImageIcon("");
+		JLabel lblNewLabel_FangGe = new JLabel(icon_JLabel_FangGe);
+		new SelfPainter(this.contentPane);
+		// selfPainter = new SelfPainter();
+		lblNewLabel_FangGe.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unused")
+			public void mousePressed(MouseEvent e) {
+				int screenWidth = d.width;
+				int screenHeight = d.height;
+//				x=(int) ((screenWidth-getLocation().getX())/2);
+//				y=(int) ((screenHeight-getLocation().getY())/2);//框架frame的左上角坐标
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 //				System.out.println(getLocation().getX());
 //				System.out.println(getLocation().getY());
-				x = (int) (e.getXOnScreen()-getLocationOnScreen().getX()-5);
-				y = (int) (e.getYOnScreen()-getLocationOnScreen().getY()-36);
+				x = (int) (e.getXOnScreen() - getLocationOnScreen().getX() - 5);
+				y = (int) (e.getYOnScreen() - getLocationOnScreen().getY() - 36);
 //				System.out.println(e.getXOnScreen());
 //				System.out.println(e.getYOnScreen());
 //				System.out.println(getLocation().getX());
 //				System.out.println(getLocation().getY());
 //				System.out.println(x);
 //				System.out.println(y);
+<<<<<<< HEAD
 				x=x/15;
 				y=y/15;
 //				System.out.println(x);
@@ -169,12 +201,30 @@ public class SelfConfigFrame extends JFrame {
 						if(MapSelf.grass[y][x]==0&&MapSelf.ironwall[y][x]==0&&MapSelf.wall[y][x]==0&&MapSelf.water[y][x]==0) {
 						MapSelf.wall[y][x]=1;
 						icon_JLabel = new ImageIcon(getClass().getResource("img/wall.jpg"));
+=======
+				x = x / 15;
+				y = y / 15;
+				System.out.println(x);
+				System.out.println(y);
+				switch (type) {
+				case 1:
+					if (MapSelf.grass[y][x] == 0 && MapSelf.ironwall[y][x] == 0 && MapSelf.wall[y][x] == 0
+							&& MapSelf.water[y][x] == 0) {
+						MapSelf.wall[y][x] = 1;
+						icon_JLabel = new ImageIcon("img\\wall.jpg");
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						icon_JLabel.setImage(icon_JLabel.getImage().getScaledInstance(15, 15, 0));
+<<<<<<< HEAD
 						lblNewLabel  = new JLabel(icon_JLabel);
 						lblNewLabel.setBounds(15*x, 15*y, 15,15);
 						wall.add(lblNewLabel);
+=======
+						lblNewLabel = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15 * x, 15 * y, 15, 15);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						contentPane.add(lblNewLabel);
 						contentPane.updateUI();
+<<<<<<< HEAD
 						}
 						
 						break;
@@ -182,12 +232,28 @@ public class SelfConfigFrame extends JFrame {
 						if(MapSelf.grass[y][x]==0&&MapSelf.ironwall[y][x]==0&&MapSelf.wall[y][x]==0&&MapSelf.water[y][x]==0) {
 							MapSelf.ironwall[y][x]=1;
 						icon_JLabel = new ImageIcon(getClass().getResource("img/ironwall.jpg"));
+=======
+					}
+
+					break;
+				case 2:
+					if (MapSelf.grass[y][x] == 0 && MapSelf.ironwall[y][x] == 0 && MapSelf.wall[y][x] == 0
+							&& MapSelf.water[y][x] == 0) {
+						MapSelf.ironwall[y][x] = 1;
+						icon_JLabel = new ImageIcon("img\\ironwall.jpg");
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						icon_JLabel.setImage(icon_JLabel.getImage().getScaledInstance(15, 15, 0));
+<<<<<<< HEAD
 						lblNewLabel  = new JLabel(icon_JLabel);
 						lblNewLabel.setBounds(15*x, 15*y, 15,15);
 						ironWall.add(lblNewLabel);
+=======
+						lblNewLabel = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15 * x, 15 * y, 15, 15);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						contentPane.add(lblNewLabel);
 						contentPane.updateUI();
+<<<<<<< HEAD
 						}
 							
 						//selfPainter.drawWall();
@@ -195,12 +261,28 @@ public class SelfConfigFrame extends JFrame {
 						if(MapSelf.grass[y][x]==0&&MapSelf.ironwall[y][x]==0&&MapSelf.wall[y][x]==0&&MapSelf.water[y][x]==0) {
 							MapSelf.water[y][x]=1;
 						icon_JLabel = new ImageIcon(getClass().getResource("img/water.jpg"));
+=======
+					}
+
+					// selfPainter.drawWall();
+				case 3:
+					if (MapSelf.grass[y][x] == 0 && MapSelf.ironwall[y][x] == 0 && MapSelf.wall[y][x] == 0
+							&& MapSelf.water[y][x] == 0) {
+						MapSelf.water[y][x] = 1;
+						icon_JLabel = new ImageIcon("img\\water.jpg");
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						icon_JLabel.setImage(icon_JLabel.getImage().getScaledInstance(15, 15, 0));
+<<<<<<< HEAD
 						lblNewLabel  = new JLabel(icon_JLabel);
 						lblNewLabel.setBounds(15*x, 15*y, 15,15);
 						water.add(lblNewLabel);
+=======
+						lblNewLabel = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15 * x, 15 * y, 15, 15);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						contentPane.add(lblNewLabel);
 						contentPane.updateUI();
+<<<<<<< HEAD
 						}
 							break;
 						//selfPainter.drawWall();
@@ -208,12 +290,28 @@ public class SelfConfigFrame extends JFrame {
 						if(MapSelf.grass[y][x]==0&&MapSelf.ironwall[y][x]==0&&MapSelf.wall[y][x]==0&&MapSelf.water[y][x]==0) {
 							MapSelf.grass[y][x]=1;
 						icon_JLabel = new ImageIcon(getClass().getResource("img/grass.png"));
+=======
+					}
+					break;
+				// selfPainter.drawWall();
+				case 4:
+					if (MapSelf.grass[y][x] == 0 && MapSelf.ironwall[y][x] == 0 && MapSelf.wall[y][x] == 0
+							&& MapSelf.water[y][x] == 0) {
+						MapSelf.grass[y][x] = 1;
+						icon_JLabel = new ImageIcon("img\\grass.png");
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						icon_JLabel.setImage(icon_JLabel.getImage().getScaledInstance(15, 15, 0));
+<<<<<<< HEAD
 						lblNewLabel  = new JLabel(icon_JLabel);
 						lblNewLabel.setBounds(15*x, 15*y, 15,15);
 						grass.add(lblNewLabel);
+=======
+						lblNewLabel = new JLabel(icon_JLabel);
+						lblNewLabel.setBounds(15 * x, 15 * y, 15, 15);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 						contentPane.add(lblNewLabel);
 						contentPane.updateUI();
+<<<<<<< HEAD
 						}break;
 					case 5:
 					MapSelf.grass[y][x] = 0;
@@ -264,8 +362,15 @@ public class SelfConfigFrame extends JFrame {
 						//selfPainter.drawWall();
 					default:
 						return;
+=======
+					}
+					break;
+				// selfPainter.drawWall();
+				default:
+					return;
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 				}
-			}//设置鼠标监听，获取x,y的相对坐标
+			}// 设置鼠标监听，获取x,y的相对坐标
 		});
 		lblNewLabel_FangGe.setBounds(0, 0, 840, 600);
 		icon_JLabel_FangGe.setImage(icon_JLabel_FangGe.getImage().getScaledInstance(840, 600, 0));
@@ -274,42 +379,55 @@ public class SelfConfigFrame extends JFrame {
 		/*
 		 * 右边的墙
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_Wall = new ImageIcon(getClass().getResource("img/wall.jpg"));
 		JLabel lblNewLabel_Wall  = new JLabel(icon_JLabel_Wall);
+=======
+		ImageIcon icon_JLabel_Wall = new ImageIcon("img\\wall.jpg");
+		JLabel lblNewLabel_Wall = new JLabel(icon_JLabel_Wall);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_Wall.addMouseListener(new MouseAdapter() {
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				type = 1;
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		lblNewLabel_Wall.setBounds(900,20, 50, 50);
+		lblNewLabel_Wall.setBounds(900, 20, 50, 50);
 		icon_JLabel_Wall.setImage(icon_JLabel_Wall.getImage().getScaledInstance(50, 50, 0));
 		contentPane.add(lblNewLabel_Wall);
 		lblNewLabel_Wall.setIcon(icon_JLabel_Wall);
 		/*
 		 * 右边的铁墙
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_Ironwall = new ImageIcon(getClass().getResource("img/ironwall.jpg"));
 		JLabel lblNewLabel_Ironwall  = new JLabel(icon_JLabel_Ironwall);
+=======
+		ImageIcon icon_JLabel_Ironwall = new ImageIcon("img\\ironwall.jpg");
+		JLabel lblNewLabel_Ironwall = new JLabel(icon_JLabel_Ironwall);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_Ironwall.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				type = 2;
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -322,17 +440,24 @@ public class SelfConfigFrame extends JFrame {
 		/*
 		 * 右边的水
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_Water = new ImageIcon(getClass().getResource("img/water.jpg"));
 		JLabel lblNewLabel_Water  = new JLabel(icon_JLabel_Water);
+=======
+		ImageIcon icon_JLabel_Water = new ImageIcon("img\\water.jpg");
+		JLabel lblNewLabel_Water = new JLabel(icon_JLabel_Water);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_Water.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				type = 3;
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -345,17 +470,24 @@ public class SelfConfigFrame extends JFrame {
 		/*
 		 * 右边的草
 		 */
+<<<<<<< HEAD
 		ImageIcon icon_JLabel_Grass = new ImageIcon(getClass().getResource("img/grass.png"));
 		JLabel lblNewLabel_Grass  = new JLabel(icon_JLabel_Grass);
+=======
+		ImageIcon icon_JLabel_Grass = new ImageIcon("img\\grass.png");
+		JLabel lblNewLabel_Grass = new JLabel(icon_JLabel_Grass);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_Grass.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				type = 4;
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -418,15 +550,17 @@ public class SelfConfigFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 //				dispose();
 				Choice.mapNumber = 5;
-				CustomsPass customsPass = new CustomsPass();			
+				CustomsPass customsPass = new CustomsPass();
 				customsPass.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -460,15 +594,17 @@ public class SelfConfigFrame extends JFrame {
 //			{deleteAll();}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				StartInterface startinterface = new StartInterface();			
+				StartInterface startinterface = new StartInterface();
 				startinterface.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -574,9 +710,12 @@ public class SelfConfigFrame extends JFrame {
 		
 		
 	}
+<<<<<<< HEAD
 
 
 	
+=======
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 
 }
 

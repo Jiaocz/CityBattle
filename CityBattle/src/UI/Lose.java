@@ -3,7 +3,6 @@
  */
 package UI;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -25,11 +24,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 /**
+ * 游戏失败界面
+ * 
  * @author 琚翔
- * version V1.0
+ * @version V1.0
  */
 public class Lose extends JFrame {
 
+	/**
+	 * Random Serial Version UID
+	 */
+	private static final long serialVersionUID = -293613784975413431L;
 	private JPanel contentPane;
 	public static int mapNumber;
 
@@ -59,33 +64,33 @@ public class Lose extends JFrame {
 		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
 		this.setIconImage(image);//设置图标
 		setResizable(false);
-		
+
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//获得屏幕尺寸
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();// 获得屏幕尺寸
 		int width = 1000;
-		int height = 600;//设置窗口宽度和高度
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//窗口的坐标和尺寸，以此种方式居中
+		int height = 600;// 设置窗口宽度和高度
+		setBounds((d.width - width) / 2, (d.height - height) / 2, width, height);// 窗口的坐标和尺寸，以此种方式居中
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("\u522B\u7070\u5FC3");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("方正显仁简体", Font.PLAIN, 80));
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setBounds(369, 42, 262, 128);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("\u518D\u6765\u4E00\u6B21\uFF01");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setFont(new Font("方正显仁简体", Font.PLAIN, 60));
 		lblNewLabel_1.setBounds(375, 142, 302, 112);
 		contentPane.add(lblNewLabel_1);
-		
+
 		/*
 		 * 再玩一次按键
 		 */
@@ -100,15 +105,17 @@ public class Lose extends JFrame {
                 }
                 (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 //				dispose();
-				CustomsPass customspass = new CustomsPass();			
+				CustomsPass customspass = new CustomsPass();
 				customspass.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -127,6 +134,7 @@ public class Lose extends JFrame {
 		btnNewButton_help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
 				class t extends TimerTask{
 					@Override
 					public void run() {
@@ -134,14 +142,19 @@ public class Lose extends JFrame {
                 }
                 (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				StartInterface startinterface = new StartInterface();			
+=======
+				StartInterface startinterface = new StartInterface();
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 				startinterface.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				dispose();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -159,6 +172,7 @@ public class Lose extends JFrame {
 		btnNewButton_skip.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+<<<<<<< HEAD
 				class t extends TimerTask{
 					@Override
 					public void run() {
@@ -178,11 +192,20 @@ public class Lose extends JFrame {
 						//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						dispose();
 						}
+=======
+				mapNumber = mapNumber + 2;
+				CustomsPass customspass = new CustomsPass();
+				customspass.setVisible(true);
+				// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				setCursor(Cursor.getDefaultCursor());
@@ -194,9 +217,14 @@ public class Lose extends JFrame {
 		btnNewButton_skip.setIcon(icon_JButton_skip);
 		contentPane.add(btnNewButton_skip);
 
+<<<<<<< HEAD
 
 		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/finalbackground.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
+=======
+		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		JLabel lblNewLabel_B = new JLabel(icon_JLabel_B);
+>>>>>>> branch 'master' of https://codehub.devcloud.cn-north-4.huaweicloud.com/hwxz-rjkfjcnlxl-QV_Orangii00001/CityBattle.git
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));
 		contentPane.add(lblNewLabel_B);

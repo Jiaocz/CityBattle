@@ -4,8 +4,10 @@
 package edu.nwpu.citybattle.TankMap;
 
 /**
+ * 本类为自定义地图的数据维护类
+ * 
  * @author 琚翔
- * version V1.0
+ * @version V1.0
  */
 public class MapSelf {
 		//自定义地图
