@@ -4,7 +4,7 @@
 package UI;
 
 import java.awt.EventQueue;
-import java.io.File;
+import java.io.*;
 import java.net.URI;
 
 import javax.sound.sampled.AudioFormat;
@@ -20,9 +20,12 @@ import javax.sound.sampled.SourceDataLine;
  */
 public class UIMain {
 	
+	
 	public static void playMusic() {// ±³¾°ÒôÀÖ²¥·Å
 		try {
-			AudioInputStream ais = AudioSystem.getAudioInputStream(new File("music\\Alive.wav")); // ¾ø¶ÔÂ·¾¶
+//			getFile();
+//			InputStream in = Reader.class.getResourceAsStream("/com/lavasoft/res/a.txt"); 
+			AudioInputStream ais = AudioSystem.getAudioInputStream(UIMain.class.getResource("Alive.wav")); // ¾ø¶ÔÂ·¾¶
 			AudioFormat aif = ais.getFormat();
 			final SourceDataLine sdl;
 			DataLine.Info info = new DataLine.Info(SourceDataLine.class, aif);
@@ -46,11 +49,16 @@ public class UIMain {
 			e.printStackTrace();
 		}
 	}
+//	public void getFile(){
+//		File file = new File(this.getClass().getResource("/city.josn").getPath());
+//		
+//	}
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

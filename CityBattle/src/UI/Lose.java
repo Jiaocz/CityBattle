@@ -9,9 +9,12 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -51,6 +54,10 @@ public class Lose extends JFrame {
 	 */
 	public Lose() {
 		super("坦克大战");
+		
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
+		this.setIconImage(image);//设置图标
 		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
@@ -86,6 +93,12 @@ public class Lose extends JFrame {
 		btnNewButton_begin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 //				dispose();
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
@@ -101,7 +114,7 @@ public class Lose extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_begin = new ImageIcon("img\\TryAgain.png");
+		ImageIcon icon_JButton_begin = new ImageIcon(getClass().getResource("img/TryAgain.png"));
 		int height2 = 48;
 		btnNewButton_begin.setBounds(405, 300, 190, height2);
 		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(190, height2, 0));
@@ -114,6 +127,12 @@ public class Lose extends JFrame {
 		btnNewButton_help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				StartInterface startinterface = new StartInterface();			
 				startinterface.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -128,7 +147,7 @@ public class Lose extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_help = new ImageIcon("img\\ReturnMain.png");
+		ImageIcon icon_JButton_help = new ImageIcon(getClass().getResource("img/ReturnMain.png"));
 		btnNewButton_help.setBounds(385, 370, 230, height2);
 		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(230, height2, 0));
 		contentPane.add(btnNewButton_help);
@@ -140,11 +159,25 @@ public class Lose extends JFrame {
 		btnNewButton_skip.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				mapNumber = mapNumber+2;
-				CustomsPass customspass = new CustomsPass();			
-				customspass.setVisible(true);
-				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				dispose();
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
+				
+				Choice.mapNumber = Choice.mapNumber+1;
+				if(Choice.mapNumber > 4) {
+					AllVictory	allvictory = new AllVictory();			
+					allvictory.setVisible(true);
+					dispose();
+					
+				}else {
+						CustomsPass customspass = new CustomsPass();			
+						customspass.setVisible(true);
+						//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						dispose();
+						}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -155,14 +188,14 @@ public class Lose extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_skip = new ImageIcon("img\\JustSkip.png");
+		ImageIcon icon_JButton_skip = new ImageIcon(getClass().getResource("img/JustSkip.png"));
 		btnNewButton_skip.setBounds(405, 440, 190, height2);
 		icon_JButton_skip.setImage(icon_JButton_skip.getImage().getScaledInstance(190, height2, 0));
 		btnNewButton_skip.setIcon(icon_JButton_skip);
 		contentPane.add(btnNewButton_skip);
 
 
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/finalbackground.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));

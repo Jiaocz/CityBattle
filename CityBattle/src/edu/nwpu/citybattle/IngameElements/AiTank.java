@@ -419,42 +419,42 @@ public class AiTank extends Tank implements Movable {
 	}
 
 	public void loadImg() {
-		origin_first_tank_up = new ImageIcon("img\\enemy1_up.png");
+		origin_first_tank_up = new ImageIcon(getClass().getResource("enemy1_up.png"));
 		origin_first_tank_up
 				.setImage(origin_first_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_first_tank_down = new ImageIcon("img\\enemy1_down.png");
+		origin_first_tank_down = new ImageIcon(getClass().getResource("enemy1_down.png"));
 		origin_first_tank_down
 				.setImage(origin_first_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_first_tank_left = new ImageIcon("img\\enemy1_left.png");
+		origin_first_tank_left = new ImageIcon(getClass().getResource("enemy1_left.png"));
 		origin_first_tank_left
 				.setImage(origin_first_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_first_tank_right = new ImageIcon("img\\enemy1_right.png");
+		origin_first_tank_right = new ImageIcon(getClass().getResource("enemy1_right.png"));
 		origin_first_tank_right
 				.setImage(origin_first_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 
-		origin_second_tank_up = new ImageIcon("img\\enemy2_up.png");
+		origin_second_tank_up = new ImageIcon(getClass().getResource("enemy2_up.png"));
 		origin_second_tank_up
 				.setImage(origin_second_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_second_tank_down = new ImageIcon("img\\enemy2_down.png");
+		origin_second_tank_down = new ImageIcon(getClass().getResource("enemy2_down.png"));
 		origin_second_tank_down
 				.setImage(origin_second_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_second_tank_left = new ImageIcon("img\\enemy2_left.png");
+		origin_second_tank_left = new ImageIcon(getClass().getResource("enemy2_left.png"));
 		origin_second_tank_left
 				.setImage(origin_second_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_second_tank_right = new ImageIcon("img\\enemy2_right.png");
+		origin_second_tank_right = new ImageIcon(getClass().getResource("enemy2_right.png"));
 		origin_second_tank_right
 				.setImage(origin_second_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 
-		origin_third_tank_up = new ImageIcon("img\\enemy3_up.png");
+		origin_third_tank_up = new ImageIcon(getClass().getResource("enemy3_up.png"));
 		origin_third_tank_up
 				.setImage(origin_third_tank_up.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_third_tank_down = new ImageIcon("img\\enemy3_down.png");
+		origin_third_tank_down = new ImageIcon(getClass().getResource("enemy3_down.png"));
 		origin_third_tank_down
 				.setImage(origin_third_tank_down.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_third_tank_left = new ImageIcon("img\\enemy3_left.png");
+		origin_third_tank_left = new ImageIcon(getClass().getResource("enemy3_left.png"));
 		origin_third_tank_left
 				.setImage(origin_third_tank_left.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
-		origin_third_tank_right = new ImageIcon("img\\enemy3_right.png");
+		origin_third_tank_right = new ImageIcon(getClass().getResource("enemy3_right.png"));
 		origin_third_tank_right
 				.setImage(origin_third_tank_right.getImage().getScaledInstance(ELEMENT_SIZE * 3, ELEMENT_SIZE * 3, 0));
 	}

@@ -43,6 +43,7 @@ public class Goutou extends JFrame {
 	 * Create the frame.
 	 */
 	public Goutou() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//»ñµÃÆÁÄ»³ß´ç
 		int width = 1000;
@@ -58,10 +59,10 @@ public class Goutou extends JFrame {
 		this.setVisible(true);
 		
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\goutou.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img\\goutou.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
-		lblNewLabel_B.setBounds(0, 0, 500, 500);
-		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(500, 500, 0));
+		lblNewLabel_B.setBounds(0, 0, 600, 600);
+		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(600, 600, 0));
 		contentPane.add(lblNewLabel_B);
 		lblNewLabel_B.setIcon(icon_JLabel_B);
 	}

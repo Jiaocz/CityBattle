@@ -62,18 +62,18 @@ public class ShapePainter {
 	 * 该方法用于导入图片
 	 */
 	public void loadImg() {
-		origin_background = new ImageIcon("img\\background.png");
+		origin_background = new ImageIcon(getClass().getResource("background.png"));
 		origin_background.setImage(origin_background.getImage().getScaledInstance(800, 600, 0));
-		origin_wall = new ImageIcon("img\\wall.jpg");
-		origin_wall.setImage(origin_wall.getImage().getScaledInstance(ELEMENT_SIZE*5 , ELEMENT_SIZE *5, 0));
-		origin_iron_wall = new ImageIcon("img\\ironwall.jpg");
-		origin_iron_wall.setImage(origin_iron_wall.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
-		origin_grass = new ImageIcon("img\\grass.png");
-		origin_grass.setImage(origin_grass.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
-		origin_water = new ImageIcon("img\\water.jpg");
-		origin_water.setImage(origin_water.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
-		origin_home = new ImageIcon("img\\home.png");
-		origin_home.setImage(origin_home.getImage().getScaledInstance(ELEMENT_SIZE*3, ELEMENT_SIZE*3, 0));
+		origin_wall = new ImageIcon(getClass().getResource("wall.jpg"));
+		origin_wall.setImage(origin_wall.getImage().getScaledInstance(15*5 , 15 *5, 0));
+		origin_iron_wall = new ImageIcon(getClass().getResource("ironwall.jpg"));
+		origin_iron_wall.setImage(origin_iron_wall.getImage().getScaledInstance(15, 15, 0));
+		origin_grass = new ImageIcon(getClass().getResource("grass.png"));
+		origin_grass.setImage(origin_grass.getImage().getScaledInstance(15, 15, 0));
+		origin_water = new ImageIcon(getClass().getResource("water.jpg"));
+		origin_water.setImage(origin_water.getImage().getScaledInstance(15, 15, 0));
+		origin_home = new ImageIcon(getClass().getResource("home.png"));
+		origin_home.setImage(origin_home.getImage().getScaledInstance(15*3, 15*3, 0));
 		
 		addJLabel = new JLabel(origin_home);
 		addJLabel.setBounds(27*ELEMENT_SIZE , 36*ELEMENT_SIZE, ELEMENT_SIZE*3, ELEMENT_SIZE*3);

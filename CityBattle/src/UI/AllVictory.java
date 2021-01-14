@@ -9,6 +9,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -52,6 +53,10 @@ public class AllVictory extends JFrame {
 	 */
 	public AllVictory() {
 		super("坦克大战");
+		
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
+		this.setIconImage(image);//设置图标
 		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
@@ -87,6 +92,12 @@ public class AllVictory extends JFrame {
 		btnNewButton_begin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 //				dispose();
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
@@ -102,7 +113,7 @@ public class AllVictory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_begin = new ImageIcon("img\\TryAgain.png");
+		ImageIcon icon_JButton_begin = new ImageIcon(getClass().getResource("img/TryAgain.png"));
 		int height2 = 48;
 		btnNewButton_begin.setBounds(405, 300, 190, height2);
 		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(190, height2, 0));
@@ -115,6 +126,12 @@ public class AllVictory extends JFrame {
 		btnNewButton_help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				StartInterface startinterface = new StartInterface();			
 				startinterface.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -129,7 +146,7 @@ public class AllVictory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_help = new ImageIcon("img\\ReturnMain.png");
+		ImageIcon icon_JButton_help = new ImageIcon(getClass().getResource("img/ReturnMain.png"));
 		btnNewButton_help.setBounds(385, 370, 230, height2);
 		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(230, height2, 0));
 		contentPane.add(btnNewButton_help);
@@ -141,15 +158,21 @@ public class AllVictory extends JFrame {
 		btnNewButton_skip.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
                 Goutou goutou  = new Goutou();
                 goutou.setVisible(true);
-                class t extends TimerTask{
+                class t1 extends TimerTask{
 					@Override
 					public void run() {
 						goutou.setVisible(false);
 					}
                 }
-                (new Timer()).schedule(new t(), 3000L);
+                (new Timer()).schedule(new t1(), 3000L);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -160,7 +183,7 @@ public class AllVictory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_skip = new ImageIcon("img\\Guli.png");
+		ImageIcon icon_JButton_skip = new ImageIcon(getClass().getResource("img/Guli.png"));
 		btnNewButton_skip.setBounds(405, 440, 190, height2);
 		icon_JButton_skip.setImage(icon_JButton_skip.getImage().getScaledInstance(190, height2, 0));
 		btnNewButton_skip.setIcon(icon_JButton_skip);
@@ -175,7 +198,7 @@ public class AllVictory extends JFrame {
 		contentPane.add(lblNewLabel_11);
 
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/finalbackground.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-180, 0, 1180, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1180, 600, 0));

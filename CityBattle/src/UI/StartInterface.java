@@ -50,27 +50,32 @@ public class StartInterface extends JFrame {
 			}
 		});
 	}
-	public void ini_background() {
-    // 背景图片
-     ImageIcon background = new ImageIcon(
-     this.getClass().getResource("img\\finalbackground.png"));
-     // 把背景图片显示在一个标签里面
-     JLabel label = new JLabel(background);
-     // 设置标签大小
-     label.setBounds(0, 0, 440, 335);
-     // 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
-     JPanel imagePanel = (JPanel) this.getContentPane();
-     imagePanel.setOpaque(false);
-     this.getLayeredPane().setLayout(null);
-     // 把背景图片添加到分层窗格的最底层作为背景
-     this.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
- }
+//	public void ini_background() {
+//    // 背景图片
+//     ImageIcon background = new ImageIcon(
+//     this.getClass().getResource(getClass().getResource("img\\finalbackground.png")));
+//     // 把背景图片显示在一个标签里面
+//     JLabel label = new JLabel(background);
+//     // 设置标签大小
+//     label.setBounds(0, 0, 440, 335);
+//     // 把内容窗格转化为JPanel，否则不能用方法setOpaque()来使内容窗格透明
+//     JPanel imagePanel = (JPanel) this.getContentPane();
+//     imagePanel.setOpaque(false);
+//     this.getLayeredPane().setLayout(null);
+//     // 把背景图片添加到分层窗格的最底层作为背景
+//     this.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
+// }
 
 	/**
 	 * Create the frame.
 	 */
 	public StartInterface() {
 		super("坦克大战");
+		
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
+		this.setIconImage(image);//设置图标
+		
 		setResizable(false);
 		setBackground(new Color(0, 0, 0));
 		
@@ -108,7 +113,7 @@ public class StartInterface extends JFrame {
 	
 		
 		//JLabel lblNewLabel = new JLabel("");
-		ImageIcon icon_JLabel = new ImageIcon("img\\tankebegin.png");
+		ImageIcon icon_JLabel = new ImageIcon(getClass().getResource("img/tankebegin.png"));
 		JLabel lblNewLabel  = new JLabel(icon_JLabel);
 		lblNewLabel.setBounds(71, 40, 858, 214);
 		contentPane.add(lblNewLabel);
@@ -134,7 +139,7 @@ public class StartInterface extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_begin = new ImageIcon("img\\ButtonBegin.png");
+		ImageIcon icon_JButton_begin = new ImageIcon(getClass().getResource("img/ButtonBegin.png"));
 		int height2 = 48;
 		btnNewButton_begin.setBounds(453, 300, 94, height2);
 		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(94, height2, 0));
@@ -170,7 +175,7 @@ public class StartInterface extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_diy = new ImageIcon("img\\ButtonDiy.png");
+		ImageIcon icon_JButton_diy = new ImageIcon(getClass().getResource("img/ButtonDiy.png"));
 		btnNewButton_diy.setBounds(432, 370, 136, height2);
 		icon_JButton_diy.setImage(icon_JButton_diy.getImage().getScaledInstance(136, height2, 0));
 		btnNewButton_diy.setIcon(icon_JButton_diy);
@@ -196,7 +201,7 @@ public class StartInterface extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_help = new ImageIcon("img\\ButtonHelp.png");
+		ImageIcon icon_JButton_help = new ImageIcon(getClass().getResource("img/ButtonHelp.png"));
 		btnNewButton_help.setBounds(405, 440, 190, height2);
 		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(190, height2, 0));
 		contentPane.add(btnNewButton_help);
@@ -222,7 +227,7 @@ public class StartInterface extends JFrame {
 //		contentPane.add(lblNewLabel_A);
 //		lblNewLabel_A.setIcon(icon_JLabel_A);
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/finalbackground.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));

@@ -22,9 +22,12 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Currency;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author 琚翔
@@ -59,6 +62,10 @@ public class Choice extends JFrame {
 	 */
 	public Choice() {
 		super("坦克大战");
+		
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
+		this.setIconImage(image);//设置图标
 		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
@@ -109,12 +116,18 @@ public class Choice extends JFrame {
 		contentPane.add(lblNewLabel_1_2);
 
 		//JLabel lblNewLabel_2_2 = new JLabel("");//第一关图片
-		ImageIcon icon_JLabel_1 = new ImageIcon("img\\Map1.png");
+		ImageIcon icon_JLabel_1 = new ImageIcon(getClass().getResource("img/Map1.png"));
 		icon_JLabel_1.setImage(icon_JLabel_1.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_1 = new JLabel(icon_JLabel_1);
 		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				mapNumber = 1;
 				Map.selectMap();
 				if(customspass == null)
@@ -139,12 +152,18 @@ public class Choice extends JFrame {
 		contentPane.add(lblNewLabel_2_1);
 		
 		//JLabel lblNewLabel_2 = new JLabel("");//第二关图片
-		ImageIcon icon_JLabel_2 = new ImageIcon("img\\Map2.png");
+		ImageIcon icon_JLabel_2 = new ImageIcon(getClass().getResource("img/Map2.png"));
 		icon_JLabel_2.setImage(icon_JLabel_2.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_2 = new JLabel(icon_JLabel_2);
 		lblNewLabel_2_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				mapNumber = 2;
 				Map.selectMap();
 				if(customspass == null)
@@ -168,12 +187,18 @@ public class Choice extends JFrame {
 		contentPane.add(lblNewLabel_2_2);
 
 		//JLabel lblNewLabel_2_1 = new JLabel("");//第三关图片
-		ImageIcon icon_JLabel_3 = new ImageIcon("img\\Map3.png");
+		ImageIcon icon_JLabel_3 = new ImageIcon(getClass().getResource("img/Map3.png"));
 		icon_JLabel_3.setImage(icon_JLabel_3.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_3 = new JLabel(icon_JLabel_3);
 		lblNewLabel_2_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				mapNumber = 3;
 				Map.selectMap();
 				if(customspass == null)
@@ -198,12 +223,18 @@ public class Choice extends JFrame {
 
 		
 		//JLabel lblNewLabel_2_1_1 = new JLabel("");//第四关图片
-		ImageIcon icon_JLabel_4 = new ImageIcon("img\\Map4.png");
+		ImageIcon icon_JLabel_4 = new ImageIcon(getClass().getResource("img/Map4.png"));
 		icon_JLabel_4.setImage(icon_JLabel_4.getImage().getScaledInstance(290, 190, 0));
 		JLabel lblNewLabel_2_4 = new JLabel(icon_JLabel_4);
 		lblNewLabel_2_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				mapNumber = 4;
 				Map.selectMap();
 				if(customspass == null)
@@ -234,6 +265,12 @@ public class Choice extends JFrame {
 		btnNewButton_begin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				class t extends TimerTask{
+					@Override
+					public void run() {
+					}
+                }
+                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 //				dispose();
 				StartInterface startinterface = new StartInterface();			
 				startinterface.setVisible(true);
@@ -249,14 +286,14 @@ public class Choice extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_begin = new ImageIcon("img\\Return.png");
+		ImageIcon icon_JButton_begin = new ImageIcon(getClass().getResource("img/Return.png"));
 		int height2 = 48;
 		btnNewButton_begin.setBounds(20, 10, 94, height2);
 		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(94, height2, 0));
 		btnNewButton_begin.setIcon(icon_JButton_begin);
 		contentPane.add(btnNewButton_begin);
 
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/finalbackground.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));

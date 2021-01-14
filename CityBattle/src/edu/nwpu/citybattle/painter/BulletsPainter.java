@@ -57,13 +57,13 @@ public class BulletsPainter {
 	 * 该方法用于载入图片
 	 */
 	public void loadImg() {
-		origin_bullet_up = new ImageIcon("img\\bullet_up.png");
+		origin_bullet_up = new ImageIcon(getClass().getResource("bullet_up.png"));
 		origin_bullet_up.setImage(origin_bullet_up.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
-		origin_bullet_down = new ImageIcon("img\\bullet_down.png");
+		origin_bullet_down = new ImageIcon(getClass().getResource("bullet_down.png"));
 		origin_bullet_down.setImage(origin_bullet_down.getImage().getScaledInstance(ELEMENT_SIZE , ELEMENT_SIZE * 2, 0));
-		origin_bullet_left = new ImageIcon("img\\bullet_left.png");
+		origin_bullet_left = new ImageIcon(getClass().getResource("bullet_left.png"));
 		origin_bullet_left.setImage(origin_bullet_left.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE, 0));
-		origin_bullet_right = new ImageIcon("img\\bullet_down.png");
+		origin_bullet_right = new ImageIcon(getClass().getResource("bullet_right.png"));
 		origin_bullet_right.setImage(origin_bullet_right.getImage().getScaledInstance(ELEMENT_SIZE * 2, ELEMENT_SIZE , 0));
 	}
 	/**

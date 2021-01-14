@@ -9,6 +9,22 @@ package edu.nwpu.citybattle.TankMap;
  */
 public class MapSelf {
 		//自定义地图
+//	/**
+//	 * 
+//	 */
+	public static void deleteAll() {
+		// TODO Auto-generated method stub
+		for(int x=0;x<=39;x++) {
+			for(int y=0;y<=55;y++) {
+				MapSelf.grass[y][x] = 0;
+				MapSelf.ironwall[y][x] = 0;
+				MapSelf.tankmap1[y][x] = 0;
+				MapSelf.wall[y][x] = 0;
+				MapSelf.water[y][x] = 0;
+			}
+		}
+	}
+	{deleteAll();}
 		public static int[][] tankmap1 = {
 //			     1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14 15, 16, 17,  18, 19,  20,  21, 22,  23,  24, 25,  26,  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56
 	/*1*/		{0,0,0,0,0,0,0,0,0,0,  0,  0,   0, 0,  0,  0,  0,  0,   0,   0,  0,   0,  0,   0,  0,   0,   0,  0,  0,  0,  0,  0,  0,  0,  0,   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0},

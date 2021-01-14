@@ -11,6 +11,8 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +24,8 @@ import javax.swing.border.EmptyBorder;
 import edu.nwpu.citybattle.TankMap.Map;
 
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 
 /**
@@ -54,6 +58,10 @@ public class Victory extends JFrame {
 	 */
 	public Victory() {
 		super("坦克大战");
+		
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
+		this.setIconImage(image);//设置图标
 		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
@@ -89,6 +97,12 @@ public class Victory extends JFrame {
 		btnNewButton_begin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				   class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 //				dispose();
 				CustomsPass customspass = new CustomsPass();			
 				customspass.setVisible(true);
@@ -104,7 +118,7 @@ public class Victory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_begin = new ImageIcon("img\\TryAgain.png");
+		ImageIcon icon_JButton_begin = new ImageIcon(getClass().getResource("img/TryAgain.png"));
 		int height2 = 48;
 		btnNewButton_begin.setBounds(405, 300, 190, height2);
 		icon_JButton_begin.setImage(icon_JButton_begin.getImage().getScaledInstance(190, height2, 0));
@@ -117,6 +131,12 @@ public class Victory extends JFrame {
 		btnNewButton_diy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				   class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				Choice.mapNumber = Choice.mapNumber+1;
 				Map.selectMap();
 				System.out.println("第几关："+Choice.mapNumber);
@@ -134,7 +154,7 @@ public class Victory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_diy = new ImageIcon("img\\Next.png");
+		ImageIcon icon_JButton_diy = new ImageIcon(getClass().getResource("img/Next.png"));
 		btnNewButton_diy.setBounds(432, 370, 136, height2);
 		icon_JButton_diy.setImage(icon_JButton_diy.getImage().getScaledInstance(136, height2, 0));
 		btnNewButton_diy.setIcon(icon_JButton_diy);
@@ -146,6 +166,12 @@ public class Victory extends JFrame {
 		btnNewButton_help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				   class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 				StartInterface startinterface = new StartInterface();			
 				startinterface.setVisible(true);
 				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -160,7 +186,7 @@ public class Victory extends JFrame {
 				setCursor(Cursor.getDefaultCursor());
 			}
 		});
-		ImageIcon icon_JButton_help = new ImageIcon("img\\ReturnMain.png");
+		ImageIcon icon_JButton_help = new ImageIcon(getClass().getResource("img/ReturnMain.png"));
 		btnNewButton_help.setBounds(385, 440, 230, height2);
 		icon_JButton_help.setImage(icon_JButton_help.getImage().getScaledInstance(230, height2, 0));
 		contentPane.add(btnNewButton_help);
@@ -175,7 +201,7 @@ public class Victory extends JFrame {
 		lblNewLabel_11.setBounds(425, 540, 150, 15);
 		contentPane.add(lblNewLabel_11);
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\finalbackground.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/finalbackground.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(-60, 0, 1060, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(1060, 600, 0));

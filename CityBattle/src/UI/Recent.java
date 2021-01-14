@@ -77,7 +77,7 @@ public class Recent extends JFrame {
 		this.setVisible(true);
 		
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\recent.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img\\recent.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(0, 0, 416, 520);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(416, 520, 0));

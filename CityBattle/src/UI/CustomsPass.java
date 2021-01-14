@@ -5,12 +5,17 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.DefaultPersistenceDelegate;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -79,20 +84,33 @@ public class CustomsPass extends JFrame {
 	public CustomsPass() {
 		
 		super("坦克大战");
+		
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		Image image=tk.createImage(getClass().getResource("img/LittleIcon.png")); 
+		this.setIconImage(image);//设置图标
 		setResizable(false);
 		
 		setBackground(new Color(0, 0, 0));
 		//bullet = new Bullet(0,20,2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//鑾峰緱灞忓箷灏哄
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();//
 		int width = 1000;
 		int height = 600;
-		setBounds((d.width-width)/2, (d.height-height)/2, width, height);//绐楀彛鐨勫潗鏍囧拰灏哄锛屼互姝ょ鏂瑰紡灞呬腑
+		setBounds((d.width-width)/2, (d.height-height)/2, width, height);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		/**
+		 * logo展示
+		 */
+		ImageIcon logo = new ImageIcon(getClass().getResource("img/logo.png"));
+		logo.setImage(logo.getImage().getScaledInstance(230, 230, 0));
+		JLabel Labellogo = new JLabel(logo);
+		Labellogo.setBounds(770, 383, 230, 230);
+		contentPane.add(Labellogo);
+		
 		/*
 		 * firstTankNumber
 		 */
@@ -168,7 +186,7 @@ public class CustomsPass extends JFrame {
 		lblNewLabel1.setBounds(830, 0, 108, 74);
 		contentPane.add(lblNewLabel1);
 		
-		ImageIcon icon_JLabel_B = new ImageIcon("img\\Right3.png");
+		ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/Right3.png"));
 		JLabel lblNewLabel_B  = new JLabel(icon_JLabel_B);
 		lblNewLabel_B.setBounds(785, 0, 200, 600);
 		icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
@@ -227,6 +245,88 @@ public class CustomsPass extends JFrame {
 		myTank = new MyTank();
 		//Map.selectMap();
 		draw = new DrawAll(myTank,contentPane);
+		/**
+		 * 返回按键
+		 */
+		ImageIcon icon_JLabel_4 = new ImageIcon(getClass().getResource("img/Return.png"));
+		icon_JLabel_4.setImage(icon_JLabel_4.getImage().getScaledInstance(57, 29, 0));
+		JLabel lblNewLabel_2_4 = new JLabel(icon_JLabel_4);
+		lblNewLabel_2_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(Choice.mapNumber != 5) {
+					class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
+				Choice choice = new Choice();
+				choice.setVisible(true);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+				}else {
+					class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
+					StartInterface startinterface = new StartInterface();			
+				startinterface.setVisible(true);
+				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				dispose();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getDefaultCursor());
+			}
+		});
+		lblNewLabel_2_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_4.setBounds(790, 390, 57, 29);
+//		lblNewLabel_2_4.setBorder(BorderFactory.createLineBorder(Color.white));
+		contentPane.add(lblNewLabel_2_4);
+		
+//		/**
+//		 * 重玩按键
+//		 */
+//		ImageIcon icon_JLabel_again = new ImageIcon(getClass().getResource("img/ChongWan.png"));
+//		icon_JLabel_again.setImage(icon_JLabel_again.getImage().getScaledInstance(57, 29, 0));
+//		JLabel lblNewLabel_again = new JLabel(icon_JLabel_again);
+//		lblNewLabel_again.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				class t extends TimerTask{
+//					@Override
+//					public void run() {
+//					}
+//                }
+//                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
+//				CustomsPass customsPass = new CustomsPass();
+//				customsPass.setVisible(true);
+//				//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//				dispose();
+//			}
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//			}
+//			@Override
+//			public void mouseExited(MouseEvent e) {
+//				setCursor(Cursor.getDefaultCursor());
+//			}
+//		});
+//		lblNewLabel_again.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_again.setBounds(922, 390, 57, 29);
+////		lblNewLabel_2_4.setBorder(BorderFactory.createLineBorder(Color.white));
+//		contentPane.add(lblNewLabel_again);
+
+		
 		CronJobSet.addJob(new CronJob() {
 	 			public void run() {
 	 				//contentPane.removeAll();
@@ -234,19 +334,19 @@ public class CustomsPass extends JFrame {
 	 				draw.drawShape();
 	 				//System.out.println(myTank.direction +" " + myTank.tank_x +  " num:" + myTank.tank_y );
 	 				if(myTank.HP == 1) {
-	 					ImageIcon icon_JLabel_B = new ImageIcon("img\\Right1.png");
+	 					ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/Right1.png"));
 	 					lblNewLabel_B.setBounds(785, 0, 200, 600);
 	 					icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
 //	 					contentPane.add(lblNewLabel_B);
 	 					lblNewLabel_B.setIcon(icon_JLabel_B);
 	 				}else if(myTank.HP == 2) {
-	 					ImageIcon icon_JLabel_B = new ImageIcon("img\\Right2.png");
+	 					ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/Right2.png"));
 	 					lblNewLabel_B.setBounds(785, 0, 200, 600);
 	 					icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
 //	 					contentPane.add(lblNewLabel_B);
 	 					lblNewLabel_B.setIcon(icon_JLabel_B);
 	 				}else if(myTank.HP == 3) {
-	 					ImageIcon icon_JLabel_B = new ImageIcon("img\\Right3.png");
+	 					ImageIcon icon_JLabel_B = new ImageIcon(getClass().getResource("img/Right3.png"));
 	 					lblNewLabel_B.setBounds(785, 0, 200, 600);
 	 					icon_JLabel_B.setImage(icon_JLabel_B.getImage().getScaledInstance(200, 600, 0));
 //	 					contentPane.add(lblNewLabel_B);
@@ -367,6 +467,12 @@ public class CustomsPass extends JFrame {
 		switch(Choice.mapNumber) {
 			case 1:
 				if(winFlag == 4) {
+	                class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 					Victory	victory = new Victory();			
 					victory.setVisible(true);
 					customspass.dispose();
@@ -375,6 +481,12 @@ public class CustomsPass extends JFrame {
 				}
 			case 2:
 				if(winFlag == 6) {
+	                class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 					Victory	victory = new Victory();			
 					victory.setVisible(true);
 					customspass.dispose();
@@ -383,6 +495,12 @@ public class CustomsPass extends JFrame {
 				}
 			case 3:
 				if(winFlag == 8) {
+	                class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 					Victory	victory = new Victory();			
 					victory.setVisible(true);
 					customspass.dispose();
@@ -391,12 +509,46 @@ public class CustomsPass extends JFrame {
 				}
 			case 4:
 				if(winFlag == 10) {
+	                class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 					AllVictory	allvictory = new AllVictory();			
 					allvictory.setVisible(true);
 					customspass.dispose();
 					ThreadCronJob.stop();
 					CronJobSet.removeAll();
 				}
+			case 5:
+				if(winFlag == 10) {
+	                class t extends TimerTask{
+						@Override
+						public void run() {
+						}
+	                }
+	                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
+					AllVictory	allvictory = new AllVictory();			
+					allvictory.setVisible(true);
+					customspass.dispose();
+					ThreadCronJob.stop();
+					CronJobSet.removeAll();
+				}
+//			default:
+//			{
+//				class t extends TimerTask{
+//					@Override
+//					public void run() {
+//					}
+//                }
+//                (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
+//				AllVictory	allvictory = new AllVictory();			
+//				allvictory.setVisible(true);
+//				customspass.dispose();
+//				ThreadCronJob.stop();
+//				CronJobSet.removeAll();	
+//			}
 		}
 		/*if(winFlag == 5) {
 		Victory	victory = new Victory();			
@@ -406,6 +558,12 @@ public class CustomsPass extends JFrame {
 	}
 	
 	public static void isLose() {
+        class t extends TimerTask{
+			@Override
+			public void run() {
+			}
+        }
+        (new Timer()).schedule(new t(), 500L);//设置延时防止生成两个界面
 		Lose lose = new Lose();			
 		lose.setVisible(true);
 		customspass.dispose();
@@ -413,48 +571,4 @@ public class CustomsPass extends JFrame {
 		CronJobSet.removeAll();
 		
 	}
-	
-	/*public void loadImg() {
-		ImageIcon origin_background = new ImageIcon("img\\tankebegin.png");
-		ImageIcon origin_wall = new ImageIcon("img\\tankebegin.png");
-		origin_wall.setImage(origin_wall.getImage().getScaledInstance(ELEMENT_SIZE, ELEMENT_SIZE, 0));
-		ImageIcon origin_iron_wall = new ImageIcon("img\\tankebegin.png");
-		ImageIcon origin_grass = new ImageIcon("img\\tankebegin.png");
-		ImageIcon origin_water = new ImageIcon("img\\tankebegin.png");
-		background  = new JLabel(origin_wall);
-		wall = new JLabel(origin_wall);
-		//wall.setBounds(71, 40,ELEMENT_SIZE, ELEMENT_SIZE);
-		//contentPane.add(wall);
-		water = new JLabel(origin_water);
-		ironWall  = new JLabel(origin_grass);
-		grass = new JLabel(origin_iron_wall);
-		
-		for(int x = 0;x < Map1.wall.length;x++) {
-			for(int y = 0;y < Map1.wall[x].length;y++) {
-				if(Map.wall[x][y] == 1) {
-					wall = new JLabel(origin_wall);
-					wall.setBounds(x*ELEMENT_SIZE, y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
-					contentPane.add(wall);
-				}
-			}
-		}
-	}
-	public void initialPainter()
-	{
-		int size1 = WINDOW_WIDTH / (TABLE_WIDTH + 1);
-		int size2 = WINDOW_HEIGHT / (TABLE_HEIGHT + 1);
-		
-		ELEMENT_SIZE = size1 < size2 ? size1 : size2; 
-	}
-	public void drawWall() {//缂備焦锚閸╂鏅跺▎蹇旂
-		for(int x = 0;x < Map1.wall.length;x++) {
-			for(int y = 0;y < Map1.wall[x].length;y++) {
-				if(Map.wall[x][y] == 1) {
-					wall = new JLabel(origin_wall);
-					wall.setBounds(x*ELEMENT_SIZE, y*ELEMENT_SIZE, ELEMENT_SIZE, ELEMENT_SIZE);
-					contentPane.add(wall);
-				}
-			}
-		}
-	}*/
 }
