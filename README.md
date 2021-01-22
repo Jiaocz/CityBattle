@@ -35,4 +35,6 @@ If you have any problem, please open an [Issue](https://github.com/Jiaocz/CityBa
 ****
 Project has been terminated since Dec. 14th, 2020. New feature may not come out.  
 
-To contribute to this repository, please fork and then make pull requests. 
+To contribute to this repository, please fork and then make pull requests.  
+
+As [License](https://github.com/Jiaocz/CityBattle/blob/master/LICENSE) said, you can do what you want using this code, and if you like you can add source link to this project out author' page.
