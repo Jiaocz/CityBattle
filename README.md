@@ -33,7 +33,7 @@ Project migrated from HuaWei Devcloud,**DO NOT DISTURB ANY CONTRIBUTOR IN THIS R
 If you have any problem, please open an [Issue](https://github.com/Jiaocz/CityBattle/issues) or [discuss](https://github.com/Jiaocz/CityBattle/discussions) with others who interested in this project. **Issues may not be replied by me.**  
 
 ****
-Project has been terminated since Dec. 14th, 2020. New feature may not come out.  
+Project has been terminated since Jan. 14th, 2021. New feature may not come out.  
 
 To contribute to this repository, please fork and then make pull requests.  
 
