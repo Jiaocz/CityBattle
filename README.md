@@ -62,7 +62,3 @@ Project has been terminated since Jan. 14th, 2021. New feature may not come out.
 如您想要向本项目优化代码或新增功能，请fork后创建pull请求。
 
 To contribute to this repository, please fork and then make pull requests.  
-
-如[License/许可证](https://github.com/Jiaocz/CityBattle/blob/master/LICENSE)所讲，你可以对此代码进行任何事情，包括二次修改、转发，但是如果您愿意，也可以添加链接至本页面或作者页面的链接。
-
-As [License](https://github.com/Jiaocz/CityBattle/blob/master/LICENSE) said, you can do what you want using this code, and if you like you can add source link to this project out author' page.
